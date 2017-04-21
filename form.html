@@ -11,7 +11,75 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/cssform.css"/>
     
-    <title>TODO supply a title</title>
+    <title>Arrangementer</title>
+    
+    <script type="text/javascript">
+        
+        
+        var myNodelist = document.getElementsByTagName("LI");
+        var close = document.getElementsByClassName("close");
+        var list = document.querySelector('ul');
+        var i;
+        
+        // lager close knapp og appender til hver list submission
+        for (i = 0; i < myNodelist.length; i++) {
+          var span = document.createElement("SPAN");
+          var txt = document.createTextNode("\u00D7");
+          span.className = "close";
+          span.appendChild(txt);
+          myNodelist[i].appendChild(span);
+        }
+        
+        // trykk på close knapp for å skjule valgt submission
+        for (i = 0; i < close.length; i++) {
+          close[i].onclick = function() {
+            var div = this.parentElement;
+            div.style.display = "none";
+          }
+        }
+
+        //Opprett nytt submission til listen ved å trykke på "Legg til" knappen
+        function newElement() {
+            var li = document.createElement("li");
+            var inputGren = document.getElementById("velgGren").value;
+            var inputDato = document.getElementById("velgDato").value;
+            var inputTid = document.getElementById("velgTid").value;
+            var output = inputGren + " den " + inputDato + " klokken " + inputTid;
+            var t = document.createTextNode(output);
+
+            li.appendChild(t);
+            if (inputGren === 'Velg gren' || inputDato === 'Velg Dato' || inputTid === 'Velg tid') {
+                alert("Vennligst velg gren, dato og tid.");
+            } else {
+                document.getElementById("eventListe").appendChild(li);
+            }
+            
+            if (inputGren != 'Velg gren' && inputDato != 'Velg dato' && inputTid != 'Velg tid'){
+                document.getElementById("velgGren").value = "Velg gren";
+                document.getElementById("velgDato").value = "Velg dato";
+                document.getElementById("velgTid").value = "Velg tid";
+            } else if (inputGren != 'Velg gren' || inputDato != 'Velg dato' || inputTid != 'Velg tid') {
+                document.getElementById("velgGren").value = inputGren;
+                document.getElementById("velgDato").value = inputDato;
+                document.getElementById("velgTid").value = inputTid;
+            }
+
+            var span = document.createElement("SPAN");
+            var txt = document.createTextNode("\u00D7");
+            span.className = "close";
+            span.appendChild(txt);
+            li.appendChild(span);
+            
+            //ved å trykke close så skjuler man submissionen(trenger muligens utbedring for funksjonalitet mot db)
+            for (i = 0; i < close.length; i++) {
+              close[i].onclick = function() {
+                var div = this.parentElement;
+                div.style.display = "none";
+              }
+            }
+        }
+        
+    </script>
         
     </head>
     
@@ -41,119 +109,143 @@
 
 <div id="mainContainer">
     
-<!--    <div class ="col" id="col1"></div>-->
-    
-    <div class="col" id="col2">
-        <div class="container" id="container1">
-            <div class="col" id="col2col1">    
-            <div class="col-sm-3">
-                
-                    <div class="form-group">
-
-                        <label>Email adresse:</label>
-                        <input type="email" class="form-control" id="inputEmail" placeholder="Skriv inn Email">
-
-                    </div>
-                    <div class="form-group">
-
-                        <label>Fornavn:</label>
-                        <input type="text" class="form-control" id="inputFornavn" placeholder="Skrin inn fornavn">
-
-                    </div>
-                    <div class="form-group">
-
-                        <label>Etternavn:</label>
-                        <input type="text" class="form-control" id="inputEtternavn" placeholder="Skrin inn etternavn">
-
-                    </div>
+    <div class="jumbotron jumbotron-sm">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    <h1 class="h1">
+                        Arrangementer <small>Registrer deg og velg event</small></h1>
                 </div>
             </div>
-        
-            <div class="col" id="col2col2">
-                <div class="col-sm-6" style="width:25%;">
-                    
-                </div>
-            </div>
-            
-        <div class="col" id="col2col3">
-            <div class="col-sm-6" id="testcol">  
-                <div class="row" id="testrow">    
-                    <div class="col-sm-4">
-                        <div class="form-group">
-
-                            <label for="velggren">Velg gren: </label>
-                            <select class="form-control" id="velggren">
-
-                                <option selected hidden>Gren</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4">    
-                        <div class="form-group">
-
-                            <label for="velgdato">Velg dato: </label>
-                            <select class="form-control" id="velgdato">
-
-                                <option selected hidden>Dato</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4">
-                        <div class="form-group">
-
-                            <label for="velgtid">Velg tid: </label>
-                            <select class="form-control" id="velgtid">
-
-                                <option selected hidden>Tid</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-
-                            </select>
-                            
-                        </div>
-                        <button type="submit" class="btn btn-primary" id="knapp1">Submit</button>
-                    </div>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
         </div>
     </div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="well well-sm">
+                    <form name="formRegistrering" action="Database/index.php" method="post">
+                        <div class="row">
+                            <div class="col-md-4">
+
+                                <div class="form-group">
+                                    <label for="fornavn">
+                                        Fornavn</label>
+                                    <input type="text" class="form-control" id="fornavn" placeholder="Skriv inn fornavn" required="required" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="etternavn">
+                                        Etternavn</label>
+                                    <input type="text" class="form-control" id="etternavn" placeholder="Skriv inn etternavn" required="required" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">
+                                        Email Adresse</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                                        </span>
+                                        <input type="email" class="form-control" id="email" placeholder="Skriv inn email" required="required" /></div>
+                                </div>
+
+                            </div>
+
+                            <div class="col" id="col2col2">
+                                <div class="col-md-4">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+
+                                <div class="form-group">
+                                <label for="velgGren">
+                                    Gren</label>
+                                <select id="velgGren" name="velgGren" class="form-control" required="required">
+                                    <option selected hidden>Velg gren</option>
+                                    <option>Skihopp</option>
+                                    <option>Slalom</option>
+                                    <option>Langrenn</option>
+                                    <option>Skiskyting</option>
+                                </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="velgDato">
+                                    Dato</label>
+                                <select id="velgDato" name="velgDato" class="form-control" required="required">
+                                    <option selected hidden>Velg dato</option>
+                                    <option>21. Januar</option>
+                                    <option>22. Januar</option>
+                                    <option>23. Januar</option>
+                                    <option>24. Januar</option>
+                                    <option>25. Januar</option>
+                                    <option>26. Januar</option>
+                                    <option>27. Januar</option>
+                                </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="velgTid">
+                                    Tid</label>
+                                <select id="velgTid" name="velgTid" class="form-control" required="required">
+                                    <option selected hidden>Velg tid</option>
+                                    <option>10:00 - 12:30</option>
+                                    <option>11:30 - 14:00</option>
+                                    <option>13:00 - 15:30</option>
+                                </select>
+                                 </div> 
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-8">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <span onclick="newElement()" id="leggTil" class="btn btn-primary pull-right">Legg til</span>
+                                    </div>
+                                </div>   
+                            </div>
+                            
+                            <br/>
+
+                            <div class="col-md-12">
+                                <ul class="list-group" id="eventListe">
+                                </ul>
+                            </div>
+
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary pull-right" id="knappBekreft">
+                                    Bekreft</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    <!--        <div class="col-md-4">
+                <form>
+                <legend><span class="glyphicon glyphicon-globe"></span> Our office</legend>
+                <address>
+                    <strong>Twitter, Inc.</strong><br>
+                    795 Folsom Ave, Suite 600<br>
+                    San Francisco, CA 94107<br>
+                    <abbr title="Phone">
+                        P:</abbr>
+                    (123) 456-7890
+                </address>
+                <address>
+                    <strong>Full Name</strong><br>
+                    <a href="mailto:#">first.last@example.com</a>
+                </address>
+                </form>
+            </div>-->
+        </div>
+    </div>
+
 <!--    <div class="col" id="col3"></div>-->
 </div>
-        
-<!--        <fieldset class="form-group row">
-            
-            <legend class="col-form-legend col-sm-1">Arrangementer</legend>
-            <br/><br/>
-                    <div class ="col-sm-2">
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="gridCheckbox" id="gridCheckbox1" value="valg1"> valg1</input><br>
-                                <input class="form-check-input" type="checkbox" name="gridCheckbox" id="gridCheckbox2" value="valg2"> valg2</input><br>
-                                <input class="form-check-input" type="checkbox" name="gridCheckbox" id="gridCheckbox3" value="valg3"> valg3</input><br>
-                            </label>  
-                        </div>
-                    </div>
-        </fieldset>-->
-        
-        
+
     <!-- JQuery -->
     <script src="js/jquery.min.js"/></script>
     
