@@ -1,0 +1,26 @@
+body {
+    
+    font-family: verdana, sans-serif, arial;
+    
+}
+
+    #loginbox {
+
+            background-color: #E8E8EE;
+            margin-top: 5em;
+            padding: 1em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width:80%;
+
+    }
+    
+    @media only screen and (max-device-width: 480px) {
+        
+        select {
+            
+            
+            
+        }
+        
+    }
