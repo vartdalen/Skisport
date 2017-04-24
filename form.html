@@ -13,73 +13,7 @@
     
     <title>Arrangementer</title>
     
-    <script type="text/javascript">
-        
-        
-        var myNodelist = document.getElementsByTagName("LI");
-        var close = document.getElementsByClassName("close");
-        var list = document.querySelector('ul');
-        var i;
-        
-        // lager close knapp og appender til hver list submission
-        for (i = 0; i < myNodelist.length; i++) {
-          var span = document.createElement("SPAN");
-          var txt = document.createTextNode("\u00D7");
-          span.className = "close";
-          span.appendChild(txt);
-          myNodelist[i].appendChild(span);
-        }
-        
-        // trykk på close knapp for å skjule valgt submission
-        for (i = 0; i < close.length; i++) {
-          close[i].onclick = function() {
-            var div = this.parentElement;
-            div.style.display = "none";
-          }
-        }
-
-        //Opprett nytt submission til listen ved å trykke på "Legg til" knappen
-        function newElement() {
-            var li = document.createElement("li");
-            var inputGren = document.getElementById("velgGren").value;
-            var inputDato = document.getElementById("velgDato").value;
-            var inputTid = document.getElementById("velgTid").value;
-            var output = inputGren + " den " + inputDato + " klokken " + inputTid;
-            var t = document.createTextNode(output);
-
-            li.appendChild(t);
-            if (inputGren === 'Velg gren' || inputDato === 'Velg Dato' || inputTid === 'Velg tid') {
-                alert("Vennligst velg gren, dato og tid.");
-            } else {
-                document.getElementById("eventListe").appendChild(li);
-            }
-            
-            if (inputGren != 'Velg gren' && inputDato != 'Velg dato' && inputTid != 'Velg tid'){
-                document.getElementById("velgGren").value = "Velg gren";
-                document.getElementById("velgDato").value = "Velg dato";
-                document.getElementById("velgTid").value = "Velg tid";
-            } else if (inputGren != 'Velg gren' || inputDato != 'Velg dato' || inputTid != 'Velg tid') {
-                document.getElementById("velgGren").value = inputGren;
-                document.getElementById("velgDato").value = inputDato;
-                document.getElementById("velgTid").value = inputTid;
-            }
-
-            var span = document.createElement("SPAN");
-            var txt = document.createTextNode("\u00D7");
-            span.className = "close";
-            span.appendChild(txt);
-            li.appendChild(span);
-            
-            //ved å trykke close så skjuler man submissionen(trenger muligens utbedring for funksjonalitet mot db)
-            for (i = 0; i < close.length; i++) {
-              close[i].onclick = function() {
-                var div = this.parentElement;
-                div.style.display = "none";
-              }
-            }
-        }
-        
-    </script>
+    <script type="text/javascript" src="js/list.js" async/></script>
         
     </head>
     
@@ -95,7 +29,7 @@
             <div id="navbar" class="collapse navbar-collapse">
                 
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Arrangementer</a></li>
+                    <li><a href="">Arrangementer</a></li>
                     <li><a href="login.html">Admin</a></li>
                 </ul>
                 
@@ -156,12 +90,12 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-4" id="listContainer">
 
                                 <div class="form-group">
                                 <label for="velgGren">
                                     Gren</label>
-                                <select id="velgGren" name="velgGren" class="form-control" required="required">
+                                    <select id="velgGren" name="velgGren" class="form-control" required="required" onchange="valgtGren()">
                                     <option selected hidden>Velg gren</option>
                                     <option>Skihopp</option>
                                     <option>Slalom</option>
@@ -173,7 +107,7 @@
                                 <div class="form-group">
                                     <label for="velgDato">
                                     Dato</label>
-                                <select id="velgDato" name="velgDato" class="form-control" required="required">
+                                <select id="velgDato" name="velgDato" class="form-control" required="required" onchange="valgtDato()" disabled>
                                     <option selected hidden>Velg dato</option>
                                     <option>21. Januar</option>
                                     <option>22. Januar</option>
@@ -188,7 +122,7 @@
                                 <div class="form-group">
                                     <label for="velgTid">
                                     Tid</label>
-                                <select id="velgTid" name="velgTid" class="form-control" required="required">
+                                    <select id="velgTid" name="velgTid" class="form-control" required="required" disabled>
                                     <option selected hidden>Velg tid</option>
                                     <option>10:00 - 12:30</option>
                                     <option>11:30 - 14:00</option>
