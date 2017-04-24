@@ -41,6 +41,8 @@ function newElement() {
         document.getElementById("velgGren").value = "Velg gren";
         document.getElementById("velgDato").value = "Velg dato";
         document.getElementById("velgTid").value = "Velg tid";
+        document.getElementById("velgDato").disabled = true;
+        document.getElementById("velgTid").disabled = true;
     } else if (inputGren != 'Velg gren' || inputDato != 'Velg dato' || inputTid != 'Velg tid') {
         document.getElementById("velgGren").value = inputGren;
         document.getElementById("velgDato").value = inputDato;
@@ -61,7 +63,6 @@ function newElement() {
       }
     }
 }
-
 
 function valgtGren() {
     
