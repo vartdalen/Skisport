@@ -1,5 +1,6 @@
 var listContainer = document.getElementById("listContainer");
 var myNodelist = listContainer.children[0].getElementsByTagName("LI");
+var eventList = document.getElementById("eventListe");
 var close = document.getElementsByClassName("close");
 var list = document.querySelector('ul');
 var i;
@@ -31,6 +32,7 @@ function newElement() {
     var t = document.createTextNode(output);
 
     li.appendChild(t);
+    
     if (inputGren === 'Velg gren' || inputDato === 'Velg Dato' || inputTid === 'Velg tid') {
         alert("Vennligst velg gren, dato og tid.");
     } else {
@@ -53,15 +55,66 @@ function newElement() {
     var txt = document.createTextNode("\u00D7");
     span.className = "close";
     span.appendChild(txt);
+    span.setAttribute("id", "span");
     li.appendChild(span);
 
     //ved å trykke close så skjuler man submissionen(trenger muligens utbedring for funksjonalitet mot db)
     for (i = 0; i < close.length; i++) {
       close[i].onclick = function() {
         var div = this.parentElement;
-        div.style.display = "none";
+        div.remove();
       }
     }
+}
+
+//function bekreft() {
+//    
+//    for (var key in myNodelist) {
+//        
+//        if (myNodelist.hasOwnProperty(key)) {
+//            
+//            var hiddenField = document.createElement("input");
+//            hiddenField.setAttribute("type","hidden");
+//            hiddenField.setAttribute("name", key);
+//            hiddenField.setAttribute("value", myNodelist[key]);
+//            
+//        }
+//        
+//    }
+//
+//}
+
+function bekreft() {
+        
+        //henter formen
+        var form = document.getElementById("formRegistrering");
+        
+        //lagrer størrelsen på listen i en variabel som kan brukes på neste side
+        var listSize = document.createElement("input");
+        listSize.setAttribute("type", "hidden");
+        listSize.setAttribute("name", "ls");
+        listSize.setAttribute("id", "ls");
+        listSize.setAttribute("value", eventList.children.length);
+        
+        form.appendChild(listSize);
+   
+    for(var i = 0; i <= eventList.children.length; i++ ) {
+                
+                //fjerner spanobjektet (x knappen)
+                var span = document.getElementById("span");
+                span.parentNode.removeChild(span);
+                //setter inn verdier i formen som kan bli sendt som post variabler
+                var hiddenField = document.createElement("input");
+                hiddenField.setAttribute("type","hidden");
+                hiddenField.setAttribute("name", i);
+                hiddenField.setAttribute("value", eventList.children[i].textContent);
+
+                form.appendChild(hiddenField);
+
+        }
+        
+//        window.alert(listSize.attributes);
+
 }
 
 function valgtGren() {

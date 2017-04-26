@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/cssform.css"/>
     
-    <title>Arrangementer</title>
+    <title>Registrer deg</title>
     
     <script type="text/javascript" src="js/list.js" async/></script>
         
@@ -41,8 +41,6 @@
             </div>
         </nav>
 
-        <div id="mainContainer">
-
             <div class="jumbotron jumbotron-sm">
                 <div class="container">
                     <div class="row">
@@ -53,24 +51,33 @@
                     </div>
                 </div>
             </div>
+        
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="well well-sm">
-                            <form name="formRegistrering" action="" method="post">
+                            <form name="formRegistrering" id="formRegistrering" action="formConfirm.php" method="post">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-5">
 
                                         <div class="form-group">
                                             <label for="fornavn">
                                                 Fornavn</label>
-                                            <input type="text" class="form-control" id="fornavn" placeholder="Skriv inn fornavn" required="required" />
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                                                </span>
+                                                <input type="text" class="form-control" name="fornavn" placeholder="Skriv inn fornavn" required="required" />
+                                            </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="etternavn">
                                                 Etternavn</label>
-                                            <input type="text" class="form-control" id="etternavn" placeholder="Skriv inn etternavn" required="required" />
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                                                </span>
+                                                <input type="text" class="form-control" name="etternavn" placeholder="Skriv inn etternavn" required="required" />
+                                            </div>
                                         </div>
 
                                         <div class="form-group">
@@ -79,17 +86,18 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                                 </span>
-                                                <input type="email" class="form-control" id="email" placeholder="Skriv inn email" required="required" /></div>
+                                                <input type="email" class="form-control" name="email" placeholder="Skriv inn email" required="required" />
+                                            </div>
                                         </div>
 
                                     </div>
 
                                     <div class="col" id="col2col2">
-                                        <div class="col-md-4">
+                                        <div class="col-md-2">
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4" id="listContainer">
+                                    <div class="col-md-5" id="listContainer">
 
                                         <div class="form-group">
                                         <label for="velgGren">
@@ -136,7 +144,7 @@
                                             <div class="col-md-8">
                                             </div>
                                             <div class="col-md-4">
-                                                <span onclick="newElement()" id="leggTil" class="btn btn-primary pull-right">Legg til</span>
+                                                <span id="leggTil" class="btn btn-primary pull-right" onclick="newElement()">Legg til</span>
                                             </div>
                                         </div>   
                                     </div>
@@ -149,35 +157,31 @@
                                     </div>
 
                                     <div class="col-md-12">
-                                        <button type="submit" class="btn btn-primary pull-right" id="knappBekreft">
+                                        <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" onclick="bekreft()">
                                             Bekreft</button>
+<!--                                        <span id="test" class="btn btn-primary pull-right" onclick="bekreft()">test</span>-->
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
-            <!--        <div class="col-md-4">
+                    <div class="col-md-4">
                         <form>
-                        <legend><span class="glyphicon glyphicon-globe"></span> Our office</legend>
+                        <legend><span class="glyphicon glyphicon-globe"></span> Kundeservice</legend>
                         <address>
-                            <strong>Twitter, Inc.</strong><br>
-                            795 Folsom Ave, Suite 600<br>
-                            San Francisco, CA 94107<br>
-                            <abbr title="Phone">
-                                P:</abbr>
-                            (123) 456-7890
+                            <strong>Carlo & Co, Inc.</strong><br>
+                            Pilestredet 35, Høgskolen i Oslo og Akershus<br>
+                            Oslo, Akershus<br>
+                            Telefon: 696 96 969
                         </address>
                         <address>
-                            <strong>Full Name</strong><br>
-                            <a href="mailto:#">first.last@example.com</a>
+                            <strong>Carlo Hoa Ngyuen</strong><br>
+                            <a href="mailto:#">carlohoa@gmail.com</a>
                         </address>
                         </form>
-                    </div>-->
+                    </div>
                 </div>
             </div>
-
-        <!--    <div class="col" id="col3"></div>-->
-        </div>
 
     <!-- JQuery -->
     <script src="js/jquery.min.js"/></script>
