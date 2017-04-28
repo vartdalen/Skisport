@@ -116,13 +116,13 @@
                                             Dato</label>
                                         <select id="velgDato" name="velgDato" class="form-control" required="required" onchange="valgtDato()" disabled>
                                             <option selected hidden>Velg dato</option>
-                                            <option>21. Januar</option>
-                                            <option>22. Januar</option>
-                                            <option>23. Januar</option>
-                                            <option>24. Januar</option>
-                                            <option>25. Januar</option>
-                                            <option>26. Januar</option>
-                                            <option>27. Januar</option>
+                                            <option>21.01.2017</option>
+                                            <option>22.01.2017</option>
+                                            <option>23.01.2017</option>
+                                            <option>24.01.2017</option>
+                                            <option>25.01.2017</option>
+                                            <option>26.01.2017</option>
+                                            <option>27.01.2017</option>
                                         </select>
                                         </div>
 
@@ -131,9 +131,9 @@
                                             Tid</label>
                                             <select id="velgTid" name="velgTid" class="form-control" required="required" disabled>
                                             <option selected hidden>Velg tid</option>
-                                            <option>10:00 - 12:30</option>
-                                            <option>11:30 - 14:00</option>
-                                            <option>13:00 - 15:30</option>
+                                            <option>10:00-12:30</option>
+                                            <option>11:30-14:00</option>
+                                            <option>13:00-15:30</option>
                                         </select>
                                          </div> 
 

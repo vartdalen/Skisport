@@ -9,23 +9,29 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/cssformConfirm.css"/>
     
-    <script type="text/javascript" src="js/formConfirm.js"></script>
-          
     <title>Bekreft Informasjon</title>
 
   </head>
 
-  <body>
+  <body onload="createlist()">
       
         <?php
-            //lager sessionvariabler
+            
             session_start();
-            $_SESSION["fornavn"] = $_POST["fornavn"];
-            $_SESSION["etternavn"] = $_POST["etternavn"];
-            $_SESSION["email"] = $_POST["email"];
             
-            $_SESSION["listSize"] = $_POST["ls"];
-            
+                //lager sessionvariabler 
+                $_SESSION["fornavn"] = $_POST["fornavn"];
+                $_SESSION["etternavn"] = $_POST["etternavn"];
+                $_SESSION["email"] = $_POST["email"];
+
+                $_SESSION["listSize"] = $_POST["ls"];
+                
+                //lager session variabler for alle post-variablene fra listen
+                for ($i = 0; $i < $_SESSION["listSize"]; $i++) {
+
+                    $_SESSION["li$i"] = $_POST["$i"];
+                    
+                }
             
             $fornavn = $_SESSION["fornavn"];
             $etternavn =  $_SESSION["etternavn"];
@@ -33,8 +39,9 @@
             
             $listSize = $_SESSION["listSize"];
             
+            
         ?>
-      
+
       <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container" id="c1">
             <div class="navbar-header">
@@ -68,7 +75,7 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="well well-sm">
-                            <form name="formRegistrering" id="formRegistrering" action="formConfirm.php" method="post">
+                            <form name="formBekreftelse" id="formBekreftelse" action="" method="post">
                                 <div class="row">
                                     <div class="col-md-12">
 
@@ -104,26 +111,17 @@
 
                                     </div>
 
-                                    <div class="col" id="col2col2">
-                                        <div class="col-md-2">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-5" id="listContainer">
-
-                                        
-
-                                    </div>
-
                                     <div class="col-md-12">
                                         <ul class="list-group" id="eventListe">
                                         </ul>
                                     </div>
 
                                     <div class="col-md-12">
-                                        <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" onclick="createlist()">
-                                            Bekreft</button>
-<!--                                        <span id="test" class="btn btn-primary pull-right" onclick="bekreft()">test</span>-->
+<!--                                        <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" onclick="createlist()">
+                                            Bekreft</button>-->
+
+                                        <span id="test" class="btn btn-primary pull-right" onclick="createlist()">test</span>
+                                        <span id="test2" class="btn btn-primary pull-right" onclick="submitToDb()">test2</span>
                                     </div>
                                 </div>
                             </form>
@@ -148,18 +146,69 @@
             </div>
       
         <?php
-        
-            echo $listSize."<br/><br/>";
+         
+//                echo $listSize."<br/><br/>";
             
-            //lager et array som mottar post verdiene til listen på forrige side.
-            $listEvents = array();
-            for ($i = 0; $i < $listSize; $i++) {
+                //lager et array som mottar post verdiene til listen på forrige side.
+                $listEvents = array();
+                for ($i = 0; $i < $listSize; $i++) {
+
+                    $listEvents[$i] = $_SESSION["li$i"];
+//                    echo $listEvents[$i]."<br/>";
+                }
                 
-                $listEvents[$i] = $_POST["$i"];
-                echo $listEvents[$i]."<br/>";
-            }
-              
+                json_encode($listEvents);
+               
         ?>
+      
+    <script type="text/javascript">
+        
+        var listSize = <?php echo $listSize?>;
+        
+        //lager liste til bekreftelsessiden
+        function createlist() {
+            
+            var listValues = <?php echo json_encode($listEvents) ?>;
+            var form = document.getElementById("formBekreftelse");
+           
+            for (var i = 0; i < listSize; i++) {
+ 
+                var listElement = document.createElement("li");
+                var listText = document.createTextNode(listValues[i]);
+                listElement.setAttribute("name", i);
+                listElement.setAttribute("id", i);
+                listElement.setAttribute("class", "listElement");
+
+                listElement.appendChild(listText);
+                form.appendChild(listElement);
+
+            }
+            
+        }
+            
+        function submitToDb() {
+            
+            var listValues = document.getElementsByClassName("listElement");
+            var grener = [];
+            var datoer = [];
+            var tider = [];
+            
+            //finner plasseringen av hvert nøkkelord i hver string og kategoriserer dem i hvert sitt array.
+            for (var i = 0; i < listValues.length; i++) {
+                
+                var listValue = listValues[i];
+                var setning = listValue.textContent.split(" ", 5);
+                grener[i] = setning[0];
+                datoer[i] = setning[2];
+                tider[i] = setning[4];
+                window.alert(grener[i] + " " + datoer[i] + " " + tider[i]);
+            }
+            
+        }
+            
+
+    </script>
+
       
     <!-- JQuery -->
     <script src="js/jquery.min.js"></script>

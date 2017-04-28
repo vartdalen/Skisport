@@ -2,11 +2,9 @@ var listContainer = document.getElementById("listContainer");
 var myNodelist = listContainer.children[0].getElementsByTagName("LI");
 var eventList = document.getElementById("eventListe");
 var close = document.getElementsByClassName("close");
-var list = document.querySelector('ul');
-var i;
 
 // lager close knapp og appender til hver list submission
-for (i = 0; i < myNodelist.length; i++) {
+for (var i = 0; i < myNodelist.length; i++) {
   var span = document.createElement("SPAN");
   var txt = document.createTextNode("\u00D7");
   span.className = "close";
@@ -15,7 +13,7 @@ for (i = 0; i < myNodelist.length; i++) {
 }
 
 // trykk på close knapp for å skjule valgt submission
-for (i = 0; i < close.length; i++) {
+for (var i = 0; i < close.length; i++) {
   close[i].onclick = function() {
     var div = this.parentElement;
     div.style.display = "none";
@@ -67,25 +65,8 @@ function newElement() {
     }
 }
 
-//function bekreft() {
-//    
-//    for (var key in myNodelist) {
-//        
-//        if (myNodelist.hasOwnProperty(key)) {
-//            
-//            var hiddenField = document.createElement("input");
-//            hiddenField.setAttribute("type","hidden");
-//            hiddenField.setAttribute("name", key);
-//            hiddenField.setAttribute("value", myNodelist[key]);
-//            
-//        }
-//        
-//    }
-//
-//}
-
 function bekreft() {
-        
+         
         //henter formen
         var form = document.getElementById("formRegistrering");
         
@@ -97,7 +78,7 @@ function bekreft() {
         listSize.setAttribute("value", eventList.children.length);
         
         form.appendChild(listSize);
-   
+       
     for(var i = 0; i <= eventList.children.length; i++ ) {
                 
                 //fjerner spanobjektet (x knappen)
@@ -108,13 +89,11 @@ function bekreft() {
                 hiddenField.setAttribute("type","hidden");
                 hiddenField.setAttribute("name", i);
                 hiddenField.setAttribute("value", eventList.children[i].textContent);
-
+                
                 form.appendChild(hiddenField);
-
+                
         }
         
-//        window.alert(listSize.attributes);
-
 }
 
 function valgtGren() {
