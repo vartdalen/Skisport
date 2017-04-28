@@ -15,15 +15,15 @@ and open the template in the editor.
         
         <h4>Slett bruker</h4>
         <form action="" name="skjema" method="post" />
-            Slett bruker (skriv inn epost):<br>
-            <input type="text" name="navn" /><br><br>
+            Epost:<br>
+            <input type="text" name="Epost" /><br><br>
             
-            Slett utøver (skriv inn fornavn):<br>
-            <input type="text" name="navnUtøver" /><br><br>
+            Fornavn:<br>
+            <input type="text" name="Fornavn" /><br><br>
             
-            Slett øvelse (skriv inn navn):<br>
-            <input type="text" name="navnØvelse" /><br><br>
-            <input type="submit" name="knappØvelse" value="Slett"/><br><br>
+            Etternavn:<br>
+            <input type="text" name="Etternavn" /><br><br>
+            <input type="submit" name="knapp" value="Slett"/><br><br>
         </form>
         
         <h4>Slett utøver</h4>
@@ -39,14 +39,9 @@ and open the template in the editor.
                 
         <h4>Slett øvelse</h4>
         <form action="" name="skjema" method="post" />
-            Slett bruker (skriv inn epost):<br>
+            Øvelsesnavn:<br>
             <input type="text" name="navn" /><br><br>
-            
-            Slett utøver (skriv inn fornavn):<br>
-            <input type="text" name="navnUtøver" /><br><br>
-            
-            Slett øvelse (skriv inn navn):<br>
-            <input type="text" name="navnØvelse" /><br><br>
+
             <input type="submit" name="knappØvelse" value="Slett"/><br><br>
         </form>
         <?php
@@ -81,7 +76,9 @@ and open the template in the editor.
                 $user = "s315613";
                 
                 // Database variables
-                $navn = $_POST["navn"];
+                $navn = $_POST["Fornavn"];
+                $etternavn = $_POST["Etternavn"];
+                $epost = $_POST["Epost"];
                 
                 // Connection
                 $db = mysqli_connect($servername, $user, "", "s315613");
@@ -90,7 +87,7 @@ and open the template in the editor.
                     die("Database tilkobling mislykket!");
                 }
                 
-                $sql = "DELETE FROM User WHERE Epost = '$navn'";
+                $sql = "DELETE FROM User WHERE Epost = '$epost' AND Navn = '$navn' AND Etternavn = '$etternavn'";
                 $resultat = mysqli_query($db, $sql);
                 if(!$resultat) {
                     $db->rollback();

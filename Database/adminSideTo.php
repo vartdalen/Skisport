@@ -24,7 +24,7 @@ and open the template in the editor.
             Skriv inn etternavn:<br>
             <input type="text" name="Etternavn" /><br><br>
             
-            Skriv inn UserLevel:<br>
+            Skriv inn UserLevel(0-1):<br>
             <input type="text" name="UserLevel" /><br><br>
             <input type="submit" name="knapp" value="Opprett"/><br><br>
         </form>
@@ -36,10 +36,7 @@ and open the template in the editor.
             
             Skriv inn etternavn:<br>
             <input type="text" name="etternavnAthlete" /><br><br>
-            
-            Skriv inn idAthletes:<br>
-            <input type="text" name="idAthletes" /><br><br>
-            
+
             Skriv inn idExercises:<br>
             <input type="text" name="idExercises" /><br><br>
             <input type="submit" name="knappUtøver" value="Opprett"/><br><br>
@@ -80,6 +77,40 @@ and open the template in the editor.
             $jasonData = json_encode($rader, JSON_PRETTY_PRINT);
             echo $jasonData;
         
+            if(isset($_POST["knapp"])) {
+                
+                // Connection variables
+                $servername = "student.cs.hioa.no";
+                $user = "s315613";
+                
+                // Database variables
+                $navn = $_POST["Fornavn"];
+                $etternavn = $_POST["Etternavn"];
+                $epost = $_POST["Epost"];
+                $userLevel = $_POST["UserLevel"];
+                
+                // Connection
+                $db = mysqli_connect($servername, $user, "", "s315613");
+                $db->autocommit(false);
+                if($db->connect_error) {
+                    die("Database tilkobling mislykket!");
+                }
+                
+                $sql = "INSERT INTO User (Navn, Etternavn, Epost, UserLevel) ";
+                $sql.= "VALUES ('$navn', '$etternavn', '$epost', '$userLevel');";
+                $resultat = mysqli_query($db, $sql);
+                if(!$resultat) {
+                    $db->rollback();
+                    echo "Bruker ble ikke opprettet. " .$db->error;
+                }else {
+                    $db->commit();
+                    echo "Bruker ble lagt til.";
+                }
+                echo "<br/>";
+
+                $db->close();
+            }
+            
             if(isset($_POST["knappUtøver"])) {
                 
                 // Connection variables
@@ -107,36 +138,6 @@ and open the template in the editor.
                 }else {
                     $db->commit();
                     echo "Utøver ble lagt til.";
-                }
-                echo "<br/>";
-
-                $db->close();
-            }
-            
-            if(isset($_POST["knappUtøver"])) {
-                
-                // Connection variables
-                $servername = "student.cs.hioa.no";
-                $user = "s315613";
-                
-                // Database variables
-                $navn = $_POST["navnUtøver"];
-                
-                // Connection
-                $db = mysqli_connect($servername, $user, "", "s315613");
-                $db->autocommit(false);
-                if($db->connect_error) {
-                    die("Database tilkobling mislykket!");
-                }
-                
-                $sql = "DELETE FROM Athletes WHERE Navn = '$navn'";
-                $resultat = mysqli_query($db, $sql);
-                if(!$resultat) {
-                    $db->rollback();
-                    echo "Utøver ble ikke slettet. " .$db->error;
-                }else {
-                    $db->commit();
-                    echo "Utøver ble slettet.";
                 }
                 echo "<br/>";
 
