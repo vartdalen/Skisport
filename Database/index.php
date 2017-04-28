@@ -38,7 +38,7 @@ and open the template in the editor.
                     die("Database tilkobling mislykket!");
                 }
                 
-                $sql = "INSERT INTO Brukere (Navn, Etternavn, Epost) ";
+                $sql = "INSERT INTO User (Navn, Etternavn, Epost) ";
                 $sql.= "VALUES ('$navn', '$etternavn', '$epost');";
                 $resultat = mysqli_query($db, $sql);
                 if(!$resultat) {
