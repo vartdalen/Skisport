@@ -13,7 +13,7 @@
 
   </head>
 
-  <body onload="createlist()">
+  <body onload="submitToDb()">
       
         <?php
             
@@ -63,6 +63,8 @@
                             <ul class="dropdown-menu">
                                 <li><a href="registrerBruker.php">Registrer deg</a></li>
                                 <li><a href="login.html">Logg inn</a></li>
+                                <li><a href="oppdaterInfo.php">Oppdater informasjon</a></li>
+                                <li><a href="admin.php">Admin</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#">Logg ut</a></li>
                             </ul>
@@ -136,6 +138,7 @@
 
                                         <span id="test" class="btn btn-primary pull-right" onclick="createlist()">test</span>
                                         <span id="test2" class="btn btn-primary pull-right" onclick="submitToDb()">test2</span>
+                                        <span id="test2" class="btn btn-primary pull-right" onclick="ajax()">test3</span>
                                     </div>
                                 </div>
                             </form>
@@ -172,12 +175,14 @@
                 }
                 
                 json_encode($listEvents);
-               
         ?>
       
-    <script type="text/javascript">
+    <script type="text/javascript" async>
         
         var listSize = <?php echo $listSize?>;
+        var grener = [];
+        var datoer = [];
+        var tider = [];
         
         //lager liste til bekreftelsessiden
         function createlist() {
@@ -199,13 +204,12 @@
             }
             
         }
-            
+             
         function submitToDb() {
             
+            createlist();
+            
             var listValues = document.getElementsByClassName("listElement");
-            var grener = [];
-            var datoer = [];
-            var tider = [];
             
             //finner plasseringen av hvert nÃ¸kkelord i hver string og kategoriserer dem i hvert sitt array.
             for (var i = 0; i < listValues.length; i++) {
@@ -217,9 +221,70 @@
                 tider[i] = setning[4];
                 window.alert(grener[i] + " " + datoer[i] + " " + tider[i]);
             }
-            
+             
         }
+        
+        function ajax() {
+        //sender tilbake arrayene til php med json.stringify
+//            $.ajax({
+//                type: 'POST',
+//                url: 'formConfirm.php',
+//                data: {json: JSON.stringify(grener)},
+//                dataType: 'json'
+//            })
+//            
+//            .done( function(data) {
+//                console.log('done');
+//                console.log(data);
+//            })
+//            .fail( function(data) {
+//                console.log('fail');
+//                console.log(data);
+//            });
+//            $.ajax({
+//                type: 'POST',
+//                url: 'formConfirm.php',
+//                data: {json: JSON.stringify(datoer)},
+//                dataType: 'json'
+//            });
             
+//            $.ajax({
+//                type: 'POST',
+//                url: 'formConfirm.php',
+//                data: {json: JSON.stringify(tider)},
+//                dataType: 'json'
+//            })
+//            
+//            
+            
+            
+
+//            JSON.stringify(grener);
+//            JSON.stringify(datoer);
+//            JSON.stringify(tider);
+        
+        <?php
+//        print('{}');
+//              $directions = json_decode($_POST['datoer']);
+//              var_dump($directions);
+//              
+//            json_encode($tider);
+//            print('{tider}');
+//            echo $tider;
+        
+//            $grener= json_decode('grener');
+//            echo $grener;
+//            $datoer=json_decode($_POST['datoer']);
+//            $tider=json_decode($_POST['tider']);
+//            
+//            echo $grener.$datoer.$tider;
+//            echo $grener.$datoer.$tider;
+//            echo $grener.$datoer.$tider;
+//            echo $grener.$datoer.$tider;
+        
+        ?>
+            
+            }
 
     </script>
 

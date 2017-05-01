@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -9,7 +10,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
 <!--    <link rel="stylesheet" type="text/css" href="css/"/>-->
           
-    <title>placeholder</title>
+    <title>Brukerinformasjon</title>
 
   </head>
 
@@ -36,7 +37,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="registrerBruker.php">Registrer deg</a></li>
                                 <li><a href="login.html">Logg inn</a></li>
-                                <li><a href="oppdaterInfo.php">Oppdater informasjon</a></li>
+                                <li><a href="#.php">Oppdater informasjon</a></li>
                                 <li><a href="admin.php">Admin</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#">Logg ut</a></li>
