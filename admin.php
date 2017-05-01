@@ -56,7 +56,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-lg-12">
                             <h1 class="h1">
-                                Arrangementer <small>Velg event</small></h1>
+                                Admin <small>Administrer brukere og arrangementer</small></h1>
                         </div>
                     </div>
                 </div>
@@ -64,39 +64,78 @@
         
             <div class="container">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-12">
                         <div class="well well-sm">
                             <form name="forandreInformasjon" id="forandreInformasjon" action="" method="post">
                                 <div class="row">
                                     <div class="col-md-12">
+                                        
+                                        <div class="form-group">
+                                            <label for="email">
+                                                Email adresse</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                                                </span>
+                                                <input type="email" class="form-control" name="email" placeholder="Skriv inn email" required="required" />
+                                            </div>
+                                        </div>
+                                        
+                                        <hr class="separator">
 
                                         <div class="form-group">
                                             <label for="fornavn">
-                                                Fornavn</label>
+                                                Endre fornavn</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input type="text" class="form-control" name="fornavn" placeholder="Skriv inn fornavn" required="required" />
+                                                <input type="text" class="form-control" name="fornavn" placeholder="Skriv inn nytt fornavn"/>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="etternavn">
-                                                Etternavn</label>
+                                                Endre etternavn</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input type="text" class="form-control" name="etternavn" placeholder="Skriv inn etternavn" required="required" />
+                                                <input type="text" class="form-control" name="etternavn" placeholder="Skriv inn nytt etternavn"/>
                                             </div>
                                         </div>
-
+                                        
+                                        <hr class="separator">
+                                        
                                         <div class="form-group">
                                             <label for="email">
-                                                Email Adresse</label>
+                                                Endre email edresse</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                                 </span>
-                                                <input type="email" class="form-control" name="email" placeholder="Skriv inn email" required="required" />
+                                                <input type="email" class="form-control" name="email" placeholder="Skriv inn ny email" />
+                                            </div>
+                                        </div>
+                                        
+                                        <hr class="separator">
+                                        
+                                        <div class="form-group">
+                                            <label for="passord">
+                                                Endre passord</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                                                </span>
+                                                <input type="password" id="passord" data-match-error=" Skriv inn passord." class="form-control" name="passord" placeholder="Skriv inn nytt passord" runat="server" required="required"/>
+                                                <div class="help-block with-errors"></div>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="passord">
+                                                Bekreft endre passord</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                                                </span>
+                                                <input type="password" data-match="#passord" data-match-error=" Passordene matcher ikke." class="form-control" name="passordBekreft" placeholder="Bekreft nytt passord" runat="server"/>
+                                                <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
 
@@ -105,42 +144,7 @@
                                     <div class="col-md-12" id="listContainer">
 
                                         <div class="form-group">
-                                        <label for="velgGren">
-                                            Gren</label>
-                                            <select id="velgGren" name="velgGren" class="form-control" required="required" onchange="valgtGren()">
-                                            <option selected hidden>Velg gren</option>
-                                            <option>Skihopp</option>
-                                            <option>Slalom</option>
-                                            <option>Langrenn</option>
-                                            <option>Skiskyting</option>
-                                        </select>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="velgDato">
-                                            Dato</label>
-                                        <select id="velgDato" name="velgDato" class="form-control" required="required" onchange="valgtDato()" disabled>
-                                            <option selected hidden>Velg dato</option>
-                                            <option>21.01.2017</option>
-                                            <option>22.01.2017</option>
-                                            <option>23.01.2017</option>
-                                            <option>24.01.2017</option>
-                                            <option>25.01.2017</option>
-                                            <option>26.01.2017</option>
-                                            <option>27.01.2017</option>
-                                        </select>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="velgTid">
-                                            Tid</label>
-                                            <select id="velgTid" name="velgTid" class="form-control" required="required" disabled>
-                                            <option selected hidden>Velg tid</option>
-                                            <option>10:00-12:30</option>
-                                            <option>11:30-14:00</option>
-                                            <option>13:00-15:30</option>
-                                        </select>
-                                         </div> 
+                                        </div> 
 
                                     </div>
 
@@ -149,7 +153,7 @@
                                             <div class="col-md-8">
                                             </div>
                                             <div class="col-md-4">
-                                                <span id="leggTil" class="btn btn-primary pull-right" onclick="newElement()">Legg til</span>
+                                                <span id="Oppdater" class="btn btn-primary pull-right" onclick="newElement()">Oppdater</span>
                                             </div>
                                         </div>   
                                     </div>
