@@ -10,65 +10,42 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <h2>Hjemmeside ADMIN</h2>
-        <a href="adminSideTo.php"><h2>Legg til</h2></a>
+        <h2>Sletteside admin</h2>
+        <a href="adminUpdate.php"><h2>Legg til</h2></a>
         
         <h4>Slett bruker</h4>
         <form action="" name="skjema" method="post" />
-            Epost:<br>
-            <input type="text" name="Epost" /><br><br>
-            
-            Fornavn:<br>
-            <input type="text" name="Fornavn" /><br><br>
-            
-            Etternavn:<br>
-            <input type="text" name="Etternavn" /><br><br>
-            <input type="submit" name="knapp" value="Slett"/><br><br>
-        </form>
+        Epost:<br>
+        <input type="text" name="Epost" /><br><br>
         
+        Fornavn:<br>
+        <input type="text" name="Fornavn" /><br><br>
+        
+        Etternavn:<br>
+        <input type="text" name="Etternavn" /><br><br>
+        <input type="submit" name="knapp" value="Slett"/><br><br>
+    </form>
+    
         <h4>Slett utøver</h4>
         <form action="" name="skjema" method="post" />
-            Fornavn:<br>
-            <input type="text" name="fornavnAthlete" /><br><br>
-            
-            Etternavn:<br>
-            <input type="text" name="etternavnAthlete" /><br><br>
+        Fornavn:<br>
+        <input type="text" name="fornavnAthlete" /><br><br>
 
-            <input type="submit" name="knappUtøver" value="Slett"/><br><br>
+        Etternavn:<br>
+        <input type="text" name="etternavnAthlete" /><br><br>
+
+        <input type="submit" name="knappUtøver" value="Slett"/><br><br>
         </form>
-                
+
         <h4>Slett øvelse</h4>
         <form action="" name="skjema" method="post" />
-            Øvelsesnavn:<br>
-            <input type="text" name="navn" /><br><br>
+        Øvelsesnavn:<br>
+        <input type="text" name="navn" /><br><br>
 
-            <input type="submit" name="knappØvelse" value="Slett"/><br><br>
+        <input type="submit" name="knappØvelse" value="Slett"/><br><br>
         </form>
+
         <?php
-            // Connection variables
-            $servername = "student.cs.hioa.no";
-            $user = "s315613";
-            
-            $db = mysqli_connect($servername, $user, "", "s315613");
-            if($db->connect_error) {
-                die("Database tilkobling mislykket!");
-            }
-            
-            //$sql = "Select * from User";
-            $sql = "SELECT Athletes.idAthletes, Athletes.Navn, Athletes.Etternavn, Exercises.navn, Exercises.Dato
-                    FROM Athletes
-                    INNER JOIN Exercises ON Athletes.idExercises = Exercises.idExercises";
-            $resultat = $db->query($sql);
-            $rader = array();
-            
-            while($rad = $resultat->fetch_object()) {
-                $rader[] = $rad;
-                echo "<br>";
-            }
-            
-            $jasonData = json_encode($rader, JSON_PRETTY_PRINT);
-            echo $jasonData;
-        
             if(isset($_POST["knapp"])) {
                 
                 // Connection variables
@@ -162,5 +139,5 @@ and open the template in the editor.
                 $db->close();
             }
         ?>
-    </body>
+</body>
 </html>

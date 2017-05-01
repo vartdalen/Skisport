@@ -11,22 +11,16 @@ and open the template in the editor.
     </head>
     <body>
         <h2>Legg til</h2>
-        <a href="adminJSON.php"><h2>Tilbake</h2></a>
+        <a href="adminDelete.php"><h2>Tilbake</h2></a>
         
-        <h4>Legg til bruker</h4>
+        <h4>Forandre bruker</h4>
         <form action="" name="skjema" method="post" />
             Skriv inn epost:<br>
             <input type="text" name="Epost" /><br><br>
-            
-            Skriv inn fornavn:<br>
-            <input type="text" name="Fornavn" /><br><br>
-            
-            Skriv inn etternavn:<br>
-            <input type="text" name="Etternavn" /><br><br>
-            
-            Skriv inn UserLevel(0-1):<br>
+
+            UserLevel(0-1):<br>
             <input type="text" name="UserLevel" /><br><br>
-            <input type="submit" name="knapp" value="Opprett"/><br><br>
+            <input type="submit" name="knapp" value="Oppdater"/><br><br>
         </form>
         
         <h4>Legg til utøver</h4>
@@ -53,29 +47,6 @@ and open the template in the editor.
             <input type="submit" name="knappØvelse" value="Opprett"/><br><br>
         </form>
         <?php
-            // Connection variables
-            $servername = "student.cs.hioa.no";
-            $user = "s315613";
-            
-            $db = mysqli_connect($servername, $user, "", "s315613");
-            if($db->connect_error) {
-                die("Database tilkobling mislykket!");
-            }
-            
-            //$sql = "Select * from User";
-            $sql = "SELECT Athletes.idAthletes, Athletes.Navn, Athletes.Etternavn, Exercises.navn, Exercises.Dato
-                    FROM Athletes
-                    INNER JOIN Exercises ON Athletes.idExercises = Exercises.idExercises";
-            $resultat = $db->query($sql);
-            $rader = array();
-            
-            while($rad = $resultat->fetch_object()) {
-                $rader[] = $rad;
-                echo "<br>";
-            }
-            
-            $jasonData = json_encode($rader, JSON_PRETTY_PRINT);
-            echo $jasonData;
         
             if(isset($_POST["knapp"])) {
                 
@@ -84,8 +55,6 @@ and open the template in the editor.
                 $user = "s315613";
                 
                 // Database variables
-                $navn = $_POST["Fornavn"];
-                $etternavn = $_POST["Etternavn"];
                 $epost = $_POST["Epost"];
                 $userLevel = $_POST["UserLevel"];
                 
@@ -96,15 +65,14 @@ and open the template in the editor.
                     die("Database tilkobling mislykket!");
                 }
                 
-                $sql = "INSERT INTO User (Navn, Etternavn, Epost, UserLevel) ";
-                $sql.= "VALUES ('$navn', '$etternavn', '$epost', '$userLevel');";
+                $sql = "UPDATE User SET UserLevel = '$userLevel' WHERE Epost = '$epost'";
                 $resultat = mysqli_query($db, $sql);
                 if(!$resultat) {
                     $db->rollback();
-                    echo "Bruker ble ikke opprettet. " .$db->error;
+                    echo "Bruker ble ikke oppdatert. " .$db->error;
                 }else {
                     $db->commit();
-                    echo "Bruker ble lagt til.";
+                    echo "Bruker ble oppdatert.";
                 }
                 echo "<br/>";
 
