@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Bootstrap CSS -->
-    <!-- NB! Må ligge under meta taggene i <head>. -->
+    <!-- NB! MÃ¥ ligge under meta taggene i <head>. -->
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/cssformConfirm.css"/>
     
@@ -42,7 +42,7 @@
             
         ?>
 
-      <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container" id="c1">
             <div class="navbar-header">
                 <a class="navbar-brand " href="">Hjem</a>
@@ -50,13 +50,27 @@
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="form.php">Arrangementer</a></li>
-                    <li><a href="login.html">Admin</a></li>
                 </ul>
                 
-                <ul style="float: right" class="nav navbar-nav">
-                    <li id="loggav"><a href="#loggav">Logg av</a></li>
-                </ul>
-            </div>
+                <div class="dropdown">
+                    
+                    <ul class="nav navbar-nav" style="float:right;">
+  
+                        <li role="presentation" class="dropdown" >
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                              Bruker <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="registrerBruker.php">Registrer deg</a></li>
+                                <li><a href="login.html">Logg inn</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Logg ut</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                </div>
+            </div><!--navbar collapse-->
         </div>
     </nav>
       
@@ -132,7 +146,7 @@
                         <legend><span class="glyphicon glyphicon-globe"></span> Kundeservice</legend>
                         <address>
                             <strong>Carlo & Co, Inc.</strong><br>
-                            Pilestredet 35, Høgskolen i Oslo og Akershus<br>
+                            Pilestredet 35, HÃ¸gskolen i Oslo og Akershus<br>
                             Oslo, Akershus<br>
                             Telefon: 696 96 969
                         </address>
@@ -149,7 +163,7 @@
          
 //                echo $listSize."<br/><br/>";
             
-                //lager et array som mottar post verdiene til listen på forrige side.
+                //lager et array som mottar post verdiene til listen pÃ¥ forrige side.
                 $listEvents = array();
                 for ($i = 0; $i < $listSize; $i++) {
 
@@ -193,7 +207,7 @@
             var datoer = [];
             var tider = [];
             
-            //finner plasseringen av hvert nøkkelord i hver string og kategoriserer dem i hvert sitt array.
+            //finner plasseringen av hvert nÃ¸kkelord i hver string og kategoriserer dem i hvert sitt array.
             for (var i = 0; i < listValues.length; i++) {
                 
                 var listValue = listValues[i];

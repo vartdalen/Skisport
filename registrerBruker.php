@@ -21,7 +21,7 @@
     
     <body>
         
-        <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container" id="c1">
             <div class="navbar-header">
                 <a class="navbar-brand " href="">Hjem</a>
@@ -40,7 +40,7 @@
                               Bruker <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="registrerBruker.php">Registrer deg</a></li>
+                                <li><a href="#">Registrer deg</a></li>
                                 <li><a href="login.html">Logg inn</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#">Logg ut</a></li>
@@ -58,7 +58,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-lg-12">
                             <h1 class="h1">
-                                Arrangementer <small>Velg event</small></h1>
+                                Velkommen <small>Registrer deg</small></h1>
                         </div>
                     </div>
                 </div>
@@ -66,9 +66,9 @@
         
             <div class="container">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <div class="well well-sm">
-                            <form name="formRegistrering" id="formRegistrering" action="formConfirm.php" method="post">
+                            <form name="formRegistrering" id="formRegistrering" action="formConfirm.php" method="post" data-toggle="validator">
                                 <div class="row">
                                     <div class="col-md-12">
 
@@ -91,6 +91,8 @@
                                                 <input type="text" class="form-control" name="etternavn" placeholder="Skriv inn etternavn" required="required" />
                                             </div>
                                         </div>
+                                        
+                                        <hr class="separator">
 
                                         <div class="form-group">
                                             <label for="email">
@@ -98,102 +100,87 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                                 </span>
-                                                <input type="email" class="form-control" name="email" placeholder="Skriv inn email" required="required" />
+                                                <input type="email" id="email" data-match-error=" Skriv inn email." class="form-control" name="email" placeholder="Skriv inn email" runat="server" required="required" />
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="email">
+                                                Bekreft email adresse</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                                                </span>
+                                                <input type="email" data-match="email" data-match-error=" Email adressene matcher ikke."class="form-control" name="email" placeholder="Bekreft email" runat="server" />
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                        
+                                        <hr class="separator">
+                                        
+                                        <div class="form-group">
+                                            <label for="passord">
+                                                Passord</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                                                </span>
+                                                <input type="password" id="passord" data-match-error=" Skriv inn passord." class="form-control" name="passord" placeholder="Skriv inn passord" runat="server" required="required"/>
+                                                <div class="help-block with-errors"></div>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="passord">
+                                                Bekreft passord</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                                                </span>
+                                                <input type="password" data-match="#passord" data-match-error=" Passordene matcher ikke." class="form-control" name="passordBekreft" placeholder="Bekreft passord" runat="server"/>
+                                                <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
 
-                                  </div>
-
-                                    <div class="col-md-12" id="listContainer">
-
-                                        <div class="form-group">
-                                        <label for="velgGren">
-                                            Gren</label>
-                                            <select id="velgGren" name="velgGren" class="form-control" required="required" onchange="valgtGren()">
-                                            <option selected hidden>Velg gren</option>
-                                            <option>Skihopp</option>
-                                            <option>Slalom</option>
-                                            <option>Langrenn</option>
-                                            <option>Skiskyting</option>
-                                        </select>
+                                    <div class="col" id="col2col2">
+                                        <div class="col-md-2">
                                         </div>
-
-                                        <div class="form-group">
-                                            <label for="velgDato">
-                                            Dato</label>
-                                        <select id="velgDato" name="velgDato" class="form-control" required="required" onchange="valgtDato()" disabled>
-                                            <option selected hidden>Velg dato</option>
-                                            <option>21.01.2017</option>
-                                            <option>22.01.2017</option>
-                                            <option>23.01.2017</option>
-                                            <option>24.01.2017</option>
-                                            <option>25.01.2017</option>
-                                            <option>26.01.2017</option>
-                                            <option>27.01.2017</option>
-                                        </select>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="velgTid">
-                                            Tid</label>
-                                            <select id="velgTid" name="velgTid" class="form-control" required="required" disabled>
-                                            <option selected hidden>Velg tid</option>
-                                            <option>10:00-12:30</option>
-                                            <option>11:30-14:00</option>
-                                            <option>13:00-15:30</option>
-                                        </select>
-                                         </div> 
-
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="col-md-8">
                                             </div>
-                                            <div class="col-md-4">
-                                                <span id="leggTil" class="btn btn-primary pull-right" onclick="newElement()">Legg til</span>
-                                            </div>
+                                          
                                         </div>   
                                     </div>
 
                                     <br/>
 
                                     <div class="col-md-12">
-                                        <ul class="list-group" id="eventListe">
-                                        </ul>
-                                    </div>
-
-                                    <div class="col-md-12">
                                         <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" onclick="bekreft()">
                                             Bekreft</button>
 <!--                                        <span id="test" class="btn btn-primary pull-right" onclick="bekreft()">test</span>-->
                                     </div>
-                                    
                                 </div>
                             </form>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <form>
-                        <legend><span class="glyphicon glyphicon-globe"></span> Kundeservice</legend>
-                        <address>
-                            <strong>Carlo & Co, Inc.</strong><br>
-                            Pilestredet 35, Høgskolen i Oslo og Akershus<br>
-                            Oslo, Akershus<br>
-                            Telefon: 696 96 969
-                        </address>
-                        <address>
-                            <strong>Carlo Hoa Ngyuen</strong><br>
-                            <a href="mailto:#">carlohoa@gmail.com</a>
-                        </address>
-                        </form>
-                    </div>
+                    
                 </div>
             </div>
+                
+                <!DOCTYPE html>
+
+
+
+
+  
+ 
+
 
     <!-- JQuery -->
     <script src="js/jquery.min.js"/></script>
-    
+    <script src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
     <!-- Bootstrap JavaScript -->
     <script src="js/bootstrap.min.js"/></script>
     </body>
