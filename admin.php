@@ -122,7 +122,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input type="password" id="passord" data-match-error=" Skriv inn passord." class="form-control" name="passord" placeholder="Skriv inn nytt passord" runat="server" required="required"/>
+                                                <input type="password" id="passord" data-match-error="Skriv inn passord." class="form-control" name="passord" placeholder="Skriv inn nytt passord" required="required"/>
                                                 <div class="help-block with-errors"></div>
                                                 
                                             </div>
@@ -134,36 +134,39 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input type="password" data-match="#passord" data-match-error=" Passordene matcher ikke." class="form-control" name="passordBekreft" placeholder="Bekreft nytt passord" runat="server"/>
+                                                <input type="password" data-match="#passord" data-match-error="Passordene matcher ikke." class="form-control" name="passordBekreft" placeholder="Bekreft nytt passord"/>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                        
+                                        <hr class="separator">
+                                        
+                                        <div class="form-group">
+                                            <label for="user-level">
+                                                Endre user-level</label>
+                                            <div class="form-group">
+                                                <select id="user-level" name="user-level" class="form-control">
+                                            <option selected hidden>Velg user-level</option>
+                                            <option>0 (vanlig bruker)</option>
+                                            <option>1 (admin)</option>
+                                        </select>
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
 
                                   </div>
 
-                                    <div class="col-md-12" id="listContainer">
-
-                                        <div class="form-group">
-                                        </div> 
-
-                                    </div>
-
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="col-md-8">
                                             </div>
                                             <div class="col-md-4">
-                                                <span id="Oppdater" class="btn btn-primary pull-right" onclick="newElement()">Oppdater</span>
+                                                <span id="Oppdater" class="btn btn-primary pull-right" onclick="">Oppdater</span>
                                             </div>
                                         </div>   
                                     </div>
 
                                     <br/>
-
-                                    <div class="col-md-12">
-                                        <ul class="list-group" id="eventListe">
-                                        </ul>
-                                    </div>
 
                                     <div class="col-md-12">
                                         <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" onclick="bekreft()">

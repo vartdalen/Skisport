@@ -70,9 +70,9 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="well well-sm">
-                            <form name="formRegistrering" id="formRegistrering" action="formConfirm.php" method="post">
+                            <form name="formRegistrering" id="formRegistrering" action="bekreftEvent.php" method="post">
                                 <div class="row">
-                                    <div class="col-md-12">
+<!--                                    <div class="col-md-12">
 
                                         <div class="form-group">
                                             <label for="fornavn">
@@ -104,7 +104,7 @@
                                             </div>
                                         </div>
 
-                                  </div>
+                                  </div>-->
 
                                     <div class="col-md-12" id="listContainer">
 
@@ -192,7 +192,7 @@
                     </div>
                 </div>
             </div>
-
+        
     <!-- JQuery -->
     <script src="js/jquery.min.js"/></script>
     

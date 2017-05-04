@@ -17,8 +17,6 @@
         
     </head>
     
-    
-    
     <body>
         
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -60,7 +58,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-lg-12">
                             <h1 class="h1">
-                                Velkommen <small>Registrer deg</small></h1>
+                                Registrer deg <small></small></h1>
                         </div>
                     </div>
                 </div>
@@ -70,7 +68,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="well well-sm">
-                            <form name="formRegistrering" id="formRegistrering" action="formConfirm.php" method="post" data-toggle="validator">
+                            <form name="formRegistrering" id="formRegistrering" action="bekreftBruker.php" method="post" data-toggle="validator">
                                 <div class="row">
                                     <div class="col-md-12">
 
@@ -102,7 +100,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                                 </span>
-                                                <input type="email" id="email" data-match-error=" Skriv inn email." class="form-control" name="email" placeholder="Skriv inn email" runat="server" required="required" />
+                                                <input type="email" id="email" data-match-error=" Skriv inn email." class="form-control" name="email" placeholder="Skriv inn email" required="required" />
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
@@ -113,7 +111,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                                 </span>
-                                                <input type="email" data-match="email" data-match-error=" Email adressene matcher ikke."class="form-control" name="email" placeholder="Bekreft email" runat="server" />
+                                                <input type="email" data-match="#email" data-match-error=" Email adressene matcher ikke."class="form-control" name="emailBekreft" placeholder="Bekreft email"/>
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
@@ -126,7 +124,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input type="password" id="passord" data-match-error=" Skriv inn passord." class="form-control" name="passord" placeholder="Skriv inn passord" runat="server" required="required"/>
+                                                <input type="password" id="passord" data-match-error=" Skriv inn passord." class="form-control" name="passord" placeholder="Skriv inn passord" required="required"/>
                                                 <div class="help-block with-errors"></div>
                                                 
                                             </div>
@@ -138,7 +136,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input type="password" data-match="#passord" data-match-error=" Passordene matcher ikke." class="form-control" name="passordBekreft" placeholder="Bekreft passord" runat="server"/>
+                                                <input type="password" data-match="#passord" data-match-error=" Passordene matcher ikke." class="form-control" name="passordBekreft" placeholder="Bekreft passord"/>
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
@@ -159,9 +157,10 @@
                                     <br/>
 
                                     <div class="col-md-12">
-                                        <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" onclick="bekreft()">
+                                        <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" onclick="">
                                             Bekreft</button>
 <!--                                        <span id="test" class="btn btn-primary pull-right" onclick="bekreft()">test</span>-->
+                                    </div>
                                     </div>
                                 </div>
                             </form>
@@ -169,16 +168,7 @@
                     </div>
                     
                 </div>
-            </div>
-                
-                <!DOCTYPE html>
-
-
-
-
-  
- 
-
+            </div> 
 
     <!-- JQuery -->
     <script src="js/jquery.min.js"/></script>
@@ -186,4 +176,5 @@
     <!-- Bootstrap JavaScript -->
     <script src="js/bootstrap.min.js"/></script>
     </body>
+    
 </html>

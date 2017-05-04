@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/cssformConfirm.css"/>
     
-    <title>Bekreft Informasjon</title>
+    <title>Bekreft påmelding</title>
 
   </head>
 
@@ -20,10 +20,6 @@
             session_start();
             
                 //lager sessionvariabler 
-                $_SESSION["fornavn"] = $_POST["fornavn"];
-                $_SESSION["etternavn"] = $_POST["etternavn"];
-                $_SESSION["email"] = $_POST["email"];
-
                 $_SESSION["listSize"] = $_POST["ls"];
                 
                 //lager session variabler for alle post-variablene fra listen
@@ -32,11 +28,7 @@
                     $_SESSION["li$i"] = $_POST["$i"];
                     
                 }
-            
-            $fornavn = $_SESSION["fornavn"];
-            $etternavn =  $_SESSION["etternavn"];
-            $email = $_SESSION["email"];
-            
+                
             $listSize = $_SESSION["listSize"];
             
             
@@ -81,7 +73,7 @@
                   <div class="row">
                       <div class="col-sm-12 col-lg-12">
                           <h1 class="h1">
-                              Arrangementer <small>Bekreft Informasjon</small></h1>
+                              Arrangementer <small>Bekreft påmelding</small></h1>
                       </div>
                   </div>
               </div>
@@ -101,7 +93,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input type="text" class="form-control" name="fornavn" value="<?php echo $fornavn; ?>" disabled/>
+                                                <input type="text" class="form-control" name="fornavn" value="bruker sitt fornavn" disabled/>
                                             </div>
                                         </div>
 
@@ -111,7 +103,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input type="text" class="form-control" name="etternavn" value="<?php echo $etternavn; ?>" disabled/>
+                                                <input type="text" class="form-control" name="etternavn" value="bruker sitt etternavn" disabled/>
                                             </div>
                                         </div>
 
@@ -121,7 +113,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                                 </span>
-                                                <input type="email" class="form-control" name="email" value="<?php echo $email; ?>" disabled/>
+                                                <input type="email" class="form-control" name="email" value="bruker sin email" disabled/>
                                             </div>
                                         </div>
 
