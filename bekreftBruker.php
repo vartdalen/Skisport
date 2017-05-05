@@ -18,29 +18,33 @@
         <?php
             
         session_start();
-        
-        include 'classes.php';
+        include 'klasser.php';
         
         //lager sessionvariabler 
         $_SESSION["fornavn"] = $_POST["fornavn"];
         $_SESSION["etternavn"] = $_POST["etternavn"];
-        $_SESSION["email"] = $_POST["email"];
+        $_SESSION["email"] = $_POST["emailBekreft"];
+        $_SESSION["passord"] = $_POST["passordBekreft"];
 
         $fornavn = $_SESSION["fornavn"];
         $etternavn =  $_SESSION["etternavn"];
         $email = $_SESSION["email"];
+        
+        //lager objekt av typen bruker
+        $bruker = new bruker();
+        $bruker->set_fornavn($_SESSION["fornavn"]);
+        $bruker->set_etternavn($_SESSION["etternavn"]);
+        $bruker->set_email($_SESSION["email"]);
+        $bruker->set_passord($_SESSION["passord"]);
+        $bruker->set_userlevel(0);
+        $bruker->skriv_bruker_til_fil();
+        
+//        echo $bruker->get_fornavn();
+//        echo $bruker->get_etternavn();
+//        echo $bruker->get_email();
+//        echo $bruker->get_passord();
+//        echo $bruker->get_userlevel();
             
-        if($_REQUEST["knappBekreft"]) {
-
-            $bruker = new bruker();
-            $bruker->set_fornavn($_REQUEST["fornavn"]);
-            $bruker->set_etternavn($_REQUEST["etternavn"]);
-            $bruker->set_email($_REQUEST["emailBekreft"]);
-            $bruker->set_passord($_REQUEST["passordBekreft"]);
-            $bruker->skriv_bruker_til_fil();
-
-        }
-                
     ?>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -73,7 +77,7 @@
                     </ul>
                     
                 </div>
-            </div><!--navbar collapse-->
+            </div>
         </div>
     </nav>
       
@@ -102,7 +106,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input type="text" class="form-control" name="fornavn" value="<?php echo $fornavn; ?>" disabled/>
+                                                <input type="text" class="form-control" name="fornavn" value="<?php echo $bruker->get_fornavn(); ?>" disabled/>
                                             </div>
                                         </div>
 
@@ -112,7 +116,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input type="text" class="form-control" name="etternavn" value="<?php echo $etternavn; ?>" disabled/>
+                                                <input type="text" class="form-control" name="etternavn" value="<?php echo $bruker->get_etternavn(); ?>" disabled/>
                                             </div>
                                         </div>
 
@@ -122,7 +126,17 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                                 </span>
-                                                <input type="email" class="form-control" name="email" value="<?php echo $email; ?>" disabled/>
+                                                <input type="email" class="form-control" name="email" value="<?php echo $bruker->get_email(); ?>" disabled/>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="passord">
+                                                Passord</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                                                </span>
+                                                <input type="password" class="form-control" name="passord" value="<?php echo $bruker->get_passord()?>" disabled/>
                                             </div>
                                         </div>
 
@@ -132,28 +146,13 @@
 <!--                                        <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" onclick="createlist()">
                                             Bekreft</button>-->
 
-                                        <span id="test" class="btn btn-primary pull-right" onclick="createlist()">test</span>
+                                        <span id="registrer" class="btn btn-primary pull-right" onclick="">Registrer</span>
                                         <span id="test2" class="btn btn-primary pull-right" onclick="submitToDb()">test2</span>
                                         <span id="test2" class="btn btn-primary pull-right" onclick="ajax()">test3</span>
                                     </div>
                                 </div>
                             </form>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <form>
-                        <legend><span class="glyphicon glyphicon-globe"></span> Kundeservice</legend>
-                        <address>
-                            <strong>Carlo & Co, Inc.</strong><br>
-                            Pilestredet 35, HÃ¸gskolen i Oslo og Akershus<br>
-                            Oslo, Akershus<br>
-                            Telefon: 696 96 969
-                        </address>
-                        <address>
-                            <strong>Carlo Hoa Ngyuen</strong><br>
-                            <a href="mailto:#">carlohoa@gmail.com</a>
-                        </address>
-                        </form>
                     </div>
                 </div>
             </div>

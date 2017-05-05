@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="img/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="img/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>Ski-VM</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="css/forside.css" rel="stylesheet">
+
+    <!-- Temporary navbar container fix -->
+    <style>
+    .navbar-toggler {
+        z-index: 1;
+    }
+    
+    @media (max-width: 576px) {
+        nav > .container {
+            width: 100%;
+        }
+    }
+    /* Temporary fix for img-fluid sizing within the carousel */
+    
+    .carousel-item.active,
+    .carousel-item-next,
+    .carousel-item-prev {
+        display: block;
+    }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="container">
+            <a class="navbar-brand" href="forside.html">Hjem</a>
+            <div class="collapse navbar-collapse" id="navbarExample">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Arrangementer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Utøvere</a>
+                    </li>
+                    <li class="dropdown">
+                       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Bruker
+                        <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                           <li><a href="registrerBruker.php">Registrer deg</a></li>
+                           <li><a href="login.html">Logg inn</a></li>
+                           <li><a href="oppdaterInfo.php">Oppdater informasjon</a></li>
+                           <li><a href="admin.php">Admin</a></li>
+                           <li role="separator" class="divider"></li>
+                           <li><a href="#">Logg ut</a></li>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <!-- Slide One - Set the background image for this slide in the line below -->
+                <div class="carousel-item active" style="background-image: url('img/skiskytingblur.jpg')">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h1 style="color: black;">Skiskyting</h1>
+                        <p style="color: black;">Holmenkollen</p>
+                    </div>
+                </div>
+                <!-- Slide Two - Set the background image for this slide in the line below -->
+                <div class="carousel-item" style="background-image: url('img/slalomblur.jpg')">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h1 style="color: black;">Slalom</h1>
+                        <p style="color: black;">Hafjell</p>
+                    </div>
+                </div>
+                <!-- Slide Three - Set the background image for this slide in the line below -->
+                <div class="carousel-item" style="background-image: url('img/langrennblur.jpg')">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h1 style="color: black;">Langrenn</h1>
+                        <p style="color: black;">Holmenkollen</p>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Forrige</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Neste</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <h1 class="my-4">Ski-VM 2017</h1>
+
+        <!-- Marketing Icons Section -->
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <h4 class="card-header">Se utøvere</h4>
+                    <div class="card-block">
+                        <p class="card-text">Se hvem som går de ulike rennene her.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary">Les mer</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <h4 class="card-header">Se arrangementene</h4>
+                    <div class="card-block">
+                        <p class="card-text">Vil du vite når ditt favoritt renn er? Melde deg som publikum? Klikk på les mer</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary">Les mer</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <h4 class="card-header">Lag bruker</h4>
+                    <div class="card-block">
+                        <p class="card-text">Lag en bruker</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary">Les mer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-inverse">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright HiOA &copy; Oblig - Webprog 2017</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/tether/tether.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

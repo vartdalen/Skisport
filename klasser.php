@@ -6,7 +6,7 @@ Class bruker {
                 private $etternavn;
                 private $email;
                 private $passord;
-//                private $userlevel;
+                private $userlevel;
                 
                 public function set_fornavn($fornavn) {
                     
@@ -59,26 +59,29 @@ Class bruker {
                     
                 }
                 
+                public function set_userlevel($userlevel) {
+                    
+                    $this->userlevel = $userlevel;
+                    
+                }
+                
+                public function get_userlevel() {
+                    
+                    return $this->userlevel;
+                    
+                }
+                
                 public function skriv_bruker_til_fil() {
                     
                     $stringTilFil = $this->fornavn.",".$this->etternavn.
-                                    ",".$this->email.",".$this->passord."\n";
+                                    ",".$this->email.",".$this->passord.
+                                    $this->userlevel."\n";
                     
                     filhandterer::skriv_fil($stringTilFil);
                     
                 }
                 
-//                 public function set_userlevel($userlevel) {
-//                    
-//                    $this->userlevel = $userlevel;
-//                    
-//                }
-//                
-//                public function get_userlevel() {
-//                    
-//                    return $this->userlevel;
-//                    
-//                }
+                 
                 
             }
 
@@ -87,7 +90,7 @@ Class filhandterer {
                 static function skriv_fil($tekst) {
                     
                     $resultat = true;
-                    $filref = fopen("bruker.txt", "a");
+                    $filref = fopen("klassedump.txt", "a");
                     
                     if (!$filref) {
                         

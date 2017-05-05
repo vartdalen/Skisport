@@ -19,6 +19,12 @@
     
     <body>
         
+        <?php
+        
+            include 'klasser.php';
+            
+        ?>
+        
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container" id="c1">
             <div class="navbar-header">
@@ -49,7 +55,7 @@
                     </ul>
                     
                 </div>
-            </div><!--navbar collapse-->
+            </div>
         </div>
     </nav>
 
@@ -100,7 +106,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                                 </span>
-                                                <input type="email" id="email" data-match-error=" Skriv inn email." class="form-control" name="email" placeholder="Skriv inn email" required="required" />
+                                                <input type="email" id="email" data-match-error="Skriv inn email." class="form-control" name="email" placeholder="Skriv inn email" required="required" />
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
@@ -111,7 +117,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                                 </span>
-                                                <input type="email" data-match="#email" data-match-error=" Email adressene matcher ikke."class="form-control" name="emailBekreft" placeholder="Bekreft email"/>
+                                                <input type="email" data-match="#email" data-match-error="Email adressene matcher ikke."class="form-control" name="emailBekreft" placeholder="Bekreft email"/>
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
@@ -124,19 +130,20 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input type="password" id="passord" data-match-error=" Skriv inn passord." class="form-control" name="passord" placeholder="Skriv inn passord" required="required"/>
+                                                <input type="password" id="passord" data-match-error="Skriv inn passord." class="form-control" name="passord" placeholder="Skriv inn passord" required="required"/>
                                                 <div class="help-block with-errors"></div>
                                                 
                                             </div>
                                         </div>
                                         
+                                        <!-- NB! Må hashes! -->
                                         <div class="form-group">
                                             <label for="passord">
                                                 Bekreft passord</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input type="password" data-match="#passord" data-match-error=" Passordene matcher ikke." class="form-control" name="passordBekreft" placeholder="Bekreft passord"/>
+                                                <input type="password" data-match="#passord" data-match-error="Passordene matcher ikke." class="form-control" name="passordBekreft" placeholder="Bekreft passord"/>
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
@@ -168,7 +175,7 @@
                     </div>
                     
                 </div>
-            </div> 
+            </div>
 
     <!-- JQuery -->
     <script src="js/jquery.min.js"/></script>
