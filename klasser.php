@@ -75,13 +75,43 @@ Class bruker {
                     
                     $stringTilFil = $this->fornavn.",".$this->etternavn.
                                     ",".$this->email.",".$this->passord.
-                                    $this->userlevel."\n";
+                                    ",".$this->userlevel."\n";
                     
                     filhandterer::skriv_fil($stringTilFil);
                     
                 }
                 
-                 
+                public function lagre($bruker) {
+        
+                    //$epost = $bruker->get_email();
+                    $epost = $bruker->get_email();
+                    $fornavn = $bruker->get_fornavn();
+                    $etternavn = $bruker->get_etternavn();
+                    $userlvl = $bruker->get_userlevel();
+                    $passord = $bruker->get_passord();
+
+                    // Connection variables
+                    $servername = "student.cs.hioa.no";
+                    $user = "s315613";
+
+                    // Connection
+                    $db = new mysqli($servername, $user, "", "s315613");
+                    $db->autocommit(false);
+                    if($db->connect_error) {
+                        die("Database tilkobling mislykket!");
+                    }
+
+                    $sql = "Insert into User(Epost, Navn, Etternavn, UserLevel, Password) Values('$epost', '$fornavn', '$etternavn', '$userlvl', '$passord')";
+                    $resultat = $db->query($sql);
+                    if(!$resultat) {
+                        echo "Feil! Bruker ble ikke registrert." .$db->error;
+                    }else {
+                        echo "Bruker ble registrert.";
+                    }
+                    echo "<br/>";
+                    $db->commit();
+                    $db->close();
+                }
                 
             }
 

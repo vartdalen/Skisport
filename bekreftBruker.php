@@ -13,10 +13,9 @@
 
   </head>
 
-  <body onload="submitToDb()">
+  <body>
       
         <?php
-            
         session_start();
         include 'klasser.php';
         
@@ -38,13 +37,7 @@
         $bruker->set_passord($_SESSION["passord"]);
         $bruker->set_userlevel(0);
         $bruker->skriv_bruker_til_fil();
-        
-//        echo $bruker->get_fornavn();
-//        echo $bruker->get_etternavn();
-//        echo $bruker->get_email();
-//        echo $bruker->get_passord();
-//        echo $bruker->get_userlevel();
-            
+      
     ?>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -67,11 +60,11 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="registrerBruker.php">Registrer deg</a></li>
-                                <li><a href="login.html">Logg inn</a></li>
+                                <li><a href="loginPage.php">Logg inn</a></li>
                                 <li><a href="oppdaterInfo.php">Oppdater informasjon</a></li>
                                 <li><a href="admin.php">Admin</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">Logg ut</a></li>
+                                <li><a href="logout.php">Logg ut</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -96,7 +89,7 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="well well-sm">
-                            <form name="formBekreftelse" id="formBekreftelse" action="" method="post">
+                            <form name="formBekreftelse" id="formBekreftelse" action="BrukerRegistrertFinal.php" method="post">
                                 <div class="row">
                                     <div class="col-md-12">
 
@@ -143,12 +136,8 @@
                                     </div>
 
                                     <div class="col-md-12">
-<!--                                        <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" onclick="createlist()">
-                                            Bekreft</button>-->
 
-                                        <span id="registrer" class="btn btn-primary pull-right" onclick="">Registrer</span>
-                                        <span id="test2" class="btn btn-primary pull-right" onclick="submitToDb()">test2</span>
-                                        <span id="test2" class="btn btn-primary pull-right" onclick="ajax()">test3</span>
+                                        <button type="submit" id="registrer" class="btn btn-primary pull-right" >Registrer</button>
                                     </div>
                                 </div>
                             </form>
