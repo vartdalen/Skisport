@@ -21,6 +21,12 @@
     
     <body>
         
+    <?php
+
+    session_start();
+
+    ?>
+        
         <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container" id="c1">
             <div class="navbar-header">
@@ -41,11 +47,11 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="registrerBruker.php">Registrer deg</a></li>
-                                <li><a href="login.html">Logg inn</a></li>
+                                <li><a href="loginPage.php">Logg inn</a></li>
                                 <li><a href="oppdaterInfo.php">Oppdater informasjon</a></li>
                                 <li><a href="admin.php">Admin</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">Logg ut</a></li>
+                                <li><a href="logout.php">Logg ut</a></li>
                             </ul>
                         </li>
                     </ul>

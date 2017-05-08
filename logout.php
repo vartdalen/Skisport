@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -10,22 +9,35 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
 <!--    <link rel="stylesheet" type="text/css" href="css/"/>-->
           
-    <title>Brukerinformasjon</title>
+    <title>placeholder</title>
 
   </head>
 
   <body>
-      
-      <?php
-      
-      session_start();
-      
-      ?>
+    
+    <?php
+    
+    session_start();
+    
+    if (isset($_SESSION['user'])) {
+        
+    session_destroy();   
+    echo "<br/><br/><br/><br/>"."Du er nå logget ut";
+    
+    } else {
+        
+        echo "<br/><br/><br/><br/>"."hold kjeft";
+        
+    }
+    
+    
+    
+    ?>
       
       <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container" id="c1">
             <div class="navbar-header">
-                <a class="navbar-brand " href="">Hjem</a>
+                <a class="navbar-brand " href="forside.php">Hjem</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
@@ -43,16 +55,16 @@
                             <ul class="dropdown-menu">
                                 <li><a href="registrerBruker.php">Registrer deg</a></li>
                                 <li><a href="loginPage.php">Logg inn</a></li>
-                                <li><a href="#">Oppdater informasjon</a></li>
+                                <li><a href="oppdaterInfo.php">Oppdater informasjon</a></li>
                                 <li><a href="admin.php">Admin</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="logout.php">Logg ut</a></li>
+                                <li><a href="#">Logg ut</a></li>
                             </ul>
                         </li>
                     </ul>
                     
                 </div>
-            </div><!--navbar collapse-->
+            </div>
         </div>
     </nav>
       
@@ -63,4 +75,4 @@
     <script src="js/bootstrap.min.js"></script>
 
   </body>
-</html>
+</html><?php

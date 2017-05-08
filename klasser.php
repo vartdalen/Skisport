@@ -75,7 +75,7 @@ Class bruker {
                     
                     $stringTilFil = $this->fornavn.",".$this->etternavn.
                                     ",".$this->email.",".$this->passord.
-                                    $this->userlevel."\n";
+                                    ",".$this->userlevel."\n";
                     
                     filhandterer::skriv_fil($stringTilFil);
                     

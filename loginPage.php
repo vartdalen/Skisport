@@ -15,6 +15,12 @@
     </head>
     
     <body>
+    
+    <?php
+    
+    session_start();
+    
+    ?>
         
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container" id="c1">
@@ -40,13 +46,13 @@
                                 <li><a href="oppdaterInfo.php">Oppdater informasjon</a></li>
                                 <li><a href="admin.php">Admin</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">Logg ut</a></li>
+                                <li><a href="logout.php">Logg ut</a></li>
                             </ul>
                         </li>
                     </ul>
                     
                 </div>
-            </div><!--navbar collapse-->
+            </div>
         </div>
     </nav>
     
@@ -63,13 +69,13 @@
         
     <div class="container" id="loginbox">
 
-        <form class="form-signin">
+        <form class="form-signin" action="Database/login.php" method="post">
             
                     <label for="inputEmail" class="sr-only">Email adresse</label>
-                    <input type="email" id="inputEmail" class="form-control" placeholder="Email adresse" required autofocus>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Email adresse" required autofocus>
                     <br>
                     <label for="inputPassword" class="sr-only">Passord</label>
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Passord" required>
+                    <input type="password" id="passord" name="passord" class="form-control" placeholder="Passord" required>
                     
                     <div class="checkbox">
                         <label>
@@ -79,7 +85,7 @@
                     
                     <div class="col-sm-12">   
                         <div class="col-sm-3"></div>    
-                        <div class="col-sm-6"><button class="btn btn-lg btn-primary btn-block" type="submit">Logg inn</button></div>
+                        <div class="col-sm-6"><button class="btn btn-lg btn-primary btn-block" type="submit" name="knappLogin">Logg inn</button></div>
                         <div class="col-sm-3"></div>
                     </div>
                         

@@ -1,1 +1,4 @@
 Viktor,Vartdal Johansen,viktor.v.johansen@hotmail.com,ss0
+Viktor,Vartdal Johansen,viktor.v.johansen@hotmail.com,ss0
+,,,,0
+Viktor,Vartdal Johansen,viktor.v.johansen@hotmail.com,123,0

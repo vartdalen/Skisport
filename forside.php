@@ -8,9 +8,9 @@
     <!-- Bootstrap CSS -->
     <!-- NB! Må ligge under meta taggene i <head>. -->
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
-<!--    <link rel="stylesheet" type="text/css" href="css/"/>-->
+    <link rel="stylesheet" type="text/css" href="css/cssforside"/>
           
-    <title>Brukerinformasjon</title>
+    <title>placeholder</title>
 
   </head>
 
@@ -43,7 +43,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="registrerBruker.php">Registrer deg</a></li>
                                 <li><a href="loginPage.php">Logg inn</a></li>
-                                <li><a href="#">Oppdater informasjon</a></li>
+                                <li><a href="oppdaterInfo.php">Oppdater informasjon</a></li>
                                 <li><a href="admin.php">Admin</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="logout.php">Logg ut</a></li>
@@ -52,9 +52,19 @@
                     </ul>
                     
                 </div>
-            </div><!--navbar collapse-->
+            </div>
         </div>
     </nav>
+      
+    <?php
+
+    if (isset($_SESSION['user'])) {
+        
+        echo "<br/><br/><br/><br/>"."Du er nå logget inn";
+        echo "<br/>".$_SESSION['email'];
+    
+    }
+    ?>
       
     <!-- JQuery -->
     <script src="js/jquery.min.js"></script>
@@ -64,3 +74,4 @@
 
   </body>
 </html>
+
