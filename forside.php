@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -7,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <!-- NB! Må ligge under meta taggene i <head>. -->
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
-<!--    <link rel="stylesheet" type="text/css" href="css/"/>-->
+    <link rel="stylesheet" type="text/css" href="css/cssforside"/>
           
     <title>placeholder</title>
 
@@ -28,7 +29,7 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="form.php">Arrangementer</a></li>
+                    <li><a href="form.php">Påmelding</a></li>
                 </ul>
                 
                 <div class="dropdown">
@@ -49,11 +50,9 @@
                                     }
                                     
                                 ?>
-                                
                                 <li><a href="oppdaterInfo.php">Oppdater informasjon</a></li>
                                 <li><a href="admin.php">Admin</a></li>
                                 <li role="separator" class="divider"></li>
-                                
                                 <?php
                                 
                                     if(isset($_SESSION['user'])) {
@@ -72,9 +71,19 @@
                     </ul>
                     
                 </div>
-            
+            </div>
         </div>
     </nav>
+      
+    <?php
+
+    if (isset($_SESSION['user'])) {
+        
+        echo "<br/><br/><br/><br/>"."Du er nå logget inn";
+        echo "<br/>".$_SESSION['email'];
+    
+    }
+    ?>
       
     <!-- JQuery -->
     <script src="js/jquery.min.js"></script>
@@ -84,3 +93,4 @@
 
   </body>
 </html>
+

@@ -15,15 +15,21 @@
     </head>
     
     <body>
+    
+    <?php
+    
+    session_start();
+    
+    ?>
         
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container" id="c1">
             <div class="navbar-header">
-                <a class="navbar-brand " href="">Hjem</a>
+                <a class="navbar-brand " href="forside.php">Hjem</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="form.php">Arrangementer</a></li>
+                    <li><a href="form.php">Påmelding</a></li>
                 </ul>
                 
                 <div class="dropdown">
@@ -35,18 +41,38 @@
                               Bruker <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="registrerBruker.php">Registrer deg</a></li>
-                                <li><a href="#">Logg inn</a></li>
+                                <?php
+                                
+                                    if(!isset($_SESSION['user'])) { 
+                                    
+                                    echo "<li><a href='registrerBruker.php'>Registrer deg</a></li>";
+                                    
+                                    }
+                                    
+                                ?>
+                                
                                 <li><a href="oppdaterInfo.php">Oppdater informasjon</a></li>
                                 <li><a href="admin.php">Admin</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">Logg ut</a></li>
+                                <?php
+                                
+                                    if(isset($_SESSION['user'])) {
+
+                                    echo "<li><a href='logout.php'>Logg ut</a></li>";
+
+                                    } else {
+
+                                    echo "<li><a href='#'>Logg inn</a></li>";
+
+                                    }
+                                    
+                                ?>
                             </ul>
                         </li>
                     </ul>
                     
                 </div>
-            </div><!--navbar collapse-->
+            </div>
         </div>
     </nav>
     
@@ -63,13 +89,13 @@
         
     <div class="container" id="loginbox">
 
-        <form class="form-signin">
+        <form class="form-signin" action="Database/login.php" method="post">
             
                     <label for="inputEmail" class="sr-only">Email adresse</label>
-                    <input type="email" id="inputEmail" class="form-control" placeholder="Email adresse" required autofocus>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Email adresse" required autofocus>
                     <br>
                     <label for="inputPassword" class="sr-only">Passord</label>
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Passord" required>
+                    <input type="password" id="passord" name="passord" class="form-control" placeholder="Passord" required>
                     
                     <div class="checkbox">
                         <label>
@@ -79,7 +105,7 @@
                     
                     <div class="col-sm-12">   
                         <div class="col-sm-3"></div>    
-                        <div class="col-sm-6"><button class="btn btn-lg btn-primary btn-block" type="submit">Logg inn</button></div>
+                        <div class="col-sm-6"><button class="btn btn-lg btn-primary btn-block" type="submit" name="knappLogin">Logg inn</button></div>
                         <div class="col-sm-3"></div>
                     </div>
                         
