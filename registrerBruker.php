@@ -33,11 +33,11 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container" id="c1">
             <div class="navbar-header">
-                <a class="navbar-brand " href="">Hjem</a>
+                <a class="navbar-brand " href="forside.php">Hjem</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="form.php">Arrangementer</a></li>
+                    <li><a href="form.php">Påmelding</a></li>
                 </ul>
                 
                 <div class="dropdown">
@@ -49,12 +49,22 @@
                               Bruker <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Registrer deg</a></li>
-                                <li><a href="loginPage.php">Logg inn</a></li>
                                 <li><a href="oppdaterInfo.php">Oppdater informasjon</a></li>
                                 <li><a href="admin.php">Admin</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="logout.php">Logg ut</a></li>
+                                <?php
+                                
+                                    if(isset($_SESSION['user'])) {
+
+                                    echo "<li><a href='logout.php'>Logg ut</a></li>";
+
+                                    } else {
+
+                                    echo "<li><a href='loginPage.php'>Logg inn</a></li>";
+
+                                    }
+                                    
+                                ?>
                             </ul>
                         </li>
                     </ul>
