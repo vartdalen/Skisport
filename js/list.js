@@ -23,10 +23,11 @@ for (var i = 0; i < close.length; i++) {
 //Opprett nytt submission til listen ved å trykke på "Legg til" knappen
 function newElement() {
     var li = document.createElement("li");
+    var inputAntall = document.getElementById("velgAntall").value;
     var inputGren = document.getElementById("velgGren").value;
     var inputDato = document.getElementById("velgDato").value;
     var inputTid = document.getElementById("velgTid").value;
-    var output = inputGren + " den " + inputDato + " klokken " + inputTid;
+    var output = inputAntall + " til " + inputGren + " den " + inputDato + " klokken " + inputTid;
     var t = document.createTextNode(output);
 
     li.appendChild(t);
@@ -36,7 +37,8 @@ function newElement() {
     } else {
         document.getElementById("eventListe").appendChild(li);
     }
-
+    
+    //håndterer brukervennlighet for utfylling av form
     if (inputGren != 'Velg gren' && inputDato != 'Velg dato' && inputTid != 'Velg tid'){
         document.getElementById("velgGren").value = "Velg gren";
         document.getElementById("velgDato").value = "Velg dato";
@@ -49,6 +51,7 @@ function newElement() {
         document.getElementById("velgTid").value = inputTid;
     }
 
+    //lager sletteknapp
     var span = document.createElement("SPAN");
     var txt = document.createTextNode("\u00D7");
     span.className = "close";

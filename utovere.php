@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -10,7 +9,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
 <!--    <link rel="stylesheet" type="text/css" href="css/"/>-->
           
-    <title>Brukerinformasjon</title>
+    <title>Utøvere</title>
 
   </head>
 
@@ -51,53 +50,63 @@
                               Bruker <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                            <?php
-
-                                if(!isset($_SESSION['user'])) { 
-
-                                echo "<li><a href='registrerBruker.php'>Registrer deg</a></li>";
-
-                                }
-
-                            ?>
-                            <?php
-
-                                if(isset($_SESSION['user'])) { 
-
-                                echo "<li><a href='paameldingsOversikt.php'>Påmeldingsoversikt</a></li>";
-
-                                }
-
-                            ?>    
-                            <?php
-
-                                if(isset($_SESSION['user'])) { 
-
-                                echo "<li><a href='admin.php'>Admin</a></li>";
-
-                                }
+                                <?php
                                 
-                            ?>
-                            <li role="separator" class="divider"></li>
-                            <?php
+                                    if(!isset($_SESSION['user'])) { 
+                                    
+                                    echo "<li><a href='registrerBruker.php'>Registrer deg</a></li>";
+                                    
+                                    }
+                                    
+                                ?>
+                                <?php
 
-                                if(isset($_SESSION['user'])) {
+                                    if(isset($_SESSION['user'])) { 
 
-                                echo "<li><a href='logout.php'>Logg ut</a></li>";
+                                    echo "<li><a href='oppdaterInfo.php'>Oppdater info</a></li>";
 
-                                } else {
+                                    }
 
-                                echo "<li><a href='loginPage.php'>Logg inn</a></li>";
+                                ?>
+                                <?php
 
-                                }
+                                    if(isset($_SESSION['user'])) { 
 
-                            ?>
+                                    echo "<li><a href='paameldingsOversikt.php'>Påmeldingsoversikt</a></li>";
+
+                                    }
+
+                                ?>
+                                <?php
+
+                                    if(isset($_SESSION['user'])) { 
+
+                                    echo "<li><a href='admin.php'>Admin</a></li>";
+
+                                    }
+
+                                ?>
+                                <li role="separator" class="divider"></li>
+                                
+                                <?php
+                                
+                                    if(isset($_SESSION['user'])) {
+
+                                    echo "<li><a href='logout.php'>Logg ut</a></li>";
+
+                                    } else {
+
+                                    echo "<li><a href='loginPage.php'>Logg inn</a></li>";
+
+                                    }
+                                    
+                                ?>
                             </ul>
                         </li>
                     </ul>
                     
                 </div>
-            </div><!--navbar collapse-->
+            
         </div>
     </nav>
       

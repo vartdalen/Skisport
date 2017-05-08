@@ -32,7 +32,7 @@
                     <li><a href='arrangementer.php'>Arrangementer</a></li>
                     <li><a href='utovere.php'>Utøvere</a></li>
                     <?php
-
+                        
                         if(isset($_SESSION['user'])) { 
 
                         echo "<li><a href='form.php'>Påmelding</a></li>";
