@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -8,7 +7,7 @@
     <!-- Bootstrap CSS -->
     <!-- NB! Må ligge under meta taggene i <head>. -->
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="css/cssforside"/>
+<!--    <link rel="stylesheet" type="text/css" href="css/"/>-->
           
     <title>placeholder</title>
 
@@ -88,6 +87,7 @@
 
                                 ?>
                                 <li role="separator" class="divider"></li>
+                                
                                 <?php
                                 
                                     if(isset($_SESSION['user'])) {
@@ -106,20 +106,9 @@
                     </ul>
                     
                 </div>
-            </div>
+            
         </div>
     </nav>
-      
-    <?php
-
-    if (isset($_SESSION['user'])) {
-        
-        echo "<br/><br/><br/><br/>"."Du er nå logget inn";
-        echo "<br/>".$_SESSION['user'];
-        echo "<br/>".$_SESSION['userlevel'];
-    
-    }
-    ?>
       
     <!-- JQuery -->
     <script src="js/jquery.min.js"></script>
@@ -129,4 +118,3 @@
 
   </body>
 </html>
-

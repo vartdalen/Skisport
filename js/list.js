@@ -2,6 +2,7 @@ var listContainer = document.getElementById("listContainer");
 var myNodelist = listContainer.children[0].getElementsByTagName("LI");
 var eventList = document.getElementById("eventListe");
 var close = document.getElementsByClassName("close");
+var error = document.getElementById("errorSkjema");
 
 // lager close knapp og appender til hver list submission
 for (var i = 0; i < myNodelist.length; i++) {
@@ -32,10 +33,12 @@ function newElement() {
 
     li.appendChild(t);
     
+    //legger til element ved riktig utfylling
     if (inputGren === 'Velg gren' || inputDato === 'Velg Dato' || inputTid === 'Velg tid') {
-        alert("Vennligst velg gren, dato og tid.");
+        error.innerHTML = "Vennligst velg gren, dato og tid.";
     } else {
         document.getElementById("eventListe").appendChild(li);
+        error.innerHTML = "";
     }
     
     //håndterer brukervennlighet for utfylling av form
@@ -45,6 +48,9 @@ function newElement() {
         document.getElementById("velgTid").value = "Velg tid";
         document.getElementById("velgDato").disabled = true;
         document.getElementById("velgTid").disabled = true;
+        document.getElementById("velgGrenGroup").setAttribute("class", "form-group");
+        document.getElementById("velgDatoGroup").setAttribute("class", "form-group");
+        document.getElementById("velgTidGroup").setAttribute("class", "form-group");
     } else if (inputGren != 'Velg gren' || inputDato != 'Velg dato' || inputTid != 'Velg tid') {
         document.getElementById("velgGren").value = inputGren;
         document.getElementById("velgDato").value = inputDato;
@@ -66,47 +72,132 @@ function newElement() {
         div.remove();
       }
     }
+    return false;
 }
 
 function bekreft() {
-         
+        
+    if (!sjekkTall() || !sjekkListe()) {
+
+    window.alert("Skjemainnsending mislyktes.");
+    return false;
+
+    } else {
+
         //henter formen
         var form = document.getElementById("formRegistrering");
-        
+        var antallhtml = document.createElement("input");
+        var grenerhtml = document.createElement("input");
+        var datoerhtml = document.createElement("input");
+        var tiderhtml = document.createElement("input");
+
         //lagrer størrelsen på listen i en variabel som kan brukes på neste side
         var listSize = document.createElement("input");
         listSize.setAttribute("type", "hidden");
         listSize.setAttribute("name", "ls");
         listSize.setAttribute("id", "ls");
         listSize.setAttribute("value", eventList.children.length);
-        
+
         form.appendChild(listSize);
-       
-    for(var i = 0; i <= eventList.children.length; i++ ) {
-                
-                //fjerner spanobjektet (x knappen)
-                var span = document.getElementById("span");
-                span.parentNode.removeChild(span);
-                //setter inn verdier i formen som kan bli sendt som post variabler
-                var hiddenField = document.createElement("input");
-                hiddenField.setAttribute("type","hidden");
-                hiddenField.setAttribute("name", i);
-                hiddenField.setAttribute("value", eventList.children[i].textContent);
-                
-                form.appendChild(hiddenField);
-                
+
+        var antall = [];
+        var grener = [];
+        var datoer = [];
+        var tider = [];
+
+        for(var i = 0; i <= eventList.children.length; i++ ) {
+
+            //fjerner spanobjektet (x knappen)
+            var span = document.getElementById("span");
+            span.parentNode.removeChild(span);
+            //setter inn verdier i formen som kan bli sendt som post variabler
+            var fullSetning = document.createElement("input");
+
+            fullSetning.setAttribute("type","hidden");
+            fullSetning.setAttribute("name", i);
+            fullSetning.setAttribute("class", "listeElement");
+            fullSetning.setAttribute("value", eventList.children[i].textContent);
+
+            form.appendChild(fullSetning);
+
+            var setning = fullSetning.value.split(" ", 7);
+                antall[i] = setning[0];
+                grener[i] = setning[2];
+                datoer[i] = setning[4];
+                tider[i] = setning[6];
+
+            antallhtml.setAttribute("type","hidden");
+            antallhtml.setAttribute("name", "antall");
+            antallhtml.setAttribute("value", antall);
+            form.appendChild(antallhtml);
+
+            grenerhtml.setAttribute("type","hidden");
+            grenerhtml.setAttribute("name", "grener");
+            grenerhtml.setAttribute("value", grener);
+            form.appendChild(grenerhtml);
+
+            datoerhtml.setAttribute("type","hidden");
+            datoerhtml.setAttribute("name", "datoer");
+            datoerhtml.setAttribute("value", datoer);
+            form.appendChild(datoerhtml);
+
+            tiderhtml.setAttribute("type","hidden");
+            tiderhtml.setAttribute("name", "tider");
+            tiderhtml.setAttribute("value", tider);
+            form.appendChild(tiderhtml);
         }
         
+        return true;
+    }
+}
+
+function sjekkTall() {
+    
+    var antall = document.getElementById("velgAntall").value;
+    if (antall < 1 || antall > 5 || isNaN(antall)) {
+//        document.getElementById("velgAntall").setAttribute("has-success", "false");
+        document.getElementById("velgAntallGroup").setAttribute("class", "form-group has-error");
+        document.getElementById("leggTil").disabled = true;
+        return false;
+    } else {
+//        document.getElementById("velgAntall").setAttribute("has-error", "false");
+        document.getElementById("velgAntallGroup").setAttribute("class", "form-group has-success");
+        document.getElementById("velgGren").disabled = false;
+        document.getElementById("leggTil").disabled = false;
+        return true;
+    }
+    
+}
+
+function sjekkListe() {
+    
+    var liste = document.getElementById("eventListe");
+    if (liste.children.length < 1) {
+        error.innerHTML = "Vennligst legg til minst ett event.";
+        return false;
+    } else {
+        
+        return true;
+    }
+    
 }
 
 function valgtGren() {
     
 document.getElementById("velgDato").disabled = false;
+document.getElementById("velgGrenGroup").setAttribute("class", "form-group has-success");
 
 }
 
 function valgtDato() {
     
 document.getElementById("velgTid").disabled = false;
+document.getElementById("velgDatoGroup").setAttribute("class", "form-group has-success");
+    
+}
+
+function valgtTid() {
+    
+document.getElementById("velgTidGroup").setAttribute("class", "form-group has-success");
     
 }
