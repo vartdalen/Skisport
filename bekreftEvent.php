@@ -7,7 +7,7 @@
     <!-- Bootstrap CSS -->
     <!-- NB! MÃ¥ ligge under meta taggene i <head>. -->
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="css/cssformConfirm.css"/>
+    <link rel="stylesheet" type="text/css" href=""/>
     
     <title>Bekreft påmelding</title>
 

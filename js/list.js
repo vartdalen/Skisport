@@ -23,11 +23,10 @@ for (var i = 0; i < close.length; i++) {
 //Opprett nytt submission til listen ved å trykke på "Legg til" knappen
 function newElement() {
     var li = document.createElement("li");
-    var inputAntall = document.getElementById("velgAntall").value;
     var inputGren = document.getElementById("velgGren").value;
     var inputDato = document.getElementById("velgDato").value;
     var inputTid = document.getElementById("velgTid").value;
-    var output = inputAntall + " til " + inputGren + " den " + inputDato + " klokken " + inputTid;
+    var output = inputGren + " den " + inputDato + " klokken " + inputTid;
     var t = document.createTextNode(output);
 
     li.appendChild(t);
