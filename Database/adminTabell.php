@@ -6,8 +6,10 @@ and open the template in the editor.
 -->
 <html>
     <head>
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>    
         <meta charset="UTF-8">
         <title>Admin</title>
+        
         <style>
             table, th, td {
                 border: 1px solid black;
@@ -23,65 +25,31 @@ and open the template in the editor.
             }
         </style>
         
-        <script>
-            function showUser(str) {
-                if (str == "") {
-                    document.getElementById("txtHint").innerHTML = "";
-                    return;
-                } else { 
-                    if (window.XMLHttpRequest) {
-                        // code for IE7+, Firefox, Chrome, Opera, Safari
-                        xmlhttp = new XMLHttpRequest();
-                    } else {
-                        // code for IE6, IE5
-                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                    }
-                    xmlhttp.onreadystatechange = function() {
-                        if (this.readyState == 4 && this.status == 200) {
-                            document.getElementById("txtHint").innerHTML = this.responseText;
-                        }
-                    };
-                    xmlhttp.open("GET","http://localhost/ProsjektSkiVM/Skisport/Database/adminTabell.php?q="+str,true);
-                    xmlhttp.send();
-                }
-            }
-            
-            $.ajax({
-                type: "GET",
-                url: http://localhost/ProsjektSkiVM/Skisport/Database/adminTabell.php?
-                success:function
-            })
+        <!-- JQuery -->
+       <!-- <script type="text/javascript src="Database/jquery-3.2.1.min.js"></script>-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+        <script type="text/javascript">
+            $(document).ready(function() {
+                setInterval(function () {
+                    $('#show').load('adminTabell.php')
+                }, 2000);
+            });
         </script>
     </head>
     <body>
-        <h3>Admin hjemmeside</h3>
-        <form>
-            <select name="users" onchange="showUser(this.value)">
-                <option value="">Select a Databasetable:</option>
-                <option value="1">User</option>
-                <option value="2">Athletes</option>
-                <option value="3">Exercises</option>
-                <option value="4">Event</option>
-            </select>
-        </form>
-        <br>
-        <div id="txtHint"><b>Database info will be listed here...</b></div>
-        <br>
-        
-        <?php
-            $q = intval($_GET['q']);
-            
+        <?php            
             // Tilkobling til database
             $servername = "student.cs.hioa.no";
             $user = "s315613";
             $db = mysqli_connect($servername, $user, "", "s315613");
             if(!$db) {
                 die("Database tilkobling mislykket!");
-            }
+            }   
             
             // Henter og printer ut database-informasjon til tabeller
             mysqli_select_db($db, "s315613");
-            $sql = "SELECT * FROM '".$q."'";
+            $sql = "SELECT * FROM User";
             $resultat = mysqli_query($db, $sql);
 
             echo "<div id='UserTable';'><table border=1>
@@ -143,7 +111,31 @@ and open the template in the editor.
                 echo "</tr>";
             }
             echo "</table></div>" . "<br>";
+            
+            mysqli_select_db($db, "s315613");
+            $sql = "SELECT * FROM Event";
+            $resultat = mysqli_query($db, $sql);
+
+            echo "<div id='ØvelseTable'><table border=1>
+            <td>Arrangement</td>
+            <tr>
+            <th>Bruker</th>
+            <th>Antall personer</th>
+            <th>Øvelse ID</th>
+            <th>Dato</th>
+            </tr>";
+            while($row = mysqli_fetch_array($resultat)) {
+                echo "<tr>";
+                echo "<td>" .$row['User_Epost']. "</td>";
+                echo "<td>" .$row['Personer']. "</td>";
+                echo "<td>" .$row['Exercises_idExercises']. "</td>";
+                echo "<td>" .$row['Dato']. "</td>";
+                echo "</tr>";
+            }
+            echo "</table></div>" . "<br>";
             mysqli_close($db);
         ?>
+        
+        <script src="js/bootstrap.min.js"></script>
     </body>
 </html>
