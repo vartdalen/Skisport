@@ -29,7 +29,17 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="form.php">Påmelding</a></li>
+                    <li><a href='arrangementer.php'>Arrangementer</a></li>
+                    <li><a href='utovere.php'>Utøvere</a></li>
+                    <?php
+
+                        if(isset($_SESSION['user'])) { 
+
+                        echo "<li><a href='form.php'>Påmelding</a></li>";
+
+                        }
+                                
+                    ?>
                 </ul>
                 
                 <div class="dropdown">
@@ -50,8 +60,33 @@
                                     }
                                     
                                 ?>
-                                <li><a href="oppdaterInfo.php">Oppdater informasjon</a></li>
-                                <li><a href="admin.php">Admin</a></li>
+                                <?php
+
+                                    if(isset($_SESSION['user'])) { 
+
+                                    echo "<li><a href='oppdaterInfo.php'>Oppdater info</a></li>";
+
+                                    }
+
+                                ?>
+                                <?php
+
+                                    if(isset($_SESSION['user'])) { 
+
+                                    echo "<li><a href='paameldingsOversikt.php'>Påmeldingsoversikt</a></li>";
+
+                                    }
+
+                                ?>
+                                <?php
+
+                                    if(isset($_SESSION['user'])) { 
+
+                                    echo "<li><a href='admin.php'>Admin</a></li>";
+
+                                    }
+
+                                ?>
                                 <li role="separator" class="divider"></li>
                                 <?php
                                 

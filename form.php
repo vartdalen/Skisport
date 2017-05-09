@@ -13,7 +13,7 @@
     
     <title>Registrer deg</title>
     
-    <script type="text/javascript" src="js/list.js" async/></script>
+    <script type="text/javascript" src="js/list.js"/></script>
         
     </head>
     
@@ -34,7 +34,17 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="form.php">Påmelding</a></li>
+                    <li><a href='arrangementer.php'>Arrangementer</a></li>
+                    <li><a href='utovere.php'>Utøvere</a></li>
+                    <?php
+
+                        if(isset($_SESSION['user'])) { 
+
+                        echo "<li><a href='form.php'>Påmelding</a></li>";
+
+                        }
+                                
+                    ?>
                 </ul>
                 
                 <div class="dropdown">
@@ -47,25 +57,42 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <?php
-                                
-                                    if(!isset($_SESSION['user'])) { 
-                                    
-                                    echo "<li><a href='registrerBruker.php'>Registrer deg</a></li>";
-                                    
+
+                                    if(isset($_SESSION['user'])) { 
+
+                                    echo "<li><a href='oppdaterInfo.php'>Oppdater info</a></li>";
+
                                     }
-                                    
+
                                 ?>
-                                <li><a href="oppdaterInfo.php">Oppdater informasjon</a></li>
-                                <li><a href="admin.php">Admin</a></li>
-                                <li role="separator" class="divider"></li>
+                                <?php
+
+                                    if(isset($_SESSION['user'])) { 
+
+                                    echo "<li><a href='paameldingsOversikt.php'>Påmeldingsoversikt</a></li>";
+
+                                    }
+
+                                ?>
+                                <?php
+
+                                    if(isset($_SESSION['user'])) { 
+
+                                    echo "<li><a href='admin.php'>Admin</a></li>";
+
+                                    }
+
+                                ?>
+                                
                                 <?php
                                 
                                     if(isset($_SESSION['user'])) {
-
+                                    
+                                    echo "<li role='separator' class='divider'></li>";
                                     echo "<li><a href='logout.php'>Logg ut</a></li>";
 
                                     } else {
-
+                                        
                                     echo "<li><a href='loginPage.php'>Logg inn</a></li>";
 
                                     }
@@ -85,7 +112,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-lg-12">
                             <h1 class="h1">
-                                Arrangementer <small>Velg event</small></h1>
+                                Påmelding <small>Velg event</small></h1>
                         </div>
                     </div>
                 </div>
@@ -132,7 +159,13 @@
                                   </div>-->
 
                                     <div class="col-md-12" id="listContainer">
-
+                                        
+                                        <div class="form-group">
+                                            <label for="velgAntall">
+                                            Antall personer</label>
+                                            <input id="velgAntall" name="velgAntall" class="form-control" type="number" required="required" value="1">
+                                        </div>
+                                        
                                         <div class="form-group">
                                         <label for="velgGren">
                                             Gren</label>
@@ -169,7 +202,7 @@
                                             <option>11:30-14:00</option>
                                             <option>13:00-15:30</option>
                                         </select>
-                                         </div> 
+                                        </div>
 
                                     </div>
 
