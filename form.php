@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-
 <html>
     <head>
     
@@ -13,7 +11,7 @@
     
     <title>Registrer deg</title>
     
-    <script type="text/javascript" src="js/list.js"/></script>
+    <script type="text/javascript" src="js/list.js" async/></script>
         
     </head>
     
@@ -27,7 +25,7 @@
 
     ?>
         
-        <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container" id="c1">
             <div class="navbar-header">
                 <a class="navbar-brand " href="forside.php">Hjem</a>
@@ -112,7 +110,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-lg-12">
                             <h1 class="h1">
-                                Påmelding <small>Velg event</small></h1>
+                                Arrangementer <small>Velg event</small></h1>
                         </div>
                     </div>
                 </div>
@@ -159,7 +157,7 @@
                                   </div>-->
 
                                     <div class="col-md-12" id="listContainer">
-                                        
+
                                         <div class="form-group">
                                             <label for="velgAntall">
                                             Antall personer</label>
@@ -202,7 +200,7 @@
                                             <option>11:30-14:00</option>
                                             <option>13:00-15:30</option>
                                         </select>
-                                        </div>
+                                         </div> 
 
                                     </div>
 

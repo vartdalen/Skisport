@@ -225,6 +225,7 @@
     <script type="text/javascript" async>
         
         var listSize = <?php echo $listSize?>;
+        var antall = [];
         var grener = [];
         var datoer = [];
         var tider = [];
@@ -260,11 +261,12 @@
             for (var i = 0; i < listValues.length; i++) {
                 
                 var listValue = listValues[i];
-                var setning = listValue.textContent.split(" ", 5);
-                grener[i] = setning[0];
-                datoer[i] = setning[2];
-                tider[i] = setning[4];
-                window.alert(grener[i] + " " + datoer[i] + " " + tider[i]);
+                var setning = listValue.textContent.split(" ", 7);
+                antall[i] = setning[0];
+                grener[i] = setning[2];
+                datoer[i] = setning[4];
+                tider[i] = setning[6];
+                window.alert(antall[i] + " " + grener[i] + " " + datoer[i] + " " + tider[i]);
             }
              
         }

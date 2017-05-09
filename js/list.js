@@ -27,7 +27,7 @@ function newElement() {
     var inputGren = document.getElementById("velgGren").value;
     var inputDato = document.getElementById("velgDato").value;
     var inputTid = document.getElementById("velgTid").value;
-    var output = inputAntall + " til " + inputGren + " den " + inputDato + " klokken " + inputTid;
+    var output = inputAntall + " pers " + inputGren + " den " + inputDato + " klokken " + inputTid;
     var t = document.createTextNode(output);
 
     li.appendChild(t);
