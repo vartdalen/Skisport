@@ -120,51 +120,18 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="well well-sm">
-                            <form name="formRegistrering" id="formRegistrering" action="bekreftEvent.php" method="post">
+                            <form name="formRegistrering" id="formRegistrering" action="bekreftEvent.php" method="post" onsubmit="return bekreft()">
                                 <div class="row">
-<!--                                    <div class="col-md-12">
-
-                                        <div class="form-group">
-                                            <label for="fornavn">
-                                                Fornavn</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
-                                                </span>
-                                                <input type="text" class="form-control" name="fornavn" placeholder="Skriv inn fornavn" required="required" />
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="etternavn">
-                                                Etternavn</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
-                                                </span>
-                                                <input type="text" class="form-control" name="etternavn" placeholder="Skriv inn etternavn" required="required" />
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="email">
-                                                Email Adresse</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
-                                                </span>
-                                                <input type="email" class="form-control" name="email" placeholder="Skriv inn email" required="required" />
-                                            </div>
-                                        </div>
-
-                                  </div>-->
 
                                     <div class="col-md-12" id="listContainer">
 
-                                        <div class="form-group">
+                                        <div class="form-group has-success" id="velgAntallGroup">
                                             <label for="velgAntall">
                                             Antall personer</label>
-                                            <input id="velgAntall" name="velgAntall" class="form-control" type="number" required="required" value="1">
+                                            <input id="velgAntall" name="velgAntall" class="form-control" type="number" required="required" min="1" max="5" value="1" onchange="sjekkTall()"> 
                                         </div>
                                         
-                                        <div class="form-group">
+                                        <div class="form-group" id="velgGrenGroup">
                                         <label for="velgGren">
                                             Gren</label>
                                             <select id="velgGren" name="velgGren" class="form-control" required="required" onchange="valgtGren()">
@@ -176,7 +143,7 @@
                                         </select>
                                         </div>
 
-                                        <div class="form-group">
+                                        <div class="form-group" id="velgDatoGroup">
                                             <label for="velgDato">
                                             Dato</label>
                                         <select id="velgDato" name="velgDato" class="form-control" required="required" onchange="valgtDato()" disabled>
@@ -191,16 +158,18 @@
                                         </select>
                                         </div>
 
-                                        <div class="form-group">
+                                        <div class="form-group" id="velgTidGroup">
                                             <label for="velgTid">
                                             Tid</label>
-                                            <select id="velgTid" name="velgTid" class="form-control" required="required" disabled>
+                                            <select id="velgTid" name="velgTid" class="form-control" required="required" onchange="valgtTid()" disabled>
                                             <option selected hidden>Velg tid</option>
                                             <option>10:00-12:30</option>
                                             <option>11:30-14:00</option>
                                             <option>13:00-15:30</option>
-                                        </select>
-                                         </div> 
+                                            </select>
+                                        </div>
+                                        
+                                        <div class="text-danger" id="errorSkjema"></div>
 
                                     </div>
 
@@ -209,7 +178,7 @@
                                             <div class="col-md-8">
                                             </div>
                                             <div class="col-md-4">
-                                                <span id="leggTil" class="btn btn-primary pull-right" onclick="newElement()">Legg til</span>
+                                                <button id="leggTil" class="btn btn-primary pull-right" onclick="return newElement()">Legg til</button>
                                             </div>
                                         </div>   
                                     </div>
@@ -222,7 +191,7 @@
                                     </div>
 
                                     <div class="col-md-12">
-                                        <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" onclick="bekreft()">
+                                        <button type="submit" class="btn btn-primary pull-right" name="knappBekreft">
                                             Bekreft</button>
 <!--                                        <span id="test" class="btn btn-primary pull-right" onclick="bekreft()">test</span>-->
                                     </div>

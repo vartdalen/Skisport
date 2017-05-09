@@ -7,7 +7,7 @@
     <!-- Bootstrap CSS -->
     <!-- NB! MÃ¥ ligge under meta taggene i <head>. -->
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="css/cssformConfirm.css"/>
+    <link rel="stylesheet" type="text/css" href=""/>
     
     <title>Bekreft påmelding</title>
 
@@ -18,16 +18,48 @@
         <?php
             
             session_start();
+//trenger midlertidig ikke disse fordi vi henter all brukerinfo og putter i sessionvariabler ved innlogging.            
+//            include 'Database/dbtilknytning.php';
+//            
+//            //henter navn og etternavn fra databasen
+//            $email = $_SESSION['email'];
+//            $sql = "SELECT Navn, Etternavn FROM User WHERE Epost = '$email'";
+//            $resultat = mysqli_query($db, $sql);
+//            
+//            if(!$resultat) {
+//
+//            die(mysqli_error());
+//
+//            }
+//            
+//            $check = mysqli_num_rows($resultat);
+//            
+//            if ($check > 0) {
+//                
+//                $navn = array();
+//                $sqlArray = mysqli_fetch_array($resultat);
+//                for ($i = 0; $i < 2; $i++) {
+//                    
+//                $navn[$i] = $sqlArray[$i];
+//                
+//                } 
+//                
+//            }
             
-                //lager sessionvariabler 
-                $_SESSION["listSize"] = $_POST["ls"];
-                
-                //lager session variabler for alle post-variablene fra listen
-                for ($i = 0; $i < $_SESSION["listSize"]; $i++) {
+            //lager sessionvariabler og listevariabler til bruk på serversiden
+            $_SESSION["listSize"] = $_POST["ls"];
+                //disse er arrays
+            $_SESSION["antall"] = $_POST["antall"];
+            $_SESSION["grener"] = $_POST["grener"];
+            $_SESSION["datoer"] = $_POST["datoer"];
+            $_SESSION["tider"] = $_POST["tider"];
+            
+            //lager session variabler for alle post-variablene fra listen (for overføring til javascript liste på clientsiden)
+            for ($i = 0; $i < $_SESSION["listSize"]; $i++) {
 
-                    $_SESSION["li$i"] = $_POST["$i"];
-                    
-                }
+                $_SESSION["li$i"] = $_POST["$i"];
+
+            }
                 
             $listSize = $_SESSION["listSize"];
             
@@ -117,7 +149,7 @@
                     </ul>
                     
                 </div>
-            </div><!--navbar collapse-->
+            </div>
         </div>
     </nav>
       
@@ -136,7 +168,7 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="well well-sm">
-                            <form name="formBekreftelse" id="formBekreftelse" action="" method="post">
+                            <form name="formBekreftelse" id="formBekreftelse" action="eventRegistrertFinal.php" method="post">
                                 <div class="row">
                                     <div class="col-md-12">
 
@@ -146,7 +178,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input type="text" class="form-control" name="fornavn" value="bruker sitt fornavn" disabled/>
+                                                <input type="text" class="form-control" name="fornavn" value="<?php echo $_SESSION["fornavn"];?>" disabled/>
                                             </div>
                                         </div>
 
@@ -156,7 +188,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input type="text" class="form-control" name="etternavn" value="bruker sitt etternavn" disabled/>
+                                                <input type="text" class="form-control" name="etternavn" value="<?php echo $_SESSION["etternavn"];?>" disabled/>
                                             </div>
                                         </div>
 
@@ -166,26 +198,30 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                                 </span>
-                                                <input type="email" class="form-control" name="email" value="bruker sin email" disabled/>
+                                                <input type="email" class="form-control" name="email" value="<?php echo $_SESSION["user"];?>" disabled/>
                                             </div>
                                         </div>
 
                                     </div>
 
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" style="text-align: center">
+                                        <label class="text-info">Vennligst bekreft at dataene stemmer.</label>
                                         <ul class="list-group" id="eventListe">
                                         </ul>
                                     </div>
-
                                     <div class="col-md-12">
-<!--                                        <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" onclick="createlist()">
-                                            Bekreft</button>-->
 
-                                        <span id="test" class="btn btn-primary pull-right" onclick="createlist()">test</span>
-                                        <span id="test2" class="btn btn-primary pull-right" onclick="submitToDb()">test2</span>
-                                        <span id="test2" class="btn btn-primary pull-right" onclick="ajax()">test3</span>
+
+                                        
+                                        
+                                        
                                     </div>
                                 </div>
+<!--                                <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" onclick="createlist()">
+                                Bekreft</button>-->
+<!-- <span id="test" class="btn btn-primary pull-right" onclick="createlist()">test</span>
+                                        <span id="test2" class="btn btn-primary pull-right" onclick="submitToDb()">test2</span>
+                                        <span id="test2" class="btn btn-primary pull-right" onclick="ajax()">test3</span>-->
                             </form>
                         </div>
                     </div>
@@ -194,7 +230,7 @@
                         <legend><span class="glyphicon glyphicon-globe"></span> Kundeservice</legend>
                         <address>
                             <strong>Carlo & Co, Inc.</strong><br>
-                            Pilestredet 35, HÃ¸gskolen i Oslo og Akershus<br>
+                            Pilestredet 35, Høgskolen i Oslo og Akershus<br>
                             Oslo, Akershus<br>
                             Telefon: 696 96 969
                         </address>
@@ -240,37 +276,25 @@
  
                 var listElement = document.createElement("li");
                 var listText = document.createTextNode(listValues[i]);
+                listElement.setAttribute("style", "list-style: none;");
                 listElement.setAttribute("name", i);
                 listElement.setAttribute("id", i);
-                listElement.setAttribute("class", "listElement");
+                listElement.setAttribute("class", "form-group");
+                
 
                 listElement.appendChild(listText);
                 form.appendChild(listElement);
 
             }
             
+            var button = document.createElement("button");
+            button.setAttribute("name", "knappBekreft");
+            button.setAttribute("type", "submit");
+            button.setAttribute("class", "btn btn-primary");
+            button.innerHTML = "Bekreft";
+            form.appendChild(button);
+            
         }
-             
-        function submitToDb() {
-            
-            createlist();
-            
-            var listValues = document.getElementsByClassName("listElement");
-            
-            //finner plasseringen av hvert nÃ¸kkelord i hver string og kategoriserer dem i hvert sitt array.
-            for (var i = 0; i < listValues.length; i++) {
-                
-                var listValue = listValues[i];
-                var setning = listValue.textContent.split(" ", 7);
-                antall[i] = setning[0];
-                grener[i] = setning[2];
-                datoer[i] = setning[4];
-                tider[i] = setning[6];
-                window.alert(antall[i] + " " + grener[i] + " " + datoer[i] + " " + tider[i]);
-            }
-             
-        }
-        
         function ajax() {
         //sender tilbake arrayene til php med json.stringify
 //            $.ajax({
