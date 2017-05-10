@@ -76,12 +76,12 @@ function newElement() {
         var div = this.parentElement;
         div.remove();
         
-        if (eventList.children.length = 0) {
+        if (eventList.children.length < 1) {
             knappBekreft.disabled = 'true';
-                
+            melding.innerHTML = "Vennligst velg minst ett vent og legg til.";
+            melding.style.display = 'initial'; 
         }
-//        melding.innerHTML = "Vennligst velg minst ett vent og legg til.";
-//        melding.style.display = 'initial';
+        
       }
     }
    
