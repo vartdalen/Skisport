@@ -17,98 +17,27 @@
     <body>
     
     <?php
-    
+
     session_start();
+    include_once('diverse/navbarTemplate.php');
     
-    ?>
+    if (isset($_SESSION['user'])) {
         
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container" id="c1">
-            <div class="navbar-header">
-                <a class="navbar-brand " href="forside.php">Hjem</a>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href='arrangementer.php'>Arrangementer</a></li>
-                    <li><a href='utovere.php'>Utøvere</a></li>
-                    <?php
+        header('location: forside.php');
+        
+    }
 
-                        if(isset($_SESSION['user'])) { 
+    ?>
 
-                        echo "<li><a href='form.php'>Påmelding</a></li>";
-
-                        }
-                                
-                    ?>
-                </ul>
-                
-                <div class="dropdown">
-                    
-                    <ul class="nav navbar-nav" style="float:right;">
-  
-                        <li role="presentation" class="dropdown" >
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                              Bruker <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <?php
-                                
-                                    if(!isset($_SESSION['user'])) { 
-                                    
-                                    echo "<li><a href='registrerBruker.php'>Registrer deg</a></li>";
-                                    
-                                    }
-                                    
-                                ?>
-                                <?php
-
-                                    if(isset($_SESSION['user'])) { 
-
-                                    echo "<li><a href='oppdaterInfo.php'>Oppdater info</a></li>";
-
-                                    }
-
-                                ?>
-                                <?php
-
-                                    if(isset($_SESSION['user'])) { 
-
-                                    echo "<li><a href='paameldingsOversikt.php'>Påmeldingsoversikt</a></li>";
-
-                                    }
-
-                                ?>
-                                <?php
-
-                                    if(isset($_SESSION['user'])) { 
-
-                                    echo "<li><a href='admin.php'>Admin</a></li>";
-
-                                    }
-
-                                ?>
-                                <li role="separator" class="divider"></li>
-                                <?php
-                                
-                                    if(isset($_SESSION['user'])) {
-
-                                    echo "<li><a href='logout.php'>Logg ut</a></li>";
-
-                                    } else {
-
-                                    echo "<li><a href='#'>Logg inn</a></li>";
-
-                                    }
-                                    
-                                ?>
-                            </ul>
-                        </li>
-                    </ul>
-                    
-                </div>
-            </div>
-        </div>
-    </nav>
+    <script type="text/javascript">
+        
+        var removeself = document.getElementById("login");
+        removeself.style.display =  "none";
+        
+        var removesep = document.getElementById("separator");
+        removesep.style.display = "none";
+        
+    </script>
     
     <div class="jumbotron jumbotron-sm">
         <div class="container">

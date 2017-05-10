@@ -22,89 +22,22 @@
     <?php
 
     session_start();
-
-    ?>
+    include_once('diverse/navbarTemplate.php');
+    
+    if (!isset($_SESSION['user'])) {
         
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container" id="c1">
-            <div class="navbar-header">
-                <a class="navbar-brand " href="forside.php">Hjem</a>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href='arrangementer.php'>Arrangementer</a></li>
-                    <li><a href='utovere.php'>Utøvere</a></li>
-                    <?php
-
-                        if(isset($_SESSION['user'])) { 
-
-                        echo "<li><a href='form.php'>Påmelding</a></li>";
-
-                        }
-                                
-                    ?>
-                </ul>
-                
-                <div class="dropdown">
-                    
-                    <ul class="nav navbar-nav" style="float:right;">
-  
-                        <li role="presentation" class="dropdown" >
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                              Bruker <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <?php
-
-                                    if(isset($_SESSION['user'])) { 
-
-                                    echo "<li><a href='oppdaterInfo.php'>Oppdater info</a></li>";
-
-                                    }
-
-                                ?>
-                                <?php
-
-                                    if(isset($_SESSION['user'])) { 
-
-                                    echo "<li><a href='paameldingsOversikt.php'>Påmeldingsoversikt</a></li>";
-
-                                    }
-
-                                ?>
-                                <?php
-
-                                    if(isset($_SESSION['user'])) { 
-
-                                    echo "<li><a href='admin.php'>Admin</a></li>";
-
-                                    }
-
-                                ?>
-                                
-                                <?php
-                                
-                                    if(isset($_SESSION['user'])) {
-                                    
-                                    echo "<li role='separator' class='divider'></li>";
-                                    echo "<li><a href='logout.php'>Logg ut</a></li>";
-
-                                    } else {
-                                        
-                                    echo "<li><a href='loginPage.php'>Logg inn</a></li>";
-
-                                    }
-                                    
-                                ?>
-                            </ul>
-                        </li>
-                    </ul>
-                    
-                </div>
-            </div><!--navbar collapse-->
-        </div>
-    </nav>
-
+        header('location: forside.php');
+        
+    }
+    
+    if (isset($_POST['knappBekreft'])) {
+    
+        $_SESSION['skjemautfylt'] = 1;
+    
+    
+    }
+    
+    ?>
             <div class="jumbotron jumbotron-sm">
                 <div class="container">
                     <div class="row">
@@ -118,7 +51,7 @@
         
             <div class="container">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <div class="well well-sm">
                             <form name="formRegistrering" id="formRegistrering" action="bekreftEvent.php" method="post" onsubmit="return bekreft()">
                                 <div class="row">
@@ -178,20 +111,20 @@
                                             <div class="col-md-8">
                                             </div>
                                             <div class="col-md-4">
-                                                <button id="leggTil" class="btn btn-primary pull-right" onclick="return newElement()">Legg til</button>
-                                            </div>
-                                        </div>   
+                                                <button id="leggTil" class="btn btn-primary pull-right" onclick="return newElement()" disabled>Legg til</button>
+                                            </div><h4 class="text-info" style="margin-left: 1em">Dine arrangementer:</h4>
+                                        </div>
                                     </div>
 
                                     <br/>
 
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" id="eventListeDiv">
                                         <ul class="list-group" id="eventListe">
                                         </ul>
                                     </div>
 
                                     <div class="col-md-12">
-                                        <button type="submit" class="btn btn-primary pull-right" name="knappBekreft">
+                                        <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" id="knappBekreft" disabled>
                                             Bekreft</button>
 <!--                                        <span id="test" class="btn btn-primary pull-right" onclick="bekreft()">test</span>-->
                                     </div>

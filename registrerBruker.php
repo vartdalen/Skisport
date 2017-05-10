@@ -19,83 +19,22 @@
     
     <body>
                 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container" id="c1">
-            <div class="navbar-header">
-                <a class="navbar-brand " href="forside.php">Hjem</a>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href='arrangementer.php'>Arrangementer</a></li>
-                    <li><a href='utovere.php'>Utøvere</a></li>
-                    <?php
+    <?php
 
-                        if(isset($_SESSION['user'])) { 
+    session_start();
+    include_once('diverse/navbarTemplate.php');
 
-                        echo "<li><a href='form.php'>Påmelding</a></li>";
+    ?>
 
-                        }
-                                
-                    ?>
-                </ul>
-                
-                <div class="dropdown">
-                    
-                    <ul class="nav navbar-nav" style="float:right;">
-  
-                        <li role="presentation" class="dropdown" >
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                              Bruker <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                            <?php
-
-                                if(isset($_SESSION['user'])) { 
-
-                                echo "<li><a href='oppdaterInfo.php'>Oppdater info</a></li>";
-
-                                }
-
-                            ?>
-                                <?php
-
-                                    if(isset($_SESSION['user'])) { 
-
-                                    echo "<li><a href='paameldingsOversikt.php'>Påmeldingsoversikt</a></li>";
-
-                                    }
-
-                                ?>
-                            <?php
-
-                                if(isset($_SESSION['user'])) { 
-
-                                echo "<li><a href='admin.php'>Admin</a></li>";
-
-                                }
-                                
-                            ?>
-                            <?php
-                                
-                                    if(isset($_SESSION['user'])) {
-
-                                    echo "<li><a href='logout.php'>Logg ut</a></li>";
-
-                                    } else {
-
-                                    echo "<li><a href='loginPage.php'>Logg inn</a></li>";
-
-                                    }
-                                    
-                            ?>
-                            </ul>
-                        </li>
-                    </ul>
-                    
-                </div>
-            </div>
-        </div>
-    </nav>
+    <script type="text/javascript">
+        
+        var removeself = document.getElementById("registrerDeg");
+        removeself.style.display =  "none";
+        
+        var removesep = document.getElementById("separator");
+        removesep.style.display = "none";
+        
+    </script>
 
             <div class="jumbotron jumbotron-sm">
                 <div class="container">
@@ -185,21 +124,6 @@
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
-
-                                    <div class="col" id="col2col2">
-                                        <div class="col-md-2">
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="col-md-8">
-                                            </div>
-                                          
-                                        </div>   
-                                    </div>
-
-                                    <br/>
 
                                     <div class="col-md-12">
                                         <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" onclick="">

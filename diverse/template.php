@@ -26,7 +26,7 @@
             <div class="navbar-header">
                 <a class="navbar-brand " href="forside.php">Hjem</a>
             </div>
-            <div id="navbar" class="collapse navbar-collapse">
+            <div id="navbar" class="default navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href='arrangementer.php'>Arrangementer</a></li>
                     <li><a href='utovere.php'>Utøvere</a></li>
@@ -45,9 +45,15 @@
                     
                     <ul class="nav navbar-nav" style="float:right;">
   
-                        <li role="presentation" class="dropdown" >
+                        <li role="presentation" class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                              Bruker <span class="caret"></span>
+                                <?php if(isset($_SESSION['user'])) {
+                                  echo $_SESSION['fornavn'];
+                                } else {
+                                    echo "Bruker";
+                                }
+                                ?>
+                                <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <?php
@@ -63,7 +69,7 @@
 
                                     if(isset($_SESSION['user'])) { 
 
-                                    echo "<li><a href='oppdaterInfo.php'>Oppdater info</a></li>";
+                                    echo "<li><a href='oppdaterInfo.php'>Profil</a></li>";
 
                                     }
 
@@ -72,22 +78,25 @@
 
                                     if(isset($_SESSION['user'])) { 
 
-                                    echo "<li><a href='paameldingsOversikt.php'>Påmeldingsoversikt</a></li>";
+                                    echo "<li><a href='paameldingsOversikt.php'>Kalender</a></li>";
 
                                     }
 
                                 ?>
                                 <?php
 
-                                    if(isset($_SESSION['user'])) { 
+                                    if(isset($_SESSION['user'])) {
+                                    
+                                        if ($_SESSION['userlevel'] == 1) {
 
-                                    echo "<li><a href='admin.php'>Admin</a></li>";
+                                        echo "<li><a href='admin.php'>Admin</a></li>";
+
+                                        }
 
                                     }
 
                                 ?>
                                 <li role="separator" class="divider"></li>
-                                
                                 <?php
                                 
                                     if(isset($_SESSION['user'])) {
@@ -106,7 +115,7 @@
                     </ul>
                     
                 </div>
-            
+            </div>
         </div>
     </nav>
       

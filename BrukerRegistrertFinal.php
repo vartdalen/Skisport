@@ -17,14 +17,21 @@
       
       <?php
         session_start();
+        if (!isset ($_POST['knappBekreft'])) {
+            
+        header('location: forside.php');
+            
+        }
+        
+        include_once('diverse/navbarTemplate.php');
         include_once 'klasser.php';
         
-        $fornavn = ($_SESSION["fornavn"]);
-        $etternavn = ($_SESSION["etternavn"]);
-        $email = ($_SESSION["email"]);
-        $passord = ($_SESSION["passord"]);
+        $fornavn = ($_POST["fornavn"]);
+        $etternavn = ($_POST["etternavn"]);
+        $email = ($_POST["email"]);
+        $passord = ($_POST["passord"]);
         
-        //lager objekt av typen bruker
+        //lager objekt av typen bruker og poster til databasen med lagre().
         $bruker = new bruker();
         $bruker->set_fornavn($fornavn);
         $bruker->set_etternavn($etternavn);
@@ -36,93 +43,7 @@
         
       ?>
       
-      <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container" id="c1">
-            <div class="navbar-header">
-                <a class="navbar-brand " href="">Hjem</a>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href='arrangementer.php'>Arrangementer</a></li>
-                    <li><a href='utovere.php'>Utøvere</a></li>
-                    <?php
-
-                        if(isset($_SESSION['user'])) { 
-
-                        echo "<li><a href='form.php'>Påmelding</a></li>";
-
-                        }
-                                
-                    ?>
-                </ul>
-                
-                <div class="dropdown">
-                    
-                    <ul class="nav navbar-nav" style="float:right;">
-  
-                        <li role="presentation" class="dropdown" >
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                              Bruker <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <?php
-                                
-                                    if(!isset($_SESSION['user'])) { 
-                                    
-                                    echo "<li><a href='registrerBruker.php'>Registrer deg</a></li>";
-                                    
-                                    }
-                                    
-                                ?>
-                                <?php
-
-                                    if(isset($_SESSION['user'])) { 
-
-                                    echo "<li><a href='oppdaterInfo.php'>Oppdater info</a></li>";
-
-                                    }
-
-                                ?>
-                                <?php
-
-                                    if(isset($_SESSION['user'])) { 
-
-                                    echo "<li><a href='paameldingsOversikt.php'>Påmeldingsoversikt</a></li>";
-
-                                    }
-
-                                ?>
-                                <?php
-
-                                    if(isset($_SESSION['user'])) { 
-
-                                    echo "<li><a href='admin.php'>Admin</a></li>";
-
-                                    }
-
-                                ?>
-                                <li role="separator" class="divider"></li>
-                                <?php
-                                
-                                    if(isset($_SESSION['user'])) {
-
-                                    echo "<li><a href='logout.php'>Logg ut</a></li>";
-
-                                    } else {
-
-                                    echo "<li><a href='loginPage.php'>Logg inn</a></li>";
-
-                                    }
-                                    
-                                ?>
-                            </ul>
-                        </li>
-                    </ul>
-                    
-                </div>
-            </div>
-        </div>
-    </nav>
+      
       
     <!-- JQuery -->
     <script src="js/jquery.min.js"></script>

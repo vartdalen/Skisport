@@ -1,8 +1,12 @@
 var listContainer = document.getElementById("listContainer");
 var myNodelist = listContainer.children[0].getElementsByTagName("LI");
 var eventList = document.getElementById("eventListe");
+var eventListDiv = document.getElementById("eventListeDiv");
 var close = document.getElementsByClassName("close");
 var error = document.getElementById("errorSkjema");
+var knappBekreft = document.getElementById("knappBekreft");
+var knappLeggTil = document.getElementById("leggTil");
+var melding = document.createElement("span");
 
 // lager close knapp og appender til hver list submission
 for (var i = 0; i < myNodelist.length; i++) {
@@ -13,12 +17,11 @@ for (var i = 0; i < myNodelist.length; i++) {
   myNodelist[i].appendChild(span);
 }
 
-// trykk på close knapp for å skjule valgt submission
-for (var i = 0; i < close.length; i++) {
-  close[i].onclick = function() {
-    var div = this.parentElement;
-    div.style.display = "none";
-  }
+window.onload = function () {
+    
+    melding.innerHTML = "Vennligst velg minst ett vent og legg til.";
+    eventListDiv.appendChild(melding);
+    
 }
 
 //Opprett nytt submission til listen ved å trykke på "Legg til" knappen
@@ -43,6 +46,7 @@ function newElement() {
     
     //håndterer brukervennlighet for utfylling av form
     if (inputGren != 'Velg gren' && inputDato != 'Velg dato' && inputTid != 'Velg tid'){
+        document.getElementById("knappBekreft").disabled = false;
         document.getElementById("velgGren").value = "Velg gren";
         document.getElementById("velgDato").value = "Velg dato";
         document.getElementById("velgTid").value = "Velg tid";
@@ -51,6 +55,7 @@ function newElement() {
         document.getElementById("velgGrenGroup").setAttribute("class", "form-group");
         document.getElementById("velgDatoGroup").setAttribute("class", "form-group");
         document.getElementById("velgTidGroup").setAttribute("class", "form-group");
+        
     } else if (inputGren != 'Velg gren' || inputDato != 'Velg dato' || inputTid != 'Velg tid') {
         document.getElementById("velgGren").value = inputGren;
         document.getElementById("velgDato").value = inputDato;
@@ -67,11 +72,25 @@ function newElement() {
 
     //ved å trykke close så skjuler man submissionen(trenger muligens utbedring for funksjonalitet mot db)
     for (i = 0; i < close.length; i++) {
-      close[i].onclick = function() {
+        close[i].onclick = function() {
         var div = this.parentElement;
         div.remove();
+        
+        if (eventList.children.length = 0) {
+            knappBekreft.disabled = 'true';
+                
+        }
+//        melding.innerHTML = "Vennligst velg minst ett vent og legg til.";
+//        melding.style.display = 'initial';
       }
     }
+   
+    if (eventListDiv.children.length > 1) {
+        
+        melding.style.display = 'none';
+    }
+    
+    knappLeggTil.disabled = true; 
     return false;
 }
 
@@ -153,17 +172,25 @@ function bekreft() {
 
 function sjekkTall() {
     
+    var inputGren = document.getElementById("velgGren").value;
+    var inputDato = document.getElementById("velgDato").value;
+    var inputTid = document.getElementById("velgTid").value;
     var antall = document.getElementById("velgAntall").value;
+    
     if (antall < 1 || antall > 5 || isNaN(antall)) {
 //        document.getElementById("velgAntall").setAttribute("has-success", "false");
         document.getElementById("velgAntallGroup").setAttribute("class", "form-group has-error");
-        document.getElementById("leggTil").disabled = true;
+        knappLeggTil.disabled = true;
         return false;
     } else {
 //        document.getElementById("velgAntall").setAttribute("has-error", "false");
         document.getElementById("velgAntallGroup").setAttribute("class", "form-group has-success");
         document.getElementById("velgGren").disabled = false;
-        document.getElementById("leggTil").disabled = false;
+        if ((inputGren != 'Velg gren' && inputDato != 'Velg dato' && inputTid != 'Velg tid') && (antall > 0 && antall < 6 && !isNaN(antall))) {
+        
+        knappLeggTil.disabled = false;
+        
+        }
         return true;
     }
     
@@ -183,21 +210,72 @@ function sjekkListe() {
 }
 
 function valgtGren() {
+    var inputGren = document.getElementById("velgGren").value;
+    var inputDato = document.getElementById("velgDato").value;
+    var inputTid = document.getElementById("velgTid").value;
+    var antall = document.getElementById("velgAntall").value;
     
-document.getElementById("velgDato").disabled = false;
-document.getElementById("velgGrenGroup").setAttribute("class", "form-group has-success");
+    document.getElementById("velgDato").disabled = false;
+    document.getElementById("velgGrenGroup").setAttribute("class", "form-group has-success");
+    
+    if (inputGren != 'Velg gren' || inputDato != 'Velg dato' || inputTid != 'Velg tid') {
 
+        knappLeggTil.disabled = true;
+
+    }
+    
+    if ((inputGren != 'Velg gren' && inputDato != 'Velg dato' && inputTid != 'Velg tid') && (antall > 0 && antall < 6 && !isNaN(antall))) {
+        
+        knappLeggTil.disabled = false;
+        
+    }
+    
 }
 
 function valgtDato() {
+    var inputGren = document.getElementById("velgGren").value;
+    var inputDato = document.getElementById("velgDato").value;
+    var inputTid = document.getElementById("velgTid").value;
+    var antall = document.getElementById("velgAntall").value;
     
-document.getElementById("velgTid").disabled = false;
-document.getElementById("velgDatoGroup").setAttribute("class", "form-group has-success");
+    document.getElementById("velgTid").disabled = false;
+    document.getElementById("velgDatoGroup").setAttribute("class", "form-group has-success");
+
+    if (inputGren != 'Velg gren' || inputDato != 'Velg dato' || inputTid != 'Velg tid') {
+
+        knappLeggTil.disabled = true;
+
+    }
     
+    if ((inputGren != 'Velg gren' && inputDato != 'Velg dato' && inputTid != 'Velg tid') && (antall > 0 && antall < 6 && !isNaN(antall))) {
+        
+        knappLeggTil.disabled = false;
+        
+    }
+
 }
 
 function valgtTid() {
+    var inputGren = document.getElementById("velgGren").value;
+    var inputDato = document.getElementById("velgDato").value;
+    var inputTid = document.getElementById("velgTid").value;
+    var antall = document.getElementById("velgAntall").value;
     
-document.getElementById("velgTidGroup").setAttribute("class", "form-group has-success");
+    document.getElementById("velgTidGroup").setAttribute("class", "form-group has-success");
+    
+    if ((inputGren != 'Velg gren' && inputDato != 'Velg dato' && inputTid != 'Velg tid') && (antall > 0 && antall < 6 && !isNaN(antall))) {
+        
+        knappLeggTil.disabled = false;
+        
+    }
     
 }
+
+//if (eventList.children.length == 0) {
+//    
+//    knappBekreft.disabled = 'true';
+//    
+//}
+
+//if (inputGren != 'Velg gren' || inputDato != 'Velg dato' || inputTid != 'Velg tid')
+//if (inputGren != 'Velg gren' && inputDato != 'Velg dato' && inputTid != 'Velg tid')

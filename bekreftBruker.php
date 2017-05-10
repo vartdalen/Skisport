@@ -15,118 +15,26 @@
 
   <body>
       
-        <?php
-        session_start();
-        include 'klasser.php';
-        
-        //lager sessionvariabler 
-        $_SESSION["fornavn"] = $_POST["fornavn"];
-        $_SESSION["etternavn"] = $_POST["etternavn"];
-        $_SESSION["email"] = $_POST["emailBekreft"];
-        $_SESSION["passord"] = $_POST["passordBekreft"];
+    <?php
+    session_start();
+    if (!isset($_POST['knappBekreft'])) {
 
-        $fornavn = $_SESSION["fornavn"];
-        $etternavn =  $_SESSION["etternavn"];
-        $email = $_SESSION["email"];
-        
-        //lager objekt av typen bruker
-        $bruker = new bruker();
-        $bruker->set_fornavn($_SESSION["fornavn"]);
-        $bruker->set_etternavn($_SESSION["etternavn"]);
-        $bruker->set_email($_SESSION["email"]);
-        $bruker->set_passord($_SESSION["passord"]);
-        $bruker->set_userlevel(0);
-        $bruker->skriv_bruker_til_fil();
-      
+        header('location: forside.php');
+
+    }
+    
+    include 'klasser.php';
+    include_once('diverse/navbarTemplate.php');
+
+    //lager objekt av typen bruker
+    $bruker = new bruker();
+    $bruker->set_fornavn($_POST["fornavn"]);
+    $bruker->set_etternavn($_POST["etternavn"]);
+    $bruker->set_email($_POST["emailBekreft"]);
+    $bruker->set_passord($_POST["passordBekreft"]);
+    $bruker->set_userlevel(0);
+
     ?>
-
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container" id="c1">
-            <div class="navbar-header">
-                <a class="navbar-brand " href="forside.php">Hjem</a>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href='arrangementer.php'>Arrangementer</a></li>
-                    <li><a href='utovere.php'>Utøvere</a></li>
-                    <?php
-
-                        if(isset($_SESSION['user'])) { 
-
-                        echo "<li><a href='form.php'>Påmelding</a></li>";
-
-                        }
-                                
-                    ?>
-                </ul>
-                
-                <div class="dropdown">
-                    
-                    <ul class="nav navbar-nav" style="float:right;">
-  
-                        <li role="presentation" class="dropdown" >
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                              Bruker <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <?php
-                                
-                                    if(!isset($_SESSION['user'])) { 
-                                    
-                                    echo "<li><a href='registrerBruker.php'>Registrer deg</a></li>";
-                                    
-                                    }
-                                    
-                                ?>
-                                <?php
-
-                                    if(isset($_SESSION['user'])) { 
-
-                                    echo "<li><a href='oppdaterInfo.php'>Oppdater info</a></li>";
-
-                                    }
-
-                                ?>
-                                <?php
-
-                                    if(isset($_SESSION['user'])) { 
-
-                                    echo "<li><a href='paameldingsOversikt.php'>Påmeldingsoversikt</a></li>";
-
-                                    }
-
-                                ?>
-                                <?php
-
-                                    if(isset($_SESSION['user'])) { 
-
-                                    echo "<li><a href='admin.php'>Admin</a></li>";
-
-                                    }
-
-                                ?>
-                                <li role="separator" class="divider"></li>
-                                <?php
-                                
-                                    if(isset($_SESSION['user'])) {
-
-                                    echo "<li><a href='logout.php'>Logg ut</a></li>";
-
-                                    } else {
-
-                                    echo "<li><a href='loginPage.php'>Logg inn</a></li>";
-
-                                    }
-                                    
-                                ?>
-                            </ul>
-                        </li>
-                    </ul>
-                    
-                </div>
-            </div>
-        </div>
-    </nav>
       
     <div class="jumbotron jumbotron-sm">
               <div class="container">
@@ -141,19 +49,19 @@
       
       <div class="container">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <div class="well well-sm">
-                            <form name="formBekreftelse" id="formBekreftelse" action="BrukerRegistrertFinal.php" method="post">
+                            <form name="formBekreftBruker" id="formBekreftBruker" action="BrukerRegistrertFinal.php" method="post">
                                 <div class="row">
                                     <div class="col-md-12">
 
-                                        <div class="form-group">
+                                     <div class="form-group">
                                             <label for="fornavn">
                                                 Fornavn</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input type="text" class="form-control" name="fornavn" value="<?php echo $bruker->get_fornavn(); ?>" disabled/>
+                                                <input type="text" id="fornavn" class="form-control" name="fornavn" value="<?php echo $bruker->get_fornavn();?>" readonly/>
                                             </div>
                                         </div>
 
@@ -163,7 +71,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input type="text" class="form-control" name="etternavn" value="<?php echo $bruker->get_etternavn(); ?>" disabled/>
+                                                <input type="text" class="form-control" name="etternavn" value="<?php echo $bruker->get_etternavn();?>" readonly/>
                                             </div>
                                         </div>
 
@@ -173,7 +81,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                                 </span>
-                                                <input type="email" class="form-control" name="email" value="<?php echo $bruker->get_email(); ?>" disabled/>
+                                                <input type="email" class="form-control" name="email" value="<?php echo $bruker->get_email();?>" readonly/>
                                             </div>
                                         </div>
                                         
@@ -183,15 +91,9 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input type="password" class="form-control" name="passord" value="<?php echo $bruker->get_passord()?>" disabled/>
+                                                <input type="password" class="form-control" name="passord" value="<?php echo $bruker->get_passord();?>" readonly/>
                                             </div>
                                         </div>
-
-                                    </div>
-
-                                    <div class="col-md-12">
-
-                                        <button type="submit" id="registrer" class="btn btn-primary pull-right" >Registrer</button>
                                     </div>
                                 </div>
                             </form>
@@ -199,6 +101,29 @@
                     </div>
                 </div>
             </div>
+      
+    <script type="text/javascript">
+          
+        var form = document.getElementById("formBekreftBruker");
+          
+          var buttonBack = document.createElement("span");
+            buttonBack.setAttribute("name", "knappTilbake");
+            buttonBack.setAttribute("type", "button");
+            buttonBack.setAttribute("class", "btn btn-primary");
+            buttonBack.innerHTML = "Tilbake";
+            buttonBack.onclick = function () {
+                location.href = 'registrerBruker.php';
+            };
+            form.appendChild(buttonBack);
+            
+            var button = document.createElement("button");
+            button.setAttribute("name", "knappBekreft");
+            button.setAttribute("type", "submit");
+            button.setAttribute("class", "btn btn-primary pull-right");
+            button.innerHTML = "Bekreft";
+            form.appendChild(button);
+          
+    </script>
       
     <!-- JQuery -->
     <script src="js/jquery.min.js"></script>

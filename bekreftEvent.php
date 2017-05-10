@@ -18,6 +18,18 @@
         <?php
             
             session_start();
+            //sjekker først om innlogget, for så å sjekke etter post variabel fra forrige side.
+            if (!isset($_SESSION['user'])) {
+        
+            header('location: forside.php');
+            
+            } else if (!isset($_POST['knappBekreft'])) {
+                
+            header('location: forside.php');
+                
+            }
+            
+            include_once('diverse/navbarTemplate.php');
 //trenger midlertidig ikke disse fordi vi henter all brukerinfo og putter i sessionvariabler ved innlogging.            
 //            include 'Database/dbtilknytning.php';
 //            
@@ -64,94 +76,6 @@
             $listSize = $_SESSION["listSize"];
             
         ?>
-
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container" id="c1">
-            <div class="navbar-header">
-                <a class="navbar-brand " href="forside.php">Hjem</a>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href='arrangementer.php'>Arrangementer</a></li>
-                    <li><a href='utovere.php'>Utøvere</a></li>
-                    <?php
-
-                        if(isset($_SESSION['user'])) { 
-
-                        echo "<li><a href='form.php'>Påmelding</a></li>";
-
-                        }
-                                
-                    ?>
-                </ul>
-                
-                <div class="dropdown">
-                    
-                    <ul class="nav navbar-nav" style="float:right;">
-  
-                        <li role="presentation" class="dropdown" >
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                              Bruker <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <?php
-                                
-                                    if(!isset($_SESSION['user'])) { 
-                                    
-                                    echo "<li><a href='registrerBruker.php'>Registrer deg</a></li>";
-                                    
-                                    }
-                                    
-                                ?>
-                                <?php
-
-                                    if(isset($_SESSION['user'])) { 
-
-                                    echo "<li><a href='oppdaterInfo.php'>Oppdater info</a></li>";
-
-                                    }
-
-                                ?>
-                                <?php
-
-                                    if(isset($_SESSION['user'])) { 
-
-                                    echo "<li><a href='paameldingsOversikt.php'>Påmeldingsoversikt</a></li>";
-
-                                    }
-
-                                ?>
-                                <?php
-
-                                    if(isset($_SESSION['user'])) { 
-
-                                    echo "<li><a href='admin.php'>Admin</a></li>";
-
-                                    }
-
-                                ?>
-                                <li role="separator" class="divider"></li>
-                                <?php
-                                
-                                    if(isset($_SESSION['user'])) {
-
-                                    echo "<li><a href='logout.php'>Logg ut</a></li>";
-
-                                    } else {
-
-                                    echo "<li><a href='loginPage.php'>Logg inn</a></li>";
-
-                                    }
-                                    
-                                ?>
-                            </ul>
-                        </li>
-                    </ul>
-                    
-                </div>
-            </div>
-        </div>
-    </nav>
       
     <div class="jumbotron jumbotron-sm">
               <div class="container">
@@ -209,19 +133,8 @@
                                         <ul class="list-group" id="eventListe">
                                         </ul>
                                     </div>
-                                    <div class="col-md-12">
-
-
-                                        
-                                        
-                                        
-                                    </div>
                                 </div>
-<!--                                <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" onclick="createlist()">
-                                Bekreft</button>-->
-<!-- <span id="test" class="btn btn-primary pull-right" onclick="createlist()">test</span>
-                                        <span id="test2" class="btn btn-primary pull-right" onclick="submitToDb()">test2</span>
-                                        <span id="test2" class="btn btn-primary pull-right" onclick="ajax()">test3</span>-->
+
                             </form>
                         </div>
                     </div>
@@ -286,76 +199,25 @@
                 form.appendChild(listElement);
 
             }
+            var buttonBack = document.createElement("span");
+            buttonBack.setAttribute("name", "knappTilbake");
+            buttonBack.setAttribute("type", "button");
+            buttonBack.setAttribute("class", "btn btn-primary ");
+            buttonBack.innerHTML = "Tilbake";
+            buttonBack.onclick = function () {
+                location.href = 'form.php';
+            };
+            form.appendChild(buttonBack);
             
             var button = document.createElement("button");
             button.setAttribute("name", "knappBekreft");
             button.setAttribute("type", "submit");
-            button.setAttribute("class", "btn btn-primary");
+            button.setAttribute("class", "btn btn-primary pull-right");
             button.innerHTML = "Bekreft";
             form.appendChild(button);
             
         }
-        function ajax() {
-        //sender tilbake arrayene til php med json.stringify
-//            $.ajax({
-//                type: 'POST',
-//                url: 'formConfirm.php',
-//                data: {json: JSON.stringify(grener)},
-//                dataType: 'json'
-//            })
-//            
-//            .done( function(data) {
-//                console.log('done');
-//                console.log(data);
-//            })
-//            .fail( function(data) {
-//                console.log('fail');
-//                console.log(data);
-//            });
-//            $.ajax({
-//                type: 'POST',
-//                url: 'formConfirm.php',
-//                data: {json: JSON.stringify(datoer)},
-//                dataType: 'json'
-//            });
-            
-//            $.ajax({
-//                type: 'POST',
-//                url: 'formConfirm.php',
-//                data: {json: JSON.stringify(tider)},
-//                dataType: 'json'
-//            })
-//            
-//            
-            
-            
-
-//            JSON.stringify(grener);
-//            JSON.stringify(datoer);
-//            JSON.stringify(tider);
-        
-        <?php
-//        print('{}');
-//              $directions = json_decode($_POST['datoer']);
-//              var_dump($directions);
-//              
-//            json_encode($tider);
-//            print('{tider}');
-//            echo $tider;
-        
-//            $grener= json_decode('grener');
-//            echo $grener;
-//            $datoer=json_decode($_POST['datoer']);
-//            $tider=json_decode($_POST['tider']);
-//            
-//            echo $grener.$datoer.$tider;
-//            echo $grener.$datoer.$tider;
-//            echo $grener.$datoer.$tider;
-//            echo $grener.$datoer.$tider;
-        
-        ?>
-            
-            }
+       
 
     </script>
 
