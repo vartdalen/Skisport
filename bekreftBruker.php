@@ -7,7 +7,6 @@
     <!-- Bootstrap CSS -->
     <!-- NB! MÃ¥ ligge under meta taggene i <head>. -->
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="css/cssformConfirm.css"/>
     
     <title>Bekreft Informasjon</title>
 
@@ -30,7 +29,7 @@
     $bruker = new bruker();
     $bruker->set_fornavn($_POST["fornavn"]);
     $bruker->set_etternavn($_POST["etternavn"]);
-    $bruker->set_email($_POST["emailBekreft"]);
+    $bruker->set_email($_POST["epostBekreft"]);
     $bruker->set_passord($_POST["passordBekreft"]);
     $bruker->set_userlevel(0);
 

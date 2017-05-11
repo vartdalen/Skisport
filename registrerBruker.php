@@ -13,8 +13,22 @@
     
     <title>Registrer deg</title>
     
-    <script type="text/javascript" src="js/list.js" async/></script>
+    <script type="text/javascript" src="js/registrerBruker.js"/></script>
         
+    <style type="text/css">
+    #formRegistrering .has-error .control-label,
+    #formRegistrering .has-error .help-block,
+    #formRegistrering .has-error .form-control-feedback {
+        color: #ff0039;
+    }
+
+    #formRegistrering .has-success .control-label,
+    #formRegistrering .has-success .help-block,
+    #formRegistrering .has-success .form-control-feedback {
+        color: #18bc9c;
+    }
+    </style>
+    
     </head>
     
     <body>
@@ -51,82 +65,105 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="well well-sm">
-                            <form name="formRegistrering" id="formRegistrering" action="bekreftBruker.php" method="post" data-toggle="validator">
+                            <form name="formRegistrering" id="formRegistrering" action="bekreftBruker.php" method="post" novalidate>
                                 <div class="row">
                                     <div class="col-md-12">
 
-                                        <div class="form-group">
-                                            <label for="fornavn">
-                                                Fornavn</label>
+                                        <div class="form-group has-feedback" id="fornavnGroup">
+                                            <label class="control-label" for="fornavn">
+                                            Fornavn</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input type="text" class="form-control" name="fornavn" placeholder="Skriv inn fornavn" required="required" />
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="etternavn">
-                                                Etternavn</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
-                                                </span>
-                                                <input type="text" class="form-control" name="etternavn" placeholder="Skriv inn etternavn" required="required" />
-                                            </div>
-                                        </div>
-                                        
-                                        <hr class="separator">
-
-                                        <div class="form-group">
-                                            <label for="email">
-                                                Email Adresse</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
-                                                </span>
-                                                <input type="email" id="email" data-match-error="Skriv inn email." class="form-control" name="email" placeholder="Skriv inn email" required="required" />
-                                                <div class="help-block with-errors"></div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="email">
-                                                Bekreft email adresse</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
-                                                </span>
-                                                <input type="email" data-match="#email" data-match-error="Email adressene matcher ikke."class="form-control" name="emailBekreft" placeholder="Bekreft email"/>
-                                                <div class="help-block with-errors"></div>
-                                            </div>
-                                        </div>
-                                        
-                                        <hr class="separator">
-                                        
-                                        <div class="form-group">
-                                            <label for="passord">
-                                                Passord</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
-                                                </span>
-                                                <input type="password" id="passord" data-match-error="Skriv inn passord." class="form-control" name="passord" placeholder="Skriv inn passord" required="required"/>
-                                                <div class="help-block with-errors"></div>
+                                                <input oninvalid="this.setCustomValidity('Vennligst skriv inn navn.')" id="fornavn" name="fornavn" class="form-control" type="text" required="required" placeholder="Skriv inn fornavn" onchange="testFornavn()">
+                                                <span id="successIconFornavn" class="glyphicon glyphicon-ok-circle form-control-feedback" style="display: none"></span>
+                                                <span id="errorIconFornavn" class="glyphicon glyphicon-remove-circle form-control-feedback" style="display: none"></span>
                                                 
                                             </div>
+                                            <div id="hjelpedivFornavn" class="help-block with-errors" style="display: none">Vennligst skriv inn fornavn.</div>
                                         </div>
                                         
-                                        <!-- NB! Må hashes! -->
-                                        <div class="form-group">
-                                            <label for="passord">
-                                                Bekreft passord</label>
+                                        <div class="form-group has-feedback" id="etternavnGroup">
+                                            <label class="control-label" for="etternavn">
+                                            Etternavn</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input type="password" data-match="#passord" data-match-error="Passordene matcher ikke." class="form-control" name="passordBekreft" placeholder="Bekreft passord"/>
-                                                <div class="help-block with-errors"></div>
+                                                <input oninvalid="this.setCustomValidity('Vennligst skriv inn etternavn.')" id="etternavn" name="etternavn" class="form-control" type="text" required="required" placeholder="Skriv inn etternavn" onchange="testEtternavn()">
+                                                <span id="successIconEtternavn" class="glyphicon glyphicon-ok-circle form-control-feedback" style="display: none"></span>
+                                                <span id="errorIconEtternavn" class="glyphicon glyphicon-remove-circle form-control-feedback" style="display: none"></span>
+                                                
                                             </div>
+                                            <div id="hjelpedivEtternavn" class="help-block with-errors" style="display: none">Vennligst skriv inn etternavn.</div>
                                         </div>
-
+                                        
+                                        
+                                        <hr class="separator">
+                                        
+                                        <div class="form-group has-feedback" id="epostGroup">
+                                            <label class="control-label" for="epost">
+                                            Epost adresse
+                                            </label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                                                </span>
+                                                <input oninvalid="this.setCustomValidity('Vennligst skriv inn gyldig epost.')" id="epost" name="epost" class="form-control" type="text" required="required" placeholder="Skriv inn epost" onchange="testEpost()">
+                                                <span id="successIconEpost" class="glyphicon glyphicon-ok-circle form-control-feedback" style="display: none"></span>
+                                                <span id="errorIconEpost" class="glyphicon glyphicon-remove-circle form-control-feedback" style="display: none"></span>
+                                                
+                                            </div>
+                                            <div id="hjelpedivEpost" class="help-block with-errors" style="display: none">Vennligst skriv inn gyldig epost.</div>
+                                        </div>
+                                        
+                                        <div class="form-group has-feedback" id="epostBekreftGroup">
+                                            <label class="control-label" for="epostBekreft">
+                                            Bekreft epost adresse
+                                            </label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                                                </span>
+                                                <input oninvalid="this.setCustomValidity('Vennligst skriv inn gyldig epost.')" id="epostBekreft" name="epostBekreft" class="form-control" type="text" required="required" placeholder="Bekreft epost" data-match="#epost" data-match-error="Epost adressene matcher ikke." onchange="testEpostBekreft()">
+                                                <span id="successIconEpostBekreft" class="glyphicon glyphicon-ok-circle form-control-feedback" style="display: none"></span>
+                                                <span id="errorIconEpostBekreft" class="glyphicon glyphicon-remove-circle form-control-feedback" style="display: none"></span>
+                                                
+                                            </div>
+                                            <div id="hjelpedivEpostBekreft" class="help-block with-errors" style="display: none">Vennligst skriv inn gyldig epost som matcher feltet over.</div>
+                                        </div>
+                                        
+                                        <hr class="separator">
+                                        
+                                        <div class="form-group has-feedback" id="passordGroup">
+                                            <label class="control-label" for="passord">
+                                            Passord
+                                            </label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-option-horizontal"></span>
+                                                </span>
+                                                <input oninvalid="this.setCustomValidity('Vennligst skriv inn gyldig passord.')" id="passord" name="passord" class="form-control" type="password" required="required" placeholder="Skriv inn passord" onchange="testPassord()">
+                                                <span id="successIconPassord" class="glyphicon glyphicon-ok-circle form-control-feedback" style="display: none"></span>
+                                                <span id="errorIconPassord" class="glyphicon glyphicon-remove-circle form-control-feedback" style="display: none"></span>
+                                                
+                                            </div>
+                                            <div id="hjelpedivPassord" class="help-block with-errors" style="display: none">Passordet må være minst 6 tegn langt, og det må en kombinasjon av tall og bokstaver.</div>
+                                        </div>
+                                        
+                                        <div class="form-group has-feedback" id="passordBekreftGroup">
+                                            <label class="control-label" for="passordBekreft">
+                                            Bekreft passord
+                                            </label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-option-horizontal"></span>
+                                                </span>
+                                                <input oninvalid="this.setCustomValidity('Vennligst skriv inn gyldig passord.')" id="passordBekreft" name="passordBekreft" class="form-control" type="password" required="required" placeholder="Bekreft passord" data-match="#passord" data-match-error="Passordene matcher ikke." onchange="testPassordBekreft()">
+                                                <span id="successIconPassordBekreft" class="glyphicon glyphicon-ok-circle form-control-feedback" style="display: none"></span>
+                                                <span id="errorIconPassordBekreft" class="glyphicon glyphicon-remove-circle form-control-feedback" style="display: none"></span>
+                                                
+                                            </div>
+                                            <div id="hjelpedivPassordBekreft" class="help-block with-errors" style="display: none">Vennligst skriv inn gyldig passord som matcher feltet over.</div>
+                                        </div>
+                                        
                                     <div class="col-md-12">
-                                        <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" onclick="">
+                                        <button type="submit" class="btn btn-primary pull-right" id="knappBekreft" name="knappBekreft" onclick="" disabled>
                                             Bekreft</button>
                                     </div>
                                     </div>
@@ -140,7 +177,7 @@
 
     <!-- JQuery -->
     <script src="js/jquery.min.js"/></script>
-    <script src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
+    
     <!-- Bootstrap JavaScript -->
     <script src="js/bootstrap.min.js"/></script>
     </body>

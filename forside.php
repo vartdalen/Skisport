@@ -8,7 +8,6 @@
     <!-- Bootstrap CSS -->
     <!-- NB! Må ligge under meta taggene i <head>. -->
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="css/cssforside"/>
           
     <title>placeholder</title>
 

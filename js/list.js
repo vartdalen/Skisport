@@ -19,7 +19,7 @@ for (var i = 0; i < myNodelist.length; i++) {
 
 window.onload = function () {
     
-    melding.innerHTML = "Vennligst velg minst ett vent og legg til.";
+    melding.innerHTML = "Vennligst velg minst ett vent og trykk legg til.";
     eventListDiv.appendChild(melding);
     
 }
@@ -78,7 +78,7 @@ function newElement() {
         
         if (eventList.children.length < 1) {
             knappBekreft.disabled = 'true';
-            melding.innerHTML = "Vennligst velg minst ett vent og legg til.";
+            melding.innerHTML = "Vennligst velg minst ett vent og trykk legg til.";
             melding.style.display = 'initial'; 
         }
         
@@ -178,18 +178,22 @@ function sjekkTall() {
     var antall = document.getElementById("velgAntall").value;
     
     if (antall < 1 || antall > 5 || isNaN(antall)) {
-//        document.getElementById("velgAntall").setAttribute("has-success", "false");
         document.getElementById("velgAntallGroup").setAttribute("class", "form-group has-error");
+        document.getElementById("successIconAntall").style.display = 'none';
+        document.getElementById("errorIconAntall").style.display = 'initial';
+        
         knappLeggTil.disabled = true;
+        error.innerHTML = "Vennligst velg et antall personer mellom 1 og 5.";
         return false;
     } else {
-//        document.getElementById("velgAntall").setAttribute("has-error", "false");
         document.getElementById("velgAntallGroup").setAttribute("class", "form-group has-success");
         document.getElementById("velgGren").disabled = false;
+        document.getElementById("errorIconAntall").style.display = 'none';
+        document.getElementById("successIconAntall").style.display = 'initial';
+        
+        error.innerHTML = "";
         if ((inputGren != 'Velg gren' && inputDato != 'Velg dato' && inputTid != 'Velg tid') && (antall > 0 && antall < 6 && !isNaN(antall))) {
-        
         knappLeggTil.disabled = false;
-        
         }
         return true;
     }

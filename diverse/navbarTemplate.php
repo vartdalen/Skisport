@@ -4,9 +4,12 @@
                     <ul class="nav navbar-right navbar-brand">
                         <li role="presentation" class="dropdown">
                             <div class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                
                                 <?php if(isset($_SESSION['user'])) {
-                                  echo $_SESSION['fornavn'];
+                                    echo "<span style=' margin-right: 0.5em;' class='glyphicon glyphicon-user'></span>";
+                                    echo $_SESSION['fornavn'];
                                 } else {
+                                    echo "<span style=' margin-right: 0.5em; color:#3D3C3A' class='glyphicon glyphicon-user'></span>";
                                     echo "Bruker";
                                 }
                                 ?>
@@ -63,7 +66,8 @@
                 </div>
         
             <div class="navbar-header">
-            <a class="navbar-brand" href="forside.php">Hjem</a>
+            
+            <a class="navbar-brand" href="forside.php"><span style=' margin-right: 0.5em;' class='glyphicon glyphicon-home'></span>Hjem</a>
             <a class="navbar-brand" href='arrangementer.php'><small>Arrangementer</small></a>
             <a class="navbar-brand" href='utovere.php'><small>Utøvere</small></a>
             <?php

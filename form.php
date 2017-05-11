@@ -10,8 +10,33 @@
     <link rel="stylesheet" href="css/cssform.css"/>
     
     <title>Registrer deg</title>
+    <!-- JQuery -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="js/bootstrap.min.js"/></script>
+    
     
     <script type="text/javascript" src="js/list.js" async/></script>
+    
+    <style type="text/css">
+    #formRegistrering .has-error .control-label,
+    #formRegistrering .has-error .help-block,
+    #formRegistrering .has-error .form-control-feedback {
+        color: #ff0039;
+    }
+
+    #formRegistrering .has-success .control-label,
+    #formRegistrering .has-success .help-block,
+    #formRegistrering .has-success .form-control-feedback {
+        color: #18bc9c;
+    }
+    
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin:0;
+    }
+    </style>
         
     </head>
     
@@ -53,53 +78,71 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="well well-sm">
-                            <form name="formRegistrering" id="formRegistrering" action="bekreftEvent.php" method="post" onsubmit="return bekreft()">
+                            <form class="form" name="formRegistrering" id="formRegistrering" action="bekreftEvent.php" method="post" onsubmit="return bekreft()">
                                 <div class="row">
 
                                     <div class="col-md-12" id="listContainer">
-
-                                        <div class="form-group has-success" id="velgAntallGroup">
-                                            <label for="velgAntall">
+                                            
+                                        <div class="form-group has-success has-feedback" id="velgAntallGroup">
+                                            <label class="control-label" for="velgAntall">
                                             Antall personer</label>
-                                            <input id="velgAntall" name="velgAntall" class="form-control" type="number" required="required" min="1" max="5" value="1" onchange="sjekkTall()"> 
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                                                </span>
+                                                <input id="velgAntall" name="velgAntall" class="form-control" type="number" required="required" min="1" max="5" value="1" onchange="sjekkTall()">
+                                                <span id="successIconAntall" class="glyphicon glyphicon-ok-circle form-control-feedback"></span>
+                                                <span id="errorIconAntall" class="glyphicon glyphicon-remove-circle form-control-feedback" style="display: none"></span>
+                                            </div>
+                                            
                                         </div>
                                         
                                         <div class="form-group" id="velgGrenGroup">
-                                        <label for="velgGren">
+                                        <label class="control-label" for="velgGren">
                                             Gren</label>
-                                            <select id="velgGren" name="velgGren" class="form-control" required="required" onchange="valgtGren()">
-                                            <option selected hidden>Velg gren</option>
-                                            <option>Skihopp</option>
-                                            <option>Slalom</option>
-                                            <option>Langrenn</option>
-                                            <option>Skiskyting</option>
-                                        </select>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-option-vertical"></span>
+                                                </span>
+                                                <select id="velgGren" name="velgGren" class="form-control" required="required" onchange="valgtGren()">
+                                                    <option selected hidden>Velg gren</option>
+                                                    <option>Skihopp</option>
+                                                    <option>Slalom</option>
+                                                    <option>Langrenn</option>
+                                                    <option>Skiskyting</option>
+                                                </select>
+                                            </div>
                                         </div>
-
                                         <div class="form-group" id="velgDatoGroup">
-                                            <label for="velgDato">
+                                            <label class="control-label" for="velgDato">
                                             Dato</label>
-                                        <select id="velgDato" name="velgDato" class="form-control" required="required" onchange="valgtDato()" disabled>
-                                            <option selected hidden>Velg dato</option>
-                                            <option>21.01.2017</option>
-                                            <option>22.01.2017</option>
-                                            <option>23.01.2017</option>
-                                            <option>24.01.2017</option>
-                                            <option>25.01.2017</option>
-                                            <option>26.01.2017</option>
-                                            <option>27.01.2017</option>
-                                        </select>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            <select id="velgDato" name="velgDato" class="form-control" required="required" onchange="valgtDato()" disabled>
+                                                <option selected hidden>Velg dato</option>
+                                                <option>21.01.2017</option>
+                                                <option>22.01.2017</option>
+                                                <option>23.01.2017</option>
+                                                <option>24.01.2017</option>
+                                                <option>25.01.2017</option>
+                                                <option>26.01.2017</option>
+                                                <option>27.01.2017</option>
+                                            </select>
+                                            </div>
                                         </div>
 
                                         <div class="form-group" id="velgTidGroup">
-                                            <label for="velgTid">
+                                            <label class="control-label" for="velgTid">
                                             Tid</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
+                                                </span>
                                             <select id="velgTid" name="velgTid" class="form-control" required="required" onchange="valgtTid()" disabled>
-                                            <option selected hidden>Velg tid</option>
-                                            <option>10:00-12:30</option>
-                                            <option>11:30-14:00</option>
-                                            <option>13:00-15:30</option>
+                                                <option selected hidden>Velg tid</option>
+                                                <option>10:00-12:30</option>
+                                                <option>11:30-14:00</option>
+                                                <option>13:00-15:30</option>
                                             </select>
+                                            </div>
                                         </div>
                                         
                                         <div class="text-danger" id="errorSkjema"></div>
@@ -124,9 +167,8 @@
                                     </div>
 
                                     <div class="col-md-12">
-                                        <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" id="knappBekreft" disabled>
+                                        <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" id="knappBekreft" onclick="sjekkListe()" disabled>
                                             Bekreft</button>
-<!--                                        <span id="test" class="btn btn-primary pull-right" onclick="bekreft()">test</span>-->
                                     </div>
                                     
                                 </div>
@@ -150,11 +192,6 @@
                     </div>
                 </div>
             </div>
-        
-    <!-- JQuery -->
-    <script src="js/jquery.min.js"/></script>
-    
-    <!-- Bootstrap JavaScript -->
-    <script src="js/bootstrap.min.js"/></script>
+  
     </body>
 </html>

@@ -51,3 +51,7 @@ s,s,s,s,0
 sistetest,sistetest,sistetest@sistetest.com,1,0
 ,,,,0
 ape,apesen,allersistetest@allersistetest.com,123,0
+Viktor,Vartdal Johansen,viktor.v.johansen@hotmail.com,123ape,0
+Viktor,Vartdal Johansen,viktor.v.johansen@hotmail.com,123ape,0
+Viktor,Vartdal Johansen,viktor.v.johansen@hotmail.com,123ape,0
+ole,petter,viktor.v.johansen@hotmail.com,ali123,0
