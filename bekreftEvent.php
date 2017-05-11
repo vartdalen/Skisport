@@ -102,7 +102,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input type="text" class="form-control" name="fornavn" value="<?php echo $_SESSION["fornavn"];?>" disabled/>
+                                                <input type="text" class="form-control" name="fornavn" value="<?php echo $_SESSION["fornavn"];?>" readonly/>
                                             </div>
                                         </div>
 
@@ -112,7 +112,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input type="text" class="form-control" name="etternavn" value="<?php echo $_SESSION["etternavn"];?>" disabled/>
+                                                <input type="text" class="form-control" name="etternavn" value="<?php echo $_SESSION["etternavn"];?>" readonly/>
                                             </div>
                                         </div>
 
@@ -122,7 +122,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                                 </span>
-                                                <input type="email" class="form-control" name="email" value="<?php echo $_SESSION["user"];?>" disabled/>
+                                                <input type="email" class="form-control" name="email" value="<?php echo $_SESSION["user"];?>" readonly/>
                                             </div>
                                         </div>
 
