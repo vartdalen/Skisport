@@ -10,12 +10,8 @@
     <link rel="stylesheet" href="css/cssform.css"/>
     
     <title>Registrer deg</title>
-    <!-- JQuery -->
-    <script src="js/jquery.min.js"></script>
-    <!-- Bootstrap JavaScript -->
+    <!-- JQuery -->    <script src="js/jquery.min.js"></script>    <!-- Bootstrap JavaScript --> 
     <script src="js/bootstrap.min.js"/></script>
-    
-    
     <script type="text/javascript" src="js/list.js" async/></script>
     
     <style type="text/css">

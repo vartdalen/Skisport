@@ -29,7 +29,9 @@
         $fornavn = ($_POST["fornavn"]);
         $etternavn = ($_POST["etternavn"]);
         $email = ($_POST["email"]);
-        $passord = ($_POST["passord"]);
+        
+        $salt = 'ayylmao';
+        $passord = md5($_POST["passord"]+$salt);
         
         //lager objekt av typen bruker og poster til databasen med lagre().
         $bruker = new bruker();

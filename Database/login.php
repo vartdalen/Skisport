@@ -5,7 +5,9 @@
     include('dbtilknytning.php');
     
     $email = $_POST['email'];
-    $passord = $_POST['passord'];
+    
+    $salt = 'ayylmao';
+    $passord = md5($_POST['passord']+$salt);
 
     $sql = "SELECT * FROM User WHERE Epost = '$email' AND Password = '$passord'";
     $resultat = mysqli_query($db, $sql);
