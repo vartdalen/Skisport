@@ -118,28 +118,30 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="well well-sm">
-                        <form name="forandreBruker" id="forandreBruker" action="" method="post">
+                        <form name="forandreBruker" id="forandreBruker" method="post">
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="fornavn">Bruker</label>
                                     <hr class="separator">
                                     <div class="form-group">
                                         <label for="fornavn">
-                                            Endre fornavn</label>
+                                            Epost</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                             </span>
-                                            <input type="text" class="form-control" name="fornavn" placeholder="Skriv inn nytt fornavn"/>
+                                            <input type="text" class="form-control" name="fornavn" placeholder="Skriv inn eposten(bruker) du vil slette"/>
+                                            <span class="input-group-btn"><button class="btn btn-primary pull-right">Oppdater</button></span>
                                         </div>
                                     </div>
                                             
                                     <div class="form-group">
                                         <label for="etternavn">
-                                            Endre etternavn</label>
+                                            Fornavn</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                             </span>
                                             <input type="text" class="form-control" name="etternavn" placeholder="Skriv inn nytt etternavn"/>
+                                            <span class="input-group-btn"><button class="btn btn-primary pull-right">Test 1</button></span>
                                         </div>
                                     </div>
                                             
@@ -147,7 +149,7 @@
                                             
                                     <div class="form-group">
                                         <label for="email">
-                                            Endre email</label>
+                                            Etternavn</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                             </span>
@@ -159,7 +161,7 @@
                                             
                                     <div class="form-group">
                                         <label for="passord">
-                                            Endre passord</label>
+                                            Passord</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                             </span>
@@ -171,7 +173,7 @@
                                             
                                     <div class="form-group">
                                         <label for="passord">
-                                            Bekreft endre passord</label>
+                                            Bekreft passord</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                             </span>
@@ -184,7 +186,7 @@
                                             
                                     <div class="form-group">
                                         <label for="user-level">
-                                            Endre user-level</label>
+                                            User-level</label>
                                         <div class="form-group">
                                             <select id="user-level" name="user-level" class="form-control">
                                                 <option selected hidden>Velg user-level</option>
@@ -197,22 +199,11 @@
                                             
                                 </div>
                                 <hr class="separator">
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="col-md-8">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <span id="Oppdater" class="btn btn-primary pull-right" onclick="">Oppdater</span>
-                                        </div>
-                                    </div>   
-                                </div>
-                                        
                                 <br/>
                                         
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" onclick="bekreft()">
-                                        Bekreft</button>
+                                    <button type="submit" class="btn btn-primary pull-right" name="knappBekreft">
+                                        Slett</button>
                                 </div>
                                         
                             </div>
@@ -246,7 +237,7 @@
                                             
                                     <div class="form-group">
                                         <label for="fornavn">
-                                            Endre fornavn</label>
+                                            Fornavn</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                             </span>
@@ -258,7 +249,7 @@
                                             
                                     <div class="form-group">
                                         <label for="etternavn">
-                                            Endre etternavn</label>
+                                            Etternavn</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                             </span>
@@ -270,7 +261,7 @@
                                             
                                     <div class="form-group">
                                         <label for="passord">
-                                            Endre øvelse ID</label>
+                                            Øvelse ID</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                             </span>
@@ -287,7 +278,7 @@
                                         <div class="col-md-8">
                                         </div>
                                         <div class="col-md-4">
-                                            <span id="Oppdater" class="btn btn-primary pull-right" onclick="">Oppdater</span>
+                                            <span id="addAth" class="btn btn-primary pull-right">Legg til</span>
                                         </div>
                                     </div>   
                                 </div>
@@ -295,8 +286,8 @@
                                 <br/>
                                         
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" onclick="bekreft()">
-                                        Bekreft</button>
+                                    <button type="submit" class="btn btn-primary pull-right" name="knappSlettAth">
+                                        Slett</button>
                                 </div>
                                         
                             </div>
@@ -330,7 +321,7 @@
                                             
                                     <div class="form-group">
                                         <label for="etternavn">
-                                            Endre øvelse ID</label>
+                                            Øvelse ID</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                             </span>
@@ -342,7 +333,7 @@
                                             
                                     <div class="form-group">
                                         <label for="email">
-                                            Endre navn</label>
+                                            Øvelse navn</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                             </span>
@@ -371,7 +362,7 @@
                                         <div class="col-md-8">
                                         </div>
                                         <div class="col-md-4">
-                                            <span id="Oppdater" class="btn btn-primary pull-right" onclick="">Oppdater</span>
+                                            <span id="addEx" class="btn btn-primary pull-right" onclick="">Legg til</span>
                                         </div>
                                     </div>   
                                 </div>
@@ -379,8 +370,8 @@
                                 <br/>
                                         
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" onclick="bekreft()">
-                                        Bekreft</button>
+                                    <button type="submit" class="btn btn-primary pull-right" name="knappSlettEx">
+                                        Slett</button>
                                 </div> 
                             </div>
                         </form>
