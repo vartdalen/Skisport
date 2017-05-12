@@ -5,30 +5,19 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <!-- Bootstrap CSS -->
-        <!-- NB! Må ligge under meta taggene i <head>. -->
         <link rel="stylesheet" href="css/bootstrap.min.css"/>
-        <!--    <link rel="stylesheet" type="text/css" href="css/"/>-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="js/loadTableFunctions.js"></script>
+<!--        <script>
+            $(document).ready(function(){
+                $("button").click(function(){
+                    $(".utdata").toggle("slow");
+                });
+            });
+        </script>-->
     
         <title>Admin</title>
-        
-<!--        <style>
-            table, th, td {
-                border: 1px solid black;
-                border-collapse: collapse;
-            }
-            th, td {
-                padding: 5px;
-                text-align: left;
-            }
-            div#UserTable, #UtøverTable, #ØvelseTable {
-                width: 100%;    
-            }
-        </style>-->
-        
     </head>
-      
     <body>
         
     <?php
@@ -149,7 +138,8 @@
                                     </div>
                                             
                                 </div>
-                                      
+                                <hr class="separator">
+
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="col-md-8">
@@ -171,40 +161,17 @@
                         </form>
                     </div>
                 </div>
+                
                 <div class="col-md-6">
-            <?php
-                // Tilkobling til database
-                $servername = "student.cs.hioa.no";
-                $user = "s315613";
-                $db = mysqli_connect($servername, $user, "", "s315613");
-                if(!$db) {
-                    die("Database tilkobling mislykket!");
-                }   
-
-                // Henter og printer ut database-informasjon til tabeller
-                mysqli_select_db($db, "s315613");
-                $sql = "SELECT * FROM User";
-                $resultat = mysqli_query($db, $sql);
-
-                echo "<div id='UserTable';'><table class='table table-bordered table table-striped responsive'>
-                <td>User</td> 
-                <tr>
-                <th>Navn</th>
-                <th>Etternavn</th>
-                <th>Epost</th>
-                <th>UserLevel</th>  
-                </tr>";
-                while($row = mysqli_fetch_array($resultat)) {
-                    echo "<tr>";
-                    echo "<td>" .$row['Navn']. "</td>";
-                    echo "<td>" .$row['Etternavn']. "</td>";
-                    echo "<td>" .$row['Epost']. "</td>";
-                    echo "<td>" .$row['UserLevel']. "</td>";
-                    echo "</tr>";
-                }
-                echo "</table></div>" . "<br>";
-            ?>
+                    <div>
+                        <button type="submit" class="btn btn-primary" onClick="loadUser()" />
+                        Vis tabell
+                        </button>
+                    </div>
+                    <div id="utdataUser" style="display: none;">
+                    </div>
                 </div>
+                
             </div>
         </div>
                 
@@ -228,6 +195,8 @@
                                             <input type="text" class="form-control" name="fornavn" placeholder="Skriv inn nytt fornavn"/>
                                         </div>
                                     </div>
+                                    
+                                    <hr class="separator">
                                             
                                     <div class="form-group">
                                         <label for="etternavn">
@@ -252,22 +221,7 @@
                                                     
                                         </div>
                                     </div>
-                                            
                                     <hr class="separator">
-                                            
-                                    <div class="form-group">
-                                        <label for="user-level">
-                                            Endre user-level</label>
-                                        <div class="form-group">
-                                            <select id="user-level" name="user-level" class="form-control">
-                                                <option selected hidden>Velg user-level</option>
-                                                <option>0 (vanlig bruker)</option>
-                                                <option>1 (admin)</option>
-                                            </select>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-                                    </div>
-                                            
                                 </div>
                                       
                                 <div class="row">
@@ -291,40 +245,17 @@
                         </form>
                     </div>
                 </div>
-                                <div class="col-md-6">
-            <?php            
-                // Tilkobling til database
-                $servername = "student.cs.hioa.no";
-                $user = "s315613";
-                $db = mysqli_connect($servername, $user, "", "s315613");
-                if(!$db) {
-                    die("Database tilkobling mislykket!");
-                }   
-
-                // Henter og printer ut database-informasjon til tabeller
-                mysqli_select_db($db, "s315613");
-                $sql = "SELECT * FROM Athletes";
-                $resultat = mysqli_query($db, $sql);
-
-                echo "<div id='UtøverTable'><table class='table table-bordered table table-striped responsive'>
-                <td>Utøvere</td>
-                <tr>
-                <th>Utøver ID</th>
-                <th>Navn</th>
-                <th>Etternavn</th>
-                <th>Øvelse ID</th>  
-                </tr>";
-                while($row = mysqli_fetch_array($resultat)) {
-                    echo "<tr>";
-                    echo "<td>" .$row['idAthletes']. "</td>";
-                    echo "<td>" .$row['Navn']. "</td>";
-                    echo "<td>" .$row['Etternavn']. "</td>";
-                    echo "<td>" .$row['idExercises']. "</td>";
-                    echo "</tr>";
-                }
-                echo "</table></div>" . "<br>";
-            ?>
+                
+                <div class="col-md-6">
+                    <div>
+                        <button type="submit" class="btn btn-primary" onClick="loadAthletes()" />
+                        Vis tabell
+                        </button>
+                    </div>
+                    <div id="utdataAthletes"  style="display: none;">
+                    </div>
                 </div>
+                
             </div>
         </div>
                 
@@ -336,32 +267,12 @@
                         <form name="forandreExercise" id="forandreExercise" action="" method="post">
                             <div class="row">
                                 <div class="col-md-12">
-                                    
-                                    <div class="form-group">
-                                        <label for="email">
-                                            Email adresse</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
-                                            </span>
-                                            <input type="email" class="form-control" name="email" placeholder="Skriv inn email" required="required" />
-                                        </div>
-                                    </div>
-                                            
+                                    <label for="fornavn">Øvelser</label>
                                     <hr class="separator">
                                             
                                     <div class="form-group">
-                                        <label for="fornavn">
-                                            Endre fornavn</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
-                                            </span>
-                                            <input type="text" class="form-control" name="fornavn" placeholder="Skriv inn nytt fornavn"/>
-                                        </div>
-                                    </div>
-                                            
-                                    <div class="form-group">
                                         <label for="etternavn">
-                                            Endre etternavn</label>
+                                            Endre øvelse ID</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                             </span>
@@ -373,7 +284,7 @@
                                             
                                     <div class="form-group">
                                         <label for="email">
-                                            Endre email edresse</label>
+                                            Endre navn</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                             </span>
@@ -385,44 +296,18 @@
                                             
                                     <div class="form-group">
                                         <label for="passord">
-                                            Endre passord</label>
+                                            Dato</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                             </span>
                                             <input type="password" id="passord" data-match-error="Skriv inn passord." class="form-control" name="passord" placeholder="Skriv inn nytt passord" required="required"/>
                                             <div class="help-block with-errors"></div>
-                                                    
                                         </div>
                                     </div>
-                                            
-                                    <div class="form-group">
-                                        <label for="passord">
-                                            Bekreft endre passord</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
-                                            </span>
-                                            <input type="password" data-match="#passord" data-match-error="Passordene matcher ikke." class="form-control" name="passordBekreft" placeholder="Bekreft nytt passord"/>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-                                    </div>
-                                            
                                     <hr class="separator">
                                             
-                                    <div class="form-group">
-                                        <label for="user-level">
-                                            Endre user-level</label>
-                                        <div class="form-group">
-                                            <select id="user-level" name="user-level" class="form-control">
-                                                <option selected hidden>Velg user-level</option>
-                                                <option>0 (vanlig bruker)</option>
-                                                <option>1 (admin)</option>
-                                            </select>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-                                    </div>
-                                            
                                 </div>
-                                      
+                                
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="col-md-8">
@@ -438,50 +323,25 @@
                                 <div class="col-md-12">
                                     <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" onclick="bekreft()">
                                         Bekreft</button>
-                                </div>
-                                        
+                                </div> 
                             </div>
                         </form>
                     </div>
                 </div>
-                                <div class="col-md-6">
-            <?php            
-                // Tilkobling til database
-                $servername = "student.cs.hioa.no";
-                $user = "s315613";
-                $db = mysqli_connect($servername, $user, "", "s315613");
-                if(!$db) {
-                    die("Database tilkobling mislykket!");
-                }   
-
-                // Henter og printer ut database-informasjon til tabeller
-                mysqli_select_db($db, "s315613");
-                $sql = "SELECT * FROM Exercises";
-                $resultat = mysqli_query($db, $sql);
-
-                echo "<div id='ØvelseTable'><table class='table table-bordered table table-striped responsive'>
-                <td>Arrangement</td>
-                <tr>
-                <th>Øvelse ID</th>
-                <th>Navn</th>
-                <th>Dato</th>
-                </tr>";
-                while($row = mysqli_fetch_array($resultat)) {
-                    echo "<tr>";
-                    echo "<td>" .$row['idExercises']. "</td>";
-                    echo "<td>" .$row['Navn']. "</td>";
-                    echo "<td>" .$row['Dato']. "</td>";
-                    echo "</tr>";
-                }
-                echo "</table></div>" . "<br>";
-            ?>
-                </div>
+                
+                <div class="col-md-6">
+                    <div>
+                        <button type="submit" class="btn btn-primary" onClick="loadExercises()" />
+                        Vis tabell
+                        </button>
+                    </div>
+                    <div id="utdataExercises"  style="display: none;">
+                    </div>
+                </div>    
+                    
             </div>
         </div>
-           
-        <!-- JQuery -->
-        <script src="js/jquery.min.js"></script>
-        
+
         <!-- Bootstrap JavaScript -->
         <script src="js/bootstrap.min.js"></script>
         
