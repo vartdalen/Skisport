@@ -8,34 +8,26 @@
         <link rel="stylesheet" href="css/bootstrap.min.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="js/loadTableFunctions.js"></script>
-<!--        <script>
-            $(document).ready(function(){
-                $("button").click(function(){
-                    $(".utdata").toggle("slow");
-                });
-            });
-        </script>-->
-    
+        <script src="js/adminDbFunctions.js"></script>
+        
         <title>Admin</title>
     </head>
     <body>
         
     <?php
+        session_start();
+        include_once('diverse/navbarTemplate.php');
+        include_once ('Database/adminDbFunctions.php');
         
-    session_start();
-    
-    if(!isset($_SESSION['user'])) {
-                                    
-        header('location: forside.php');
+        if(!isset($_SESSION['user'])) {
 
-    } else if ($_SESSION['userlevel'] != 1) {
+            header('location: forside.php');
 
-        header('location: forside.php');
+        } else if ($_SESSION['userlevel'] != 1) {
 
-    }
-    
-    include_once('diverse/navbarTemplate.php');
-    
+            header('location: forside.php');
+
+        }
     ?>
         
     <script type="text/javascript">
@@ -55,12 +47,15 @@
                 </div>
             </div>
         </div>
-                
+    
+    <hr class="separator">
+    <div id="dbSuccess"></div>
+    
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
                     <div class="well well-sm">
-                        <form name="forandreBruker" id="forandreBruker" action="" method="post">
+                        <form name="forandreBruker" id="forandreBruker" action="" method="post" novalidate>
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="fornavn">Bruker</label>
@@ -264,48 +259,20 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="well well-sm">
-                        <form name="forandreExercise" id="forandreExercise" action="" method="post">
+
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label for="fornavn">Øvelser</label>
+                                    <label>Øvelser</label>
                                     <hr class="separator">
-                                            
                                     <div class="form-group">
-                                        <label for="etternavn">
-                                            Endre øvelse ID</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
-                                            </span>
-                                            <input type="text" class="form-control" name="etternavn" placeholder="Skriv inn nytt etternavn"/>
-                                        </div>
-                                    </div>
-                                            
-                                    <hr class="separator">
-                                            
-                                    <div class="form-group">
-                                        <label for="email">
-                                            Endre navn</label>
+                                        <label for="navnØvelse">
+                                            Navn</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                             </span>
-                                            <input type="email" class="form-control" name="email" placeholder="Skriv inn ny email" />
+                                            <input type="text" class="form-control" id="navnØvelse" placeholder="Skriv inn øvelsesnavn" />
                                         </div>
-                                    </div>
-                                            
-                                    <hr class="separator">
-                                            
-                                    <div class="form-group">
-                                        <label for="passord">
-                                            Dato</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
-                                            </span>
-                                            <input type="password" id="passord" data-match-error="Skriv inn passord." class="form-control" name="passord" placeholder="Skriv inn nytt passord" required="required"/>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-                                    </div>
-                                    <hr class="separator">
-                                            
+                                    </div>  
                                 </div>
                                 
                                 <div class="row">
@@ -313,7 +280,7 @@
                                         <div class="col-md-8">
                                         </div>
                                         <div class="col-md-4">
-                                            <span id="Oppdater" class="btn btn-primary pull-right" onclick="">Oppdater</span>
+                                            <input type="submit" class="btn btn-primary pull-right" value="Legg til" name="knappAddEx" onclick="addExercise()">
                                         </div>
                                     </div>   
                                 </div>
@@ -321,11 +288,10 @@
                                 <br/>
                                         
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" onclick="bekreft()">
-                                        Bekreft</button>
+                                        <input type="submit" class="btn btn-primary pull-right" value="Slett" name="knappSlettEx" onclick="deleteExercise()">
                                 </div> 
                             </div>
-                        </form>
+
                     </div>
                 </div>
                 
@@ -341,6 +307,69 @@
                     
             </div>
         </div>
+        
+        <!-- PHP kode for sletting/oppdatering av DB -->
+        
+        <?php
+//            if(isset($_POST["knappSlettEx"])) {
+//                
+//                // Connection variables
+//                $servername = "student.cs.hioa.no";
+//                $user = "s315613";
+//                
+//                // Database variables
+//                $navn = $_POST["navnØvelse"];
+//                
+//                // Connection
+//                $db = mysqli_connect($servername, $user, "", "s315613");
+//                $db->autocommit(false);
+//                if($db->connect_error) {
+//                    die("Database tilkobling mislykket!");
+//                }
+//                
+//                $sql = "DELETE FROM Exercises WHERE Navn = '$navn'";
+//                $resultat = mysqli_query($db, $sql);
+//                if(!$resultat) {
+//                    $db->rollback();
+//                    echo "Øvelse ble ikke slettet. " .$db->error;
+//                }else {
+//                    $db->commit();
+//                    echo "Øvelse ble slettet.";
+//                }
+//                echo "<br/>";
+//
+//                $db->close();
+//            }
+//            
+//            if(isset($_POST["knappAddEx"])){
+//                    // Connection variables
+//                    $servername = "student.cs.hioa.no";
+//                    $user = "s315613";
+//
+//                    // Database variables
+//                    $navn = $_POST["navnØvelse"];
+//
+//                    // Connection
+//                    $db = mysqli_connect($servername, $user, "", "s315613");
+//                    $db->autocommit(false);
+//                    if($db->connect_error) {
+//                        die("Database tilkobling mislykket!");
+//                    }
+//
+//                    $sql = "INSERT INTO Exercises(Navn) VALUES('$navn')";
+//                    $resultat = mysqli_query($db, $sql);
+//                    if(!$resultat) {
+//                        $db->rollback();
+//                        echo "Øvelse ble ikke lagt til. " .$db->error;
+//                    }else {
+//                        $db->commit();
+//                        echo "Øvelse ble lagt til.";
+//                    }
+//                    echo "<br/>";
+//
+//                    $db->close();
+//            }
+       ?>
 
         <!-- Bootstrap JavaScript -->
         <script src="js/bootstrap.min.js"></script>
