@@ -50,7 +50,7 @@ function deleteExercise(){
 }
 
 function editExercise(){
-    const getUrl = ".\\Database\\adminDBAjaxURL\\deleteExDB.php";
+    const getUrl = ".\\Database\\adminDBAjaxURL\\editExDB.php";
 
     const name = $('#navnØvelse').val();
     if(name == ''){
@@ -64,11 +64,11 @@ function editExercise(){
         data:{ Navn: name },
         success:function(res){
             const el = document.getElementById('dbSuccess');
-            el.textContent = `Øvelse ble slettet! ${res}`
+            el.textContent = `Øvelse ble endret! ${res}`
             el.style.margin = '30px';
         },
         error:function(err){
-            alert("Feil! Øvelse ble ikke slettet!");
+            alert("Feil! Øvelse ble ikke endret!");
             console.log(err);
         }
     });
