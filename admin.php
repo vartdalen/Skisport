@@ -131,7 +131,7 @@
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
-                                            
+                                        
                                 </div>
                                 <hr class="separator">
 
@@ -223,17 +223,19 @@
                                     <div class="col-md-12">
                                         <div class="col-md-8">
                                         </div>
-                                        <div class="col-md-4">
-                                            <span id="Oppdater" class="btn btn-primary pull-right" onclick="">Oppdater</span>
+                                        <div class="col-md-4 form-group">
+                                            <button id="Oppdater" class="btn btn-primary pull-right" onclick="addAthletes()">Legg til</button>
                                         </div>
                                     </div>   
                                 </div>
-                                        
+                                <div class="col-md-12 form-group">
+                                    <button id="Oppdater" class="btn btn-primary pull-right" onclick="editAthletes()">Endre</button>
+                                </div>
                                 <br/>
                                         
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" onclick="bekreft()">
-                                        Bekreft</button>
+                                    <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" onclick="deleteAthletes()">
+                                        Slett</button>
                                 </div>
                                         
                             </div>
@@ -307,69 +309,6 @@
                     
             </div>
         </div>
-        
-        <!-- PHP kode for sletting/oppdatering av DB -->
-        
-        <?php
-//            if(isset($_POST["knappSlettEx"])) {
-//                
-//                // Connection variables
-//                $servername = "student.cs.hioa.no";
-//                $user = "s315613";
-//                
-//                // Database variables
-//                $navn = $_POST["navnØvelse"];
-//                
-//                // Connection
-//                $db = mysqli_connect($servername, $user, "", "s315613");
-//                $db->autocommit(false);
-//                if($db->connect_error) {
-//                    die("Database tilkobling mislykket!");
-//                }
-//                
-//                $sql = "DELETE FROM Exercises WHERE Navn = '$navn'";
-//                $resultat = mysqli_query($db, $sql);
-//                if(!$resultat) {
-//                    $db->rollback();
-//                    echo "Øvelse ble ikke slettet. " .$db->error;
-//                }else {
-//                    $db->commit();
-//                    echo "Øvelse ble slettet.";
-//                }
-//                echo "<br/>";
-//
-//                $db->close();
-//            }
-//            
-//            if(isset($_POST["knappAddEx"])){
-//                    // Connection variables
-//                    $servername = "student.cs.hioa.no";
-//                    $user = "s315613";
-//
-//                    // Database variables
-//                    $navn = $_POST["navnØvelse"];
-//
-//                    // Connection
-//                    $db = mysqli_connect($servername, $user, "", "s315613");
-//                    $db->autocommit(false);
-//                    if($db->connect_error) {
-//                        die("Database tilkobling mislykket!");
-//                    }
-//
-//                    $sql = "INSERT INTO Exercises(Navn) VALUES('$navn')";
-//                    $resultat = mysqli_query($db, $sql);
-//                    if(!$resultat) {
-//                        $db->rollback();
-//                        echo "Øvelse ble ikke lagt til. " .$db->error;
-//                    }else {
-//                        $db->commit();
-//                        echo "Øvelse ble lagt til.";
-//                    }
-//                    echo "<br/>";
-//
-//                    $db->close();
-//            }
-       ?>
 
         <!-- Bootstrap JavaScript -->
         <script src="js/bootstrap.min.js"></script>
