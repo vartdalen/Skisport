@@ -9,8 +9,29 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
 <!--    <link rel="stylesheet" type="text/css" href="css/"/>-->
           
-    <title>Bruker Hjemmeside</title>
+    <title>Bruker registrert</title>
 
+        <style>
+        
+         html, body, .container-table {
+            height: 100%;
+        }
+        .container-table {
+            display: table;
+        }
+        .vertical-center-row {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        
+        #footer {
+        
+        text-align: center;
+
+        }
+        
+    </style>
+    
   </head>
 
   <body>
@@ -23,6 +44,7 @@
             
         }
         
+        include_once 'Database/registering.php';
         include_once('diverse/navbarTemplate.php');
         include_once 'klasser.php';
         
@@ -45,7 +67,33 @@
         
       ?>
       
-      
+      <!-- Innhold på siden -->
+
+    <div class="container container-table">
+
+        <div class="row vertical-center-row">
+        <!-- Header velkommen -->
+        <header class="jumbotron hero-spacer">
+            <h1>Takk for din registrering.</h1>
+            <p>Du har nå muligheten til å melde deg på våre arrangementer og forandre brukerinformasjon og påmeldte arrangementer. 
+            </p>
+        </header>
+        <!-- Header slutt -->
+        <hr>
+       
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div id="footer" class="col-lg-12">
+                    <p>Copyright &copy; Webprogrammering Prosjektoppgave HiOA - 2017</p>
+                </div>
+            </div>
+        </footer>
+
+        </div>
+     </div>
+    <!-- Footer slutt -->
+    
       
     <!-- JQuery -->
     <script src="js/jquery.min.js"></script>

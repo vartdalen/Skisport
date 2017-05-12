@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
 <!--    <link rel="stylesheet" type="text/css" href="css/"/>-->
           
-    <title>placeholder</title>
+    <title>Påmeldt</title>
     
     <style>
         
@@ -40,7 +40,7 @@
       
         session_start();
 
-        include_once ('Database/Paamelding.php'); 
+        include_once ('Database/paamelding.php'); 
         include_once('diverse/navbarTemplate.php');
         
     
@@ -53,8 +53,8 @@
         <div class="row vertical-center-row">
         <!-- Header velkommen -->
         <header class="jumbotron hero-spacer">
-            <h1>Gratulerer!</h1>
-            <p>Du er nå påmeldt arrangement til Ski-VM 2017. <br>Klikk på nedenfor for å gå til kalender og se hva du er meldt på.</p>
+            <h1>Takk for din påmelding.</h1>
+            <p>Du er nå påmeldt vårt arrangement under Ski-VM 2017. <br>Klikk på nedenfor for å gå til kalender og se hva du er meldt på.</p>
             <p><a href="paameldingsOversikt.php" class="btn btn-primary btn-large">Kalender</a>
             </p>
         </header>
