@@ -30,50 +30,21 @@
             }
             
             include_once('diverse/navbarTemplate.php');
-//trenger midlertidig ikke disse fordi vi henter all brukerinfo og putter i sessionvariabler ved innlogging.            
-//            include 'Database/dbtilknytning.php';
-//            
-//            //henter navn og etternavn fra databasen
-//            $email = $_SESSION['email'];
-//            $sql = "SELECT Navn, Etternavn FROM User WHERE Epost = '$email'";
-//            $resultat = mysqli_query($db, $sql);
-//            
-//            if(!$resultat) {
-//
-//            die(mysqli_error());
-//
-//            }
-//            
-//            $check = mysqli_num_rows($resultat);
-//            
-//            if ($check > 0) {
-//                
-//                $navn = array();
-//                $sqlArray = mysqli_fetch_array($resultat);
-//                for ($i = 0; $i < 2; $i++) {
-//                    
-//                $navn[$i] = $sqlArray[$i];
-//                
-//                } 
-//                
-//            }
             
             //lager sessionvariabler og listevariabler til bruk på serversiden
-            $_SESSION["listSize"] = $_POST["ls"];
-                //disse er arrays
-            $_SESSION["antall"] = $_POST["antall"];
-            $_SESSION["grener"] = $_POST["grener"];
-            $_SESSION["datoer"] = $_POST["datoer"];
-            $_SESSION["tider"] = $_POST["tider"];
+            $listSize = $_POST["ls"];
             
-            //lager session variabler for alle post-variablene fra listen (for overføring til javascript liste på clientsiden)
-            for ($i = 0; $i < $_SESSION["listSize"]; $i++) {
+            $listEvents = array();
+            
+            //lager et array som mottar post verdiene til listen på forrige side.
+            for ($i = 0; $i < $listSize; $i++) {
 
-                $_SESSION["li$i"] = $_POST["$i"];
+                $listEvents[$i] = $_POST["$i"];
 
             }
-                
-            $listSize = $_SESSION["listSize"];
+            
+            //encoder for bruk i js
+            json_encode($listEvents);
             
         ?>
       
@@ -117,12 +88,12 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="email">
-                                                Email Adresse</label>
+                                            <label for="epost">
+                                                Epost Adresse</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                                 </span>
-                                                <input type="email" class="form-control" name="email" value="<?php echo $_SESSION["user"];?>" readonly/>
+                                                <input type="email" class="form-control" name="epost" value="<?php echo $_SESSION["user"];?>" readonly/>
                                             </div>
                                         </div>
 
@@ -130,7 +101,7 @@
 
                                     <div class="col-md-12" style="text-align: center">
                                         <label class="text-info">Vennligst bekreft at dataene stemmer.</label>
-                                        <ul class="list-group" id="eventListe">
+                                        <ul class="list-group" id="eventList">
                                         </ul>
                                     </div>
                                 </div>
@@ -156,21 +127,7 @@
                 </div>
             </div>
       
-        <?php
-         
-//                echo $listSize."<br/><br/>";
-            
-                //lager et array som mottar post verdiene til listen pÃ¥ forrige side.
-                $listEvents = array();
-                for ($i = 0; $i < $listSize; $i++) {
-
-                    $listEvents[$i] = $_SESSION["li$i"];
-//                    echo $listEvents[$i]."<br/>";
-                }
-                
-                json_encode($listEvents);
-        ?>
-      
+    <!--dette scriptet måtte stå inne i denne filen for å kunne hente json encoded array $listEvents og php variablen $listSize--> 
     <script type="text/javascript" async>
         
         var listSize = <?php echo $listSize?>;
@@ -184,21 +141,68 @@
             
             var listValues = <?php echo json_encode($listEvents) ?>;
             var form = document.getElementById("formBekreftelse");
-           
+            
+            var antallhtml = document.createElement("input");
+            var grenerhtml = document.createElement("input");
+            var datoerhtml = document.createElement("input");
+            var tiderhtml = document.createElement("input");
+            
             for (var i = 0; i < listSize; i++) {
- 
+                //synlig, ikke-postbar oversikt:
                 var listElement = document.createElement("li");
                 var listText = document.createTextNode(listValues[i]);
                 listElement.setAttribute("style", "list-style: none;");
                 listElement.setAttribute("name", i);
                 listElement.setAttribute("id", i);
                 listElement.setAttribute("class", "form-group");
-                
 
                 listElement.appendChild(listText);
                 form.appendChild(listElement);
+                
+                //usynlig, postbare listeelementer som kan deles opp:
+                var fullSetning = document.createElement("input");
+
+                fullSetning.setAttribute("type","hidden");
+                fullSetning.setAttribute("name", i);
+                fullSetning.setAttribute("value", listElement.innerHTML);
+
+                form.appendChild(fullSetning);
+                
+                
+                var setning = fullSetning.value.split(" ", 7);
+                antall[i] = setning[0];
+                grener[i] = setning[2];
+                datoer[i] = setning[4];
+                tider[i] = setning[6];
+
+                antallhtml.setAttribute("type","hidden");
+                antallhtml.setAttribute("name", "antall");
+                antallhtml.setAttribute("value", antall);
+                form.appendChild(antallhtml);
+
+                grenerhtml.setAttribute("type","hidden");
+                grenerhtml.setAttribute("name", "grener");
+                grenerhtml.setAttribute("value", grener);
+                form.appendChild(grenerhtml);
+
+                datoerhtml.setAttribute("type","hidden");
+                datoerhtml.setAttribute("name", "datoer");
+                datoerhtml.setAttribute("value", datoer);
+                form.appendChild(datoerhtml);
+
+                tiderhtml.setAttribute("type","hidden");
+                tiderhtml.setAttribute("name", "tider");
+                tiderhtml.setAttribute("value", tider);
+                form.appendChild(tiderhtml);
 
             }
+            
+            var listSizePassable = document.createElement("input");
+            listSizePassable.setAttribute("type","hidden");
+            listSizePassable.setAttribute("name", "listSize");
+            listSizePassable.setAttribute("value", listSize);
+            form.appendChild(listSizePassable);
+
             var buttonBack = document.createElement("span");
             buttonBack.setAttribute("name", "knappTilbake");
             buttonBack.setAttribute("type", "button");
@@ -206,9 +210,9 @@
             buttonBack.innerHTML = "Tilbake";
             buttonBack.onclick = function () {
                 location.href = 'form.php';
-            };
+            }
             form.appendChild(buttonBack);
-            
+
             var button = document.createElement("button");
             button.setAttribute("name", "knappBekreft");
             button.setAttribute("type", "submit");

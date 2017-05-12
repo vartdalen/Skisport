@@ -138,32 +138,6 @@ function bekreft() {
             fullSetning.setAttribute("value", eventList.children[i].textContent);
 
             form.appendChild(fullSetning);
-
-            var setning = fullSetning.value.split(" ", 7);
-                antall[i] = setning[0];
-                grener[i] = setning[2];
-                datoer[i] = setning[4];
-                tider[i] = setning[6];
-
-            antallhtml.setAttribute("type","hidden");
-            antallhtml.setAttribute("name", "antall");
-            antallhtml.setAttribute("value", antall);
-            form.appendChild(antallhtml);
-
-            grenerhtml.setAttribute("type","hidden");
-            grenerhtml.setAttribute("name", "grener");
-            grenerhtml.setAttribute("value", grener);
-            form.appendChild(grenerhtml);
-
-            datoerhtml.setAttribute("type","hidden");
-            datoerhtml.setAttribute("name", "datoer");
-            datoerhtml.setAttribute("value", datoer);
-            form.appendChild(datoerhtml);
-
-            tiderhtml.setAttribute("type","hidden");
-            tiderhtml.setAttribute("name", "tider");
-            tiderhtml.setAttribute("value", tider);
-            form.appendChild(tiderhtml);
         }
         
         return true;
@@ -177,13 +151,15 @@ function sjekkTall() {
     var inputTid = document.getElementById("velgTid").value;
     var antall = document.getElementById("velgAntall").value;
     
-    if (antall < 1 || antall > 5 || isNaN(antall)) {
+    var regex = /^(?:[1-5]|0[1-5])$/;
+    
+    if (!regex.test(antall)) {
         document.getElementById("velgAntallGroup").setAttribute("class", "form-group has-error");
         document.getElementById("successIconAntall").style.display = 'none';
         document.getElementById("errorIconAntall").style.display = 'initial';
         
         knappLeggTil.disabled = true;
-        error.innerHTML = "Vennligst velg et antall personer mellom 1 og 5.";
+        error.innerHTML = "Vennligst velg et heltall mellom 1 og 5.";
         return false;
     } else {
         document.getElementById("velgAntallGroup").setAttribute("class", "form-group has-success");

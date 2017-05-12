@@ -36,6 +36,13 @@
     <?php
 
     session_start();
+    //skal ikke være mulig å registrere seg hvis man er innlogget.
+    if (isset($_SESSION['user'])) {
+
+        header('location: forside.php');
+
+    }
+    
     include_once('diverse/navbarTemplate.php');
 
     ?>
