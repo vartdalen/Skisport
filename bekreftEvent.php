@@ -21,11 +21,11 @@
             //sjekker først om innlogget, for så å sjekke etter post variabel fra forrige side.
             if (!isset($_SESSION['user'])) {
         
-            header('location: forside.php');
+            header('location: feilIkkeLogin.php');
             
             } else if (!isset($_POST['knappBekreft'])) {
                 
-            header('location: forside.php');
+            header('location: feil.php');
                 
             }
             

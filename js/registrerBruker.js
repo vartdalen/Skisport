@@ -58,7 +58,7 @@ function testFornavn() {
     var errorIconFornavn = document.getElementById("errorIconFornavn");
     var hjelpedivFornavn = document.getElementById('hjelpedivFornavn');
     
-    var regex = /^[a-zA-Z ]{2,30}$/;
+    var regex = /^[a-zA-Z ]{2,40}$/;
 
     if (regex.test(fornavn.value)) {
         
@@ -86,7 +86,7 @@ function testEtternavn() {
     var errorIconEtternavn = document.getElementById("errorIconEtternavn");
     var hjelpedivEtternavn = document.getElementById('hjelpedivEtternavn');
 
-    var regex = /^[a-zA-Z ]{2,30}$/;
+    var regex = /^[a-zA-Z ]{2,40}$/;
 
     if (regex.test(etternavn.value)) {
 
@@ -202,7 +202,7 @@ function testPassord() {
     var errorIconPassordBekreft = document.getElementById("errorIconPassordBekreft");
     var hjelpedivPassordBekreft = document.getElementById('hjelpedivPassordBekreft');
     
-    var regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,20}$/;
+    var regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/;
     
     if (regex.test(passord.value)) {
 

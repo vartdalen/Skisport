@@ -82,12 +82,12 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input oninvalid="this.setCustomValidity('Vennligst skriv inn navn.')" id="fornavn" name="fornavn" class="form-control" type="text" required="required" placeholder="Skriv inn fornavn" onchange="testFornavn()">
+                                                <input value="<?php if (isset($_SESSION['skjemaUtfylt'])) {if (isset($_SESSION['fornavn'])) {echo $_SESSION['fornavn'];}}?>" oninvalid="this.setCustomValidity('Vennligst skriv inn navn.')" id="fornavn" name="fornavn" class="form-control" type="text" required="required" placeholder="Skriv inn fornavn" onchange="testFornavn()">
                                                 <span id="successIconFornavn" class="glyphicon glyphicon-ok-circle form-control-feedback" style="display: none"></span>
                                                 <span id="errorIconFornavn" class="glyphicon glyphicon-remove-circle form-control-feedback" style="display: none"></span>
                                                 
                                             </div>
-                                            <div id="hjelpedivFornavn" class="help-block with-errors" style="display: none">Vennligst skriv inn fornavn.</div>
+                                            <div id="hjelpedivFornavn" class="help-block with-errors" style="display: none">Vennligst skriv inn fornavn. Æ, ø og å er desverre ikke tillatt.</div>
                                         </div>
                                         
                                         <div class="form-group has-feedback" id="etternavnGroup">
@@ -96,12 +96,12 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input oninvalid="this.setCustomValidity('Vennligst skriv inn etternavn.')" id="etternavn" name="etternavn" class="form-control" type="text" required="required" placeholder="Skriv inn etternavn" onchange="testEtternavn()">
+                                                <input value="<?php if (isset($_SESSION['skjemaUtfylt'])) {if (isset($_SESSION['etternavn'])) {echo $_SESSION['etternavn'];}}?>" oninvalid="this.setCustomValidity('Vennligst skriv inn etternavn.')" id="etternavn" name="etternavn" class="form-control" type="text" required="required" placeholder="Skriv inn etternavn" onchange="testEtternavn()">
                                                 <span id="successIconEtternavn" class="glyphicon glyphicon-ok-circle form-control-feedback" style="display: none"></span>
                                                 <span id="errorIconEtternavn" class="glyphicon glyphicon-remove-circle form-control-feedback" style="display: none"></span>
                                                 
                                             </div>
-                                            <div id="hjelpedivEtternavn" class="help-block with-errors" style="display: none">Vennligst skriv inn etternavn.</div>
+                                            <div id="hjelpedivEtternavn" class="help-block with-errors" style="display: none">Vennligst skriv inn etternavn. Æ, ø og å er desverre ikke tillatt.</div>
                                         </div>
                                         
                                         
@@ -114,7 +114,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                                 </span>
-                                                <input oninvalid="this.setCustomValidity('Vennligst skriv inn gyldig epost.')" id="epost" name="epost" class="form-control" type="text" required="required" placeholder="Skriv inn epost" onchange="testEpost()">
+                                                <input value="<?php if (isset($_SESSION['skjemaUtfylt'])) {if (isset($_SESSION['epost'])) {echo $_SESSION['epost'];}}?>" oninvalid="this.setCustomValidity('Vennligst skriv inn gyldig epost.')" id="epost" name="epost" class="form-control" type="text" required="required" placeholder="Skriv inn epost" onchange="testEpost()">
                                                 <span id="successIconEpost" class="glyphicon glyphicon-ok-circle form-control-feedback" style="display: none"></span>
                                                 <span id="errorIconEpost" class="glyphicon glyphicon-remove-circle form-control-feedback" style="display: none"></span>
                                                 
@@ -129,7 +129,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                                 </span>
-                                                <input oninvalid="this.setCustomValidity('Vennligst skriv inn gyldig epost.')" id="epostBekreft" name="epostBekreft" class="form-control" type="text" required="required" placeholder="Bekreft epost" data-match="#epost" data-match-error="Epost adressene matcher ikke." onchange="testEpostBekreft()">
+                                                <input value="<?php if (isset($_SESSION['skjemaUtfylt'])) {if (isset($_SESSION['epost'])) {echo $_SESSION['epost'];}}?>" oninvalid="this.setCustomValidity('Vennligst skriv inn gyldig epost.')" id="epostBekreft" name="epostBekreft" class="form-control" type="text" required="required" placeholder="Bekreft epost" data-match="#epost" data-match-error="Epost adressene matcher ikke." onchange="testEpostBekreft()">
                                                 <span id="successIconEpostBekreft" class="glyphicon glyphicon-ok-circle form-control-feedback" style="display: none"></span>
                                                 <span id="errorIconEpostBekreft" class="glyphicon glyphicon-remove-circle form-control-feedback" style="display: none"></span>
                                                 
@@ -146,12 +146,12 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-option-horizontal"></span>
                                                 </span>
-                                                <input oninvalid="this.setCustomValidity('Vennligst skriv inn gyldig passord.')" id="passord" name="passord" class="form-control" type="password" required="required" placeholder="Skriv inn passord" onchange="testPassord()">
+                                                <input value="<?php if (isset($_SESSION['skjemaUtfylt'])) {if (isset($_SESSION['passord'])) {echo $_SESSION['passord'];}}?>" oninvalid="this.setCustomValidity('Vennligst skriv inn gyldig passord.')" id="passord" name="passord" class="form-control" type="password" required="required" placeholder="Skriv inn passord" onchange="testPassord()">
                                                 <span id="successIconPassord" class="glyphicon glyphicon-ok-circle form-control-feedback" style="display: none"></span>
                                                 <span id="errorIconPassord" class="glyphicon glyphicon-remove-circle form-control-feedback" style="display: none"></span>
                                                 
                                             </div>
-                                            <div id="hjelpedivPassord" class="help-block with-errors" style="display: none">Passordet må være minst 6 tegn langt, og det må en kombinasjon av tall og bokstaver.</div>
+                                            <div id="hjelpedivPassord" class="help-block with-errors" style="display: none">Passordet må være minst 8 tegn langt, og det må en kombinasjon av tall og bokstaver.</div>
                                         </div>
                                         
                                         <div class="form-group has-feedback" id="passordBekreftGroup">
@@ -161,7 +161,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-option-horizontal"></span>
                                                 </span>
-                                                <input oninvalid="this.setCustomValidity('Vennligst skriv inn gyldig passord.')" id="passordBekreft" name="passordBekreft" class="form-control" type="password" required="required" placeholder="Bekreft passord" data-match="#passord" data-match-error="Passordene matcher ikke." onchange="testPassordBekreft()">
+                                                <input value="<?php if (isset($_SESSION['skjemaUtfylt'])) {if (isset($_SESSION['passord'])) {echo $_SESSION['passord'];}}?>" oninvalid="this.setCustomValidity('Vennligst skriv inn gyldig passord.')" id="passordBekreft" name="passordBekreft" class="form-control" type="password" required="required" placeholder="Bekreft passord" data-match="#passord" data-match-error="Passordene matcher ikke." onchange="testPassordBekreft()">
                                                 <span id="successIconPassordBekreft" class="glyphicon glyphicon-ok-circle form-control-feedback" style="display: none"></span>
                                                 <span id="errorIconPassordBekreft" class="glyphicon glyphicon-remove-circle form-control-feedback" style="display: none"></span>
                                                 
@@ -181,6 +181,16 @@
                     
                 </div>
             </div>
+    
+    <?php 
+    
+    if (isset($_SESSION['skjemaUtfylt'])) {
+        
+        echo "<script>testFornavn();testEtternavn();testEpost();testEpostBekreft();testPassord();testPassordBekreft();</script>";
+        
+    }
+    
+    ?>
 
     <!-- JQuery -->
     <script src="js/jquery.min.js"/></script>

@@ -21,11 +21,11 @@
         
         if(!isset($_SESSION['user'])) {
 
-            header('location: forside.php');
+            header('location: loginPage.php');
 
         } else if ($_SESSION['userlevel'] != 1) {
 
-            header('location: forside.php');
+            header('location: feil.php');
 
         }
     ?>

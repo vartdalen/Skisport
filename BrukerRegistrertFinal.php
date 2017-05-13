@@ -33,36 +33,15 @@
     </style>
     
   </head>
-
   <body>
       
       <?php
         session_start();
-        if (!isset ($_POST['knappBekreft'])) {
-            
-        header('location: forside.php');
-            
-        }
         
-//        include_once 'Database/registering.php';
+        include_once 'Database\validerBruker.php';
         include_once('diverse/navbarTemplate.php');
-        include_once 'klasser.php';
         
-        $fornavn = ($_POST["fornavn"]);
-        $etternavn = ($_POST["etternavn"]);
-        $email = ($_POST["email"]);
-        
-        $salt = 'ayylmao';
-        $passord = md5($_POST["passord"]+$salt);
-        
-        //lager objekt av typen bruker og poster til databasen med lagre().
-        $bruker = new bruker();
-        $bruker->set_fornavn($fornavn);
-        $bruker->set_etternavn($etternavn);
-        $bruker->set_email($email);
-        $bruker->set_passord($passord);
-        $bruker->set_userlevel(0);
-        $bruker->lagre($bruker);
+        validerRegistrering();
         
       ?>
       
@@ -74,8 +53,8 @@
         <!-- Header velkommen -->
         <header class="jumbotron hero-spacer">
             <h1>Takk for din registrering.</h1>
-            <p>Du har nå muligheten til å melde deg på våre arrangementer og forandre brukerinformasjon og påmeldte arrangementer. 
-            </p>
+            <p>Du har nå muligheten til å melde deg på våre arrangementer.</p>
+            <p><a href="loginPage.php" class="btn btn-primary btn-large">Logg inn</a></p>
         </header>
         <!-- Header slutt -->
         <hr>

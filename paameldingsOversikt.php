@@ -21,7 +21,7 @@
     
     if (!isset($_SESSION['user'])) {
         
-        header('location: forside.php');
+        header('location: loginPage.php');
         
     }
     

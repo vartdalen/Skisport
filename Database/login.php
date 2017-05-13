@@ -8,8 +8,9 @@
     
     $salt = 'ayylmao';
     $passord = md5($_POST['passord']+$salt);
+    $nyttPassord = $passord;
 
-    $sql = "SELECT * FROM User WHERE Epost = '$email' AND Password = '$passord'";
+    $sql = "SELECT * FROM User WHERE Epost = '$email' AND Password = '$nyttPassord'";
     $resultat = mysqli_query($db, $sql);
 
     if(!$resultat) {
@@ -34,14 +35,14 @@
         $_SESSION['fornavn'] = $userinfo[1];
         $_SESSION['etternavn'] = $userinfo[2];
         $_SESSION['userlevel'] = $userinfo[3];
-        $_SESSION['passord'] = $userinfo[0];
+        $_SESSION['passord'] = $userinfo[4];
         header('location:../forside.php');
 
     }
 
     else {
 
-        echo 'Ugyldig email eller passord.';
+        header('location: ../feilLogin.php');
 
     }
     

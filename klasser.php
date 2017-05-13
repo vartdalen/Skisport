@@ -105,6 +105,7 @@ Class bruker {
                     $resultat = $db->query($sql);
                     if(!$resultat) {
                         echo "Feil! Bruker ble ikke registrert." .$db->error;
+                        header('location: feilInput.php');
                     }else {
                         echo "Bruker ble registrert.";
                     }

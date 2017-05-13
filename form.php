@@ -13,6 +13,8 @@
     <!-- JQuery -->    <script src="js/jquery.min.js"></script>    <!-- Bootstrap JavaScript --> 
     <script src="js/bootstrap.min.js"/></script>
     <script type="text/javascript" src="js/list.js" async/></script>
+    <!--<script type="text/javascript" src="js/hentEventFunksjoner.js" async/></script>-->
+<script type="text/javascript" src="js/hentEventFunksjoner2.js" async/></script>
     
     <style type="text/css">
     #formRegistrering .has-error .control-label,
@@ -47,7 +49,7 @@
     
     if (!isset($_SESSION['user'])) {
         
-        header('location: forside.php');
+        header('location: feilIkkeLogin.php');
         
     }
     
@@ -98,13 +100,37 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-option-vertical"></span>
                                                 </span>
-                                                <select id="velgGren" name="velgGren" class="form-control" required="required" onchange="valgtGren()">
-                                                    <option selected hidden>Velg gren</option>
-                                                    <option>Skihopp</option>
-                                                    <option>Slalom</option>
-                                                    <option>Langrenn</option>
-                                                    <option>Skiskyting</option>
-                                                </select>
+                                                
+                                                <?php
+                                                
+                                                    include 'Database/dbtilknytning.php';
+
+                                                    $sql = "SELECT Gren FROM Event";
+                                                    $resultat = mysqli_query($db, $sql);
+                                                    
+                                                    if(!$resultat) {
+
+                                                        die(mysqli_error());
+
+                                                    }
+                                                    
+                                                    if(mysqli_num_rows($resultat)){
+                                                    $select= '<select id="velgGren" name="velgGren" class="form-control" required="required" onchange="valgtGren(); selectDato(this.value);"><option selected hidden>Velg gren</option>';
+                                                    while($rs=mysqli_fetch_array($resultat)){
+                                                        
+                                                        $select.='<option>';
+                                                        $select.=$rs['Gren'];
+                                                        $select.='</option>';
+                                                          
+                                                    }
+                                                    
+                                                    $select.='</select>';
+                                                    echo $select;
+                                                    
+                                                    }
+//                                                
+                                                ?>
+                                                
                                             </div>
                                         </div>
                                         <div class="form-group" id="velgDatoGroup">
@@ -113,16 +139,39 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                                                 </span>
-                                            <select id="velgDato" name="velgDato" class="form-control" required="required" onchange="valgtDato()" disabled>
-                                                <option selected hidden>Velg dato</option>
-                                                <option>21.01.2017</option>
-                                                <option>22.01.2017</option>
-                                                <option>23.01.2017</option>
-                                                <option>24.01.2017</option>
-                                                <option>25.01.2017</option>
-                                                <option>26.01.2017</option>
-                                                <option>27.01.2017</option>
-                                            </select>
+                                                
+                                                <?php
+                                                
+                                                    include 'Database/dbtilknytning.php';
+
+                                                    $sql = "SELECT Dato FROM Event";
+                                                    $resultat = mysqli_query($db, $sql);
+                                                    
+                                                    if(!$resultat) {
+
+                                                        die(mysqli_error());
+
+                                                    }
+                                                    
+                                                    $rowcount = -1;
+                                                    
+                                                    if(mysqli_num_rows($resultat)){
+                                                    $select= '<select id="velgDato" name="velgDato" class="form-control" required="required" onchange="valgtDato();" disabled><option selected hidden>Velg dato</option>';
+                                                    while($rs=mysqli_fetch_array($resultat)){
+                                                        $rowcount++;
+                                                        $select.='<option id="'.$rowcount.'">';
+                                                        $select.=$rs['Dato'];
+                                                        $select.='</option>';
+                                                          
+                                                    }
+                                                    
+                                                    $select.='</select>';
+                                                    echo $select;
+                                                    
+                                                    }
+                                                
+                                                ?>
+                                                
                                             </div>
                                         </div>
 
@@ -132,12 +181,37 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
                                                 </span>
-                                            <select id="velgTid" name="velgTid" class="form-control" required="required" onchange="valgtTid()" disabled>
-                                                <option selected hidden>Velg tid</option>
-                                                <option>10:00-12:30</option>
-                                                <option>11:30-14:00</option>
-                                                <option>13:00-15:30</option>
-                                            </select>
+                                                
+                                                <?php
+                                                
+                                                    include 'Database/dbtilknytning.php';
+
+                                                    $sql = "SELECT Tid FROM Event";
+                                                    $resultat = mysqli_query($db, $sql);
+                                                    
+                                                    if(!$resultat) {
+
+                                                        die(mysqli_error());
+
+                                                    }
+                                                    
+                                                    if(mysqli_num_rows($resultat)){
+                                                    $select= '<select id="velgTid" name="velgTid" class="form-control" required="required" onchange="valgtTid()" disabled><option selected hidden>Velg tid</option>';
+                                                    while($rs=mysqli_fetch_array($resultat)){
+                                                        
+                                                        $select.='<option>';
+                                                        $select.=$rs['Tid'];
+                                                        $select.='</option>';
+                                                          
+                                                    }
+                                                    
+                                                    $select.='</select>';
+                                                    echo $select;
+                                                    
+                                                    }
+//                                                
+                                                ?>
+                                                
                                             </div>
                                         </div>
                                         
