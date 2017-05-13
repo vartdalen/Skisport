@@ -44,7 +44,7 @@
             
         }
         
-        include_once 'Database/registering.php';
+//        include_once 'Database/registering.php';
         include_once('diverse/navbarTemplate.php');
         include_once 'klasser.php';
         
