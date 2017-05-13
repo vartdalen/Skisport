@@ -62,7 +62,6 @@
         $bruker->set_email($email);
         $bruker->set_passord($passord);
         $bruker->set_userlevel(0);
-        $bruker->skriv_bruker_til_fil();
         $bruker->lagre($bruker);
         
       ?>

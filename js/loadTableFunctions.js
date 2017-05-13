@@ -1,6 +1,6 @@
 // Funksjonen henter ut tabellen "User" fra databasen
 function loadUser(){
-    var getUrl = "http://localhost/ProsjektSkiVM/Skisport/Database/Tabeller/loadUser.php";
+    var getUrl = ".\\Database\\Tabeller\\loadUser.php";
     $.ajax({
         url: getUrl,
         success:function(){
@@ -22,7 +22,7 @@ function loadUser(){
 
 // Funksjonen henter ut tabellen "Athletes" fra databasen
 function loadAthletes(){
-    var getUrl = "http://localhost/ProsjektSkiVM/Skisport/Database/Tabeller/loadAthletes.php";
+    var getUrl = ".\\Database\\Tabeller\\loadAthletes.php";
     $.ajax({
         url: getUrl,
         success:function(){
@@ -44,7 +44,7 @@ function loadAthletes(){
 
 // Funksjonen henter ut tabellen "Exercises" fra databasen
 function loadExercises(){
-    var getUrl = "http://localhost/ProsjektSkiVM/Skisport/Database/Tabeller/loadExercises.php";
+    var getUrl = ".\\Database\\Tabeller\\loadExercises.php";
     $.ajax({
         url: getUrl,
         success:function(){
