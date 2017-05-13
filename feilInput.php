@@ -1,7 +1,3 @@
-
-    
- 
-
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -41,30 +37,11 @@
   <body>
       
     <?php
-
-    session_start();
-       
-    if (!isset($_SESSION['user'])) {
+      
+        session_start();
+ 
+        include_once('diverse/navbarTemplate.php');
         
-        header('location: forside.php');
-    
-    
-    } else if (isset($_SESSION['user'])) {
-        
-    unset($_SESSION['user']);
-        
-    }
-    
-    if (isset($_SESSION['user'])){
-        
-    unset($_SESSION['user']);
-    echo "<br/><br/><br/><br/>"."Vennligst kontakt systemansvarlig!";
-    
-    }
-    
-    include_once ('diverse/navbarTemplate.php');
-    
-    session_destroy();
     
     ?>
       
@@ -75,9 +52,8 @@
         <div class="row vertical-center-row">
         <!-- Header velkommen -->
         <header class="jumbotron hero-spacer">
-            <h1>Du er logget ut.</h1>
-            <p>Utloggingen var vellykket. Takk for besøket, kom snart igjen! <br>
-            <p><a href="loginPage.php" class="btn btn-primary btn-large">Logg inn</a>
+            <h1>Registrering mislyktes.</h1>
+            <p>Beklager, men din registrering var ikke gyldig. <br> Prøv gjerne å fylle ut og sende inn skjemaet på nytt. </p>
             </p>
         </header>
         <!-- Header slutt -->

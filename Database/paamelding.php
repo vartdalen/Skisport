@@ -2,11 +2,11 @@
       
         if (!isset($_SESSION['user'])) {
 
-        header('location: forside.php');
+        header('location: loginPage.php');
 
         } else if (!isset($_POST['knappBekreft'])) {
 
-        header('location: forside.php');
+        header('location: feilInput.php');
 
         }
 
@@ -44,7 +44,7 @@
             $grener = $_POST["grener"];
             $grenerExploded = explode(',', $grener);
             
-            $regexGrener = '/^^[a-zA-Z]{3,15}$/';
+            $regexGrener = '/^[a-zA-Z]{3,15}$/';
             
             //looper gjennom arrayet og sjekker en og en verdi. +=2 for å skippe kommaene.
             for ($i = 0; $i < ($listSize*2)-1; $i+=2) {
@@ -121,7 +121,7 @@
 
             if (!validerAntall() || !validerGrener() || !validerDatoer() || !validerTider()) {
                 
-                //burde redirectes her
+                header('location: feilInput.php');
                 return false;
 
             } else {

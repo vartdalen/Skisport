@@ -18,13 +18,21 @@
     session_start();
     if (!isset($_POST['knappBekreft'])) {
 
-        header('location: forside.php');
+        header('location: feil.php');
 
     }
     
     include 'klasser.php';
     include_once('diverse/navbarTemplate.php');
-
+    
+    //lager session slik at input huskes og kan brukes på forrige side
+    $_SESSION['skjemaUtfylt'] = 1;
+    
+    $_SESSION['fornavn'] = $_POST['fornavn'];
+    $_SESSION['etternavn'] = $_POST['etternavn'];
+    $_SESSION['epost'] = $_POST['epost'];
+    $_SESSION['passord'] = $_POST['passord'];
+    
     //lager objekt av typen bruker
     $bruker = new bruker();
     $bruker->set_fornavn($_POST["fornavn"]);
