@@ -10,17 +10,15 @@
         die("Database tilkobling mislykket!");
     }
 
-    $navn = $_REQUEST["Navn"];
-    //var_dump($_REQUEST);
+    $userLevel = $_REQUEST["UserLevel"];
+    $epost = $_REQUEST["Epost"];
 
-    $sql = "UPDATE Exercises WHERE Navn = '$navn'";
+    $sql = "UPDATE User SET UserLevel = '$userLevel' WHERE Epost = '$epost'";
     $resultat = mysqli_query($db, $sql);
     if(!$resultat) {
         $db->rollback();
-        echo "Øvelse ble ikke endret. " .$db->error;
     }else {
         $db->commit();
-        echo "Øvelse ble endret.";
     }
 
     $db->close();

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-    
+
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -30,12 +30,12 @@
         }
     ?>
         
-    <script type="text/javascript">
+        <script type="text/javascript">
         
-        var removeself = document.getElementById("admin");
-        removeself.style.display =  "none";
+            var removeself = document.getElementById("admin");
+            removeself.style.display =  "none";
         
-    </script>
+        </script>
         
         <div class="jumbotron jumbotron-sm">
             <div class="container">
@@ -47,104 +47,105 @@
                 </div>
             </div>
         </div>
-    
-    <hr class="separator">
-    <div id="dbSuccess"></div>
-    
+        
+        
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
                     <div class="well well-sm">
-                        <form name="forandreBruker" id="forandreBruker" action="" method="post" novalidate>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label for="fornavn">Bruker</label>
-                                    <hr class="separator">
-                                    <div class="form-group">
-                                        <label for="fornavn">
-                                            Epost</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
-                                            </span>
-                                            <input type="text" class="form-control" name="fornavn" placeholder="Skriv inn eposten(bruker) du vil slette"/>
-                                            <span class="input-group-btn"><button class="btn btn-primary pull-right">Oppdater</button></span>
-                                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="fornavn">Bruker</label>
+                                <hr class="separator">  
+                                <div class="form-group">
+                                    <label for="userFornavn">
+                                        Fornavn</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                                        </span>
+                                        <input type="text" class="form-control" id="userFornavn" placeholder="Skriv inn fornavn"/>
                                     </div>
-                                            
-                                    <div class="form-group">
-                                        <label for="etternavn">
-                                            Fornavn</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
-                                            </span>
-                                            <input type="text" class="form-control" name="etternavn" placeholder="Skriv inn nytt etternavn"/>
-                                            <span class="input-group-btn"><button class="btn btn-primary pull-right">Test 1</button></span>
-                                        </div>
-                                    </div>
-                                            
-                                    <hr class="separator">
-                                            
-                                    <div class="form-group">
-                                        <label for="email">
-                                            Etternavn</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
-                                            </span>
-                                            <input type="email" class="form-control" name="email" placeholder="Skriv inn ny email" />
-                                        </div>
-                                    </div>
-                                            
-                                    <hr class="separator">
-                                            
-                                    <div class="form-group">
-                                        <label for="passord">
-                                            Passord</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
-                                            </span>
-                                            <input type="password" id="passord" data-match-error="Skriv inn passord." class="form-control" name="passord" placeholder="Skriv inn nytt passord" required="required"/>
-                                            <div class="help-block with-errors"></div>
-                                                    
-                                        </div>
-                                    </div>
-                                            
-                                    <div class="form-group">
-                                        <label for="passord">
-                                            Bekreft passord</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
-                                            </span>
-                                            <input type="password" data-match="#passord" data-match-error="Passordene matcher ikke." class="form-control" name="passordBekreft" placeholder="Bekreft nytt passord"/>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-                                    </div>
-                                            
-                                    <hr class="separator">
-                                            
-                                    <div class="form-group">
-                                        <label for="user-level">
-                                            User-level</label>
-                                        <div class="form-group">
-                                            <select id="user-level" name="user-level" class="form-control">
-                                                <option selected hidden>Velg user-level</option>
-                                                <option>0 (vanlig bruker)</option>
-                                                <option>1 (admin)</option>
-                                            </select>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-                                    </div>
-                                        
                                 </div>
+                                
                                 <hr class="separator">
-                                <br/>
-                                        
-                                <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary pull-right" name="knappBekreft">
-                                        Slett</button>
+                                
+                                <div class="form-group">
+                                    <label for="userEtternavn">
+                                        Etternavn</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                                        </span>
+                                        <input type="text" class="form-control" id="userEtternavn" placeholder="Skriv inn etternavn" />
+                                    </div>
                                 </div>
-                                        
+                                
+                                <hr class="separator">
+                                
+                                <div class="form-group">
+                                    <label for="userEpost">
+                                        Epost</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                                        </span>
+                                        <input type="text" class="form-control" id="userEpost" placeholder="Skriv inn epost" />
+                                    </div>
+                                </div>                                    
+                                <div class="col-md-12">
+                                    <input type="submit" class="btn btn-primary pull-right" value="Slett bruker" onclick="deleteUser()">
+                                </div>                                    
+                                <hr class="separator">
+                                
+                                <div class="form-group">
+                                    <label for="userEpost1">
+                                        Epost</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                                        </span>
+                                        <input type="text" id="userEpost1" class="form-control" placeholder="Skriv inn bruker sin epost"/>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="userPassord">
+                                        Passord</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-option-vertical"></span>
+                                        </span>
+                                        <input type="password" id="userPassord" class="form-control" placeholder="Skriv inn passord"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <input type="submit" class="btn btn-primary pull-right" value="Endre passord" onclick="editPW()">
+                                </div>                                    
+                                <hr class="separator">
+                                
+                                <div class="form-group">
+                                    <label for="user-level">
+                                        Endring av User-level</label>
+                                    <div class="form-group">
+                                        <select id="user-level" class="form-control">
+                                            <option selected hidden>Velg user-level</option>
+                                            <option>0 (vanlig bruker)</option>
+                                            <option>1 (admin)</option>
+                                        </select>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="userEpost2">
+                                        Epost</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                                        </span>
+                                        <input type="text" class="form-control" id="userEpost2" placeholder="Skriv inn bruker sin epost" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <input type="submit" class="btn btn-primary pull-right" value="Endre user-level" onclick="editUserLevel()">
+                                </div>
                             </div>
-                        </form>
+                            
+                        </div>
                     </div>
                 </div>
                 
@@ -160,75 +161,70 @@
                 
             </div>
         </div>
-                
+        
         <!-- Endring for utøvere -->
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
                     <div class="well well-sm">
-                        <form name="forandreAthletes" id="forandreAthletes" action="" method="post">
-                            <div class="row">
-                                <div class="col-md-12">                                    
-                                    <label for="fornavn">Utøvere</label>
-                                    <hr class="separator">
-                                            
-                                    <div class="form-group">
-                                        <label for="fornavn">
-                                            Fornavn</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
-                                            </span>
-                                            <input type="text" class="form-control" name="fornavn" placeholder="Skriv inn nytt fornavn"/>
-                                        </div>
+                        <div class="row">
+                            <div class="col-md-12">                                    
+                                <label for="fornavn">Utøvere</label>
+                                <hr class="separator">
+                                
+                                <div class="form-group">
+                                    <label for="athFornavn">
+                                        Fornavn</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                                        </span>
+                                        <input type="text" class="form-control" id="athFornavn" placeholder="Skriv inn fornavn"/>
                                     </div>
-                                    
-                                    <hr class="separator">
-                                            
-                                    <div class="form-group">
-                                        <label for="etternavn">
-                                            Etternavn</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
-                                            </span>
-                                            <input type="text" class="form-control" name="etternavn" placeholder="Skriv inn nytt etternavn"/>
-                                        </div>
+                                </div>
+                                
+                                <hr class="separator">
+                                
+                                <div class="form-group">
+                                    <label for="athEtternavn">
+                                        Etternavn</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                                        </span>
+                                        <input type="text" class="form-control" id="athEtternavn" placeholder="Skriv inn etternavn"/>
                                     </div>
-                                            
-                                    <hr class="separator">
-                                            
+                                </div>
+                                <hr class="separator">
+                                <div class="form-group">
+                                    <label for="idEx">
+                                        Øvelse ID</label>
                                     <div class="form-group">
-                                        <label for="passord">
-                                            Øvelse ID</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
-                                            </span>
-                                            <input type="password" id="passord" data-match-error="Skriv inn passord." class="form-control" name="passord" placeholder="Skriv inn nytt passord" required="required"/>
-                                            <div class="help-block with-errors"></div>
-                                                    
-                                        </div>
+                                        <select id="idEx" class="form-control">
+                                            <option selected hidden>Velg øvelseID</option>
+                                            <option>1 (Langrenn)</option>
+                                            <option>2 (Slalom)</option>
+                                            <option>3 (Skiskyting)</option>
+                                            <option>4 (Skihopp)</option>
+                                        </select>
+                                        <div class="help-block with-errors"></div>
                                     </div>
-                                    <hr class="separator">
                                 </div>
-                                      
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="col-md-8">
-                                        </div>
-                                        <div class="col-md-4 form-group">
-                                            <button id="Oppdater" class="btn btn-primary pull-right" onclick="addAthletes()">Legg til</button>
-                                        </div>
-                                    </div>   
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <button id="Oppdater" class="btn btn-primary pull-right" onclick="editAthletes()">Endre</button>
-                                </div>
-                                <br/>
-                                        
-                                <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" onclick="deleteAthletes()"></button>
-                                </div>
+                                <hr class="separator">
                             </div>
-                        </form>
+                            
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-8">
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <input type="submit" class="btn btn-primary pull-right" value="Legg til" onclick="addAthletes()">
+                                    </div>
+                                </div>   
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <input type="submit" class="btn btn-primary pull-right" value="Slett" onclick="deleteAthletes()">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
@@ -244,62 +240,137 @@
                 
             </div>
         </div>
-                
-        <!-- Endring for øvelser -->
+        
+        <!--         Endring for øvelser 
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="well well-sm">
+                                
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label>Øvelser</label>
+                                        <hr class="separator">
+                                        <div class="form-group">
+                                            <label for="navnØvelse">
+                                                Navn</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-option-horizontal"></span>
+                                                </span>
+                                                <input type="text" class="form-control" id="navnØvelse" placeholder="Skriv inn øvelsesnavn" />
+                                            </div>
+                                        </div>  
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="col-md-8">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="submit" class="btn btn-primary pull-right" value="Legg til" onclick="addExercise()">
+                                            </div>
+                                        </div>   
+                                    </div>
+                                    
+                                    <br/>
+                                    
+                                    <div class="col-md-12">
+                                        <input type="submit" class="btn btn-primary pull-right" value="Slett" onclick="deleteExercise()">
+                                        
+                                    </div> 
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div>
+                                <button type="submit" class="btn btn-primary" onClick="loadExercises()" />
+                                Vis tabell
+                                </button>
+                            </div>
+                            <div id="utdataExercises"  style="display: none;">
+                            </div>
+                        </div>    
+                        
+                    </div>
+                </div>-->
+        
+        <!-- Endring for arrangementer -->
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
                     <div class="well well-sm">
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label>Øvelser</label>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>Arrangementer</label>
+                                <hr class="separator">
+                                <div class="form-group">
+                                    <label for="gren">
+                                        Gren</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-option-horizontal"></span>
+                                        </span>
+                                        <input type="text" class="form-control" id="gren" placeholder="Skriv inn øvelsesnavn" />
+                                    </div>
+                                    <label for="datoEvent">
+                                        Dato</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                        <input type="text" class="form-control" id="datoEvent" placeholder="Skriv inn dato (dd.mm.yyyy)" />
+                                    </div>
+                                    <label for="tidEvent">
+                                        Tid</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                        <input type="text" class="form-control" id="tidEvent" placeholder="Skriv inn tid (mm:tt-mm:tt)" />
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="col-md-8">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="submit" class="btn btn-primary pull-right" value="Legg til" onclick="addEvent()">
+                                            </div>
+                                        </div>
+                                    </div>
                                     <hr class="separator">
-                                    <div class="form-group">
-                                        <label for="navnØvelse">
-                                            Navn</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
-                                            </span>
-                                            <input type="text" class="form-control" id="navnØvelse" placeholder="Skriv inn øvelsesnavn" />
-                                        </div>
-                                    </div>  
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="col-md-8">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input type="submit" class="btn btn-primary pull-right" value="Legg til" name="knappAddEx" onclick="addExercise()">
-                                        </div>
-                                    </div>   
-                                </div>
-                                        
-                                <br/>
-                                        
-                                <div class="col-md-12">
-                                        <input type="submit" class="btn btn-primary pull-right" value="Slett" name="knappSlettEx" onclick="deleteExercise()">
-
-                                </div> 
+                                    <label for="slettEvent">
+                                        Event ID</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-option-vertical"></span>
+                                        </span>
+                                        <input type="text" class="form-control" id="slettEvent" placeholder="Skriv inn event ID'en du vil slette" />
+                                    </div> 
+                                </div>  
                             </div>
-
+                            <br/>
+                            
+                            <div class="col-md-12">
+                                <input type="submit" class="btn btn-primary pull-right" value="Slett event" onclick="deleteEvent()">
+                                
+                            </div> 
+                        </div>
+                        
                     </div>
                 </div>
                 
                 <div class="col-md-6">
                     <div>
-                        <button type="submit" class="btn btn-primary" onClick="loadExercises()" />
+                        <button type="submit" class="btn btn-primary" onClick="loadEvent()" />
                         Vis tabell
                         </button>
                     </div>
-                    <div id="utdataExercises"  style="display: none;">
+                    <div id="utdataEvent"  style="display: none;">
                     </div>
                 </div>    
-                    
+                
             </div>
         </div>
-
+        
         <!-- Bootstrap JavaScript -->
         <script src="js/bootstrap.min.js"></script>
         

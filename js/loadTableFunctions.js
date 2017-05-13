@@ -64,4 +64,26 @@ function loadExercises(){
     }
 }
 
+// Funksjonen henter ut tabellen "Event" fra databasen
+function loadEvent(){
+    var getUrl = ".\\Database\\Tabeller\\loadEvent.php";
+    $.ajax({
+        url: getUrl,
+        success:function(){
+            $("#utdataEvent").load(getUrl);
+        },
+        error:function(xhr, status, error){
+            $("#utdataEvent").html("Feil. Mislykket med å hente tabell 'Event'.");
+        }
+    });
+    var getDiv = document.getElementById("utdataEvent");
+    if(getDiv.style.display == 'none'){
+        //getDiv.style.display = 'block'
+        $("#utdataEvent").show("slow");
+    }else {
+        //getDiv.style.display  = 'none';
+        $("#utdataEvent").hide("slow");
+    }
+}
+
 
