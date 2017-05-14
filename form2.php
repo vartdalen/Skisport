@@ -14,7 +14,6 @@
         <script src="js/bootstrap.min.js"/></script>
     <script type="text/javascript" src="js/list.js" async/></script>
     <!--<script type="text/javascript" src="js/hentEventFunksjoner.js" async/></script>-->
-<script type="text/javascript" src="js/hentEventFunksjoner2.js" async/></script>
 
 <style type="text/css">
     #formRegistrering .has-error .control-label,
@@ -47,12 +46,12 @@
                     data: {Gren : gren},
                     success: function (html) {
                         $('#dato').html(html);
-                        $('#tid').html('<option value="">Velg dato først</option>');
+                        $('#tid').html('<option value="">Velg tid</option>');
                     }
                 });
             } else {
-                $('#dato').html('<option value="">Velg gren først</option>');
-                $('#tid').html('<option value="">Velg dato først</option>');
+                $('#dato').html('<option value="">Velg dato</option>');
+                $('#tid').html('<option value="">Velg tid</option>');
             }
         });
 
@@ -69,7 +68,7 @@
                     }
                 });
             } else {
-                $('#tid').html('<option value="">Velg dato først</option>');
+                $('#tid').html('<option value="">Velg tid</option>');
             }
         });
     });
@@ -79,15 +78,17 @@
 <body>
     <?php
     session_start();
-    include_once('diverse/navbarTemplate.php');
-    include 'Database/dbtilknytning.php';
 
     if (!isset($_SESSION['user'])) {
-        header('location: feilIkkeLogin.php');
-    }
-    if (isset($_POST['knappBekreft'])) {
-        $_SESSION['skjemautfylt'] = 1;
-    }
+            header('location: feilIkkeLogin.php');
+        }
+        if (isset($_POST['knappBekreft'])) {
+            $_SESSION['skjemautfylt'] = 1;
+        }
+        
+    include_once('diverse/navbarTemplate.php');
+    include 'Database/dbtilknytning.php';
+    
     ?>
     <div class="jumbotron jumbotron-sm">
         <div class="container">
@@ -157,8 +158,8 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                                         </span>
-                                        <select class="form-control" required="required" name="dato" id="dato" onchange="valgtDato()">
-                                            <option value="">Velg gren først</option>
+                                        <select class="form-control" required="required" name="dato" id="dato" onchange="valgtDato()" disabled>
+                                            <option value="">Velg dato</option>
                                         </select>
                                     </div>
                                 </div>
@@ -169,8 +170,8 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
                                         </span>
-                                        <select class="form-control" required="required" name="tid" id="tid" onchange="valgtTid()">
-                                            <option value="">Velg dato først</option>
+                                        <select class="form-control" required="required" name="tid" id="tid" onchange="valgtTid()" disabled>
+                                            <option value="">Velg tid</option>
                                         </select>
                                     </div>
                                 </div>

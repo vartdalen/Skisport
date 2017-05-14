@@ -74,7 +74,7 @@
 
                 if(isset($_SESSION['user'])) { 
 
-                echo "<a class='navbar-brand' href='form.php'><small>Påmelding</small></a>";
+                echo "<a class='navbar-brand' href='form2.php'><small>Påmelding</small></a>";
 
                 }
 

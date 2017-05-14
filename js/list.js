@@ -39,6 +39,7 @@ function newElement() {
     //legger til element ved riktig utfylling
     if (inputGren === 'Velg gren' || inputDato === 'Velg Dato' || inputTid === 'Velg tid') {
         error.innerHTML = "Vennligst velg gren, dato og tid.";
+        return false;
     } else {
         document.getElementById("eventListe").appendChild(li);
         error.innerHTML = "";
@@ -47,9 +48,9 @@ function newElement() {
     //håndterer brukervennlighet for utfylling av form
     if (inputGren != 'Velg gren' && inputDato != 'Velg dato' && inputTid != 'Velg tid'){
         document.getElementById("knappBekreft").disabled = false;
-        document.getElementById("gren").value = "Velg gren";
-        document.getElementById("dato").value = "Velg dato";
-        document.getElementById("tid").value = "Velg tid";
+        document.getElementById("gren").value = "";
+        document.getElementById("dato").value = "";
+        document.getElementById("tid").value = "";
         document.getElementById("dato").disabled = true;
         document.getElementById("tid").disabled = true;
         document.getElementById("grenGroup").setAttribute("class", "form-group");
@@ -89,6 +90,7 @@ function newElement() {
         
         melding.style.display = 'none';
     }
+    
     
     knappLeggTil.disabled = true; 
     return false;
@@ -192,23 +194,37 @@ function sjekkListe() {
 function valgtGren() {
     var inputGren = document.getElementById("gren").value;
     var inputDato = document.getElementById("dato").value;
-    var inputTid = document.getElementById("tid").value;
+    var inputTid = document.getElementById("tid");
     var antall = document.getElementById("velgAntall").value;
     
-    document.getElementById("dato").disabled = false;
     document.getElementById("grenGroup").setAttribute("class", "form-group has-success");
+    document.getElementById("datoGroup").setAttribute("class", "form-group has-warning");
+    document.getElementById("tidGroup").setAttribute("class", "form-group has-warning");
     
-    if (inputGren != 'Velg gren' || inputDato != 'Velg dato' || inputTid != 'Velg tid') {
-
-        knappLeggTil.disabled = true;
-
+    document.getElementById("dato").disabled = true;
+    
+    if (inputGren != 'Velg gren' || inputDato != 'Velg dato' || inputTid.value != 'Velg tid') {
+        
+            knappLeggTil.disabled = true;
+            
     }
     
-    if ((inputGren != 'Velg gren' && inputDato != 'Velg dato' && inputTid != 'Velg tid') && (antall > 0 && antall < 6 && !isNaN(antall))) {
+    else if ((inputGren != 'Velg gren' && inputDato != 'Velg dato' && inputTid.value != 'Velg tid') && (antall > 0 && antall < 6 && !isNaN(antall))) {
         
-        knappLeggTil.disabled = false;
+        
+            
+            knappLeggTil.disabled = false;
         
     }
+    
+    inputTid.disabled = true;
+    
+    var delayMillis = 1000;
+    setTimeout(function() {
+        
+        document.getElementById("dato").disabled = false;  
+        
+    }, delayMillis);
     
 }
 
@@ -218,7 +234,9 @@ function valgtDato() {
     var inputTid = document.getElementById("tid").value;
     var antall = document.getElementById("velgAntall").value;
     
-    document.getElementById("tid").disabled = false;
+    document.getElementById("tidGroup").setAttribute("class", "form-group has-warning");
+    document.getElementById("tid").disabled = true;
+    
     document.getElementById("datoGroup").setAttribute("class", "form-group has-success");
 
     if (inputGren != 'Velg gren' || inputDato != 'Velg dato' || inputTid != 'Velg tid') {
@@ -227,11 +245,18 @@ function valgtDato() {
 
     }
     
-    if ((inputGren != 'Velg gren' && inputDato != 'Velg dato' && inputTid != 'Velg tid') && (antall > 0 && antall < 6 && !isNaN(antall))) {
+    else if ((inputGren != 'Velg gren' && inputDato != 'Velg dato' && inputTid != 'Velg tid') && (antall > 0 && antall < 6 && !isNaN(antall))) {
         
         knappLeggTil.disabled = false;
         
     }
+    
+    var delayMillis = 1000;
+    setTimeout(function() {
+        
+        document.getElementById("tid").disabled = false;  
+        
+    }, delayMillis);
 
 }
 
@@ -247,9 +272,15 @@ function valgtTid() {
         
         knappLeggTil.disabled = false;
         
+    } else {
+        
+        knappLeggTil.disabled = true;
+        
     }
     
 }
+
+//function 
 
 //if (eventList.children.length == 0) {
 //    

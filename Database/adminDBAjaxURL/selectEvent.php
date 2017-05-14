@@ -22,13 +22,14 @@
 
         if (mysqli_num_rows($resultat) > 0) {
             while ($row = mysqli_fetch_array($resultat)) {
+                echo "<option selected hidden>" . 'Velg dato' . "</option>";
                 echo "<option>" . $row['Dato'] . "</option>";
             }
         } else {
             echo '<option>Dato ikke tilgjengelig</option>';
         }
     }
-
+    
     $dato = $_REQUEST["Dato"];
     $gren2 = $_REQUEST["Gren2"];
 
@@ -42,6 +43,7 @@
 
         if (mysqli_num_rows($resultat) > 0) {
             while ($row = mysqli_fetch_array($resultat)) {
+                echo "<option selected hidden>" . 'Velg tid' . "</option>";
                 echo "<option>" . $row['Tid'] . "</option>";
             }
         } else {

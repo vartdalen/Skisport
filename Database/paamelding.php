@@ -9,7 +9,7 @@
         header('location: feilInput.php');
 
         }
-
+        
     //      include_once('diverse/navbarTemplate.php');
 
         function validerAntall() {
@@ -157,15 +157,13 @@
                         
                         echo "Feil! Påmelding ble ikke registrert.".$db->error;
                         
-                    } else {
-                        
-                        echo "Påmelding ble registrert.";
                     }
                     
                     $db->commit();
                     
                 }
                 $db->close();
+                header('location: paameldt.php');
             }
 
         }
