@@ -82,7 +82,7 @@
                     <div class="well well-sm">
                         <div class="row">
                             <div class="col-md-12">
-                                <label for="fornavn">Bruker</label>
+                                  <label for="fornavn">Bruker<br><small>Fornavn, etternavn og epost må fylles ut riktig for å kunne slettes.</small></label>
                                 <hr class="separator">  
                                 <div class="form-group">
                                     <label for="userFornavn">
