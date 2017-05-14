@@ -13,7 +13,6 @@
     $resultat = mysqli_query($db, $sql);
 
     echo "<div><table class='table-bordered table table-striped responsive'>
-    <td>Arrangementer</td> 
     <tr>
     <th>Event ID</th>
     <th>Gren</th>

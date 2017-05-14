@@ -22,6 +22,7 @@
 
         if (mysqli_num_rows($resultat) > 0) {
             while ($row = mysqli_fetch_array($resultat)) {
+                echo "<option selected hidden>"."Velg dato"."</option>";
                 echo "<option>" . $row['Dato'] . "</option>";
             }
         } else {
@@ -42,6 +43,7 @@
 
         if (mysqli_num_rows($resultat) > 0) {
             while ($row = mysqli_fetch_array($resultat)) {
+                echo "<option selected hidden>" ."Velg Tid". "</option>";
                 echo "<option>" . $row['Tid'] . "</option>";
             }
         } else {

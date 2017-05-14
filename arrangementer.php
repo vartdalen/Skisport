@@ -16,6 +16,7 @@
            }
            .container-table {
                display: table;
+               padding-top: 7em;
            }
            .vertical-center-row {
                display: table-cell;
