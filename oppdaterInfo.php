@@ -8,8 +8,7 @@
     <!-- Bootstrap CSS -->
     <!-- NB! Må ligge under meta taggene i <head>. -->
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
-<!--    <link rel="stylesheet" type="text/css" href="css/"/>-->
-    <script src="profilValidering"></script>
+    <script src="js/profilValidering.js"></script>
           
     <title>Profil</title>
     
@@ -54,15 +53,15 @@
         <div class="well">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#navn" data-toggle="tab">Navn</a></li>
-              <li><a href="#epost" data-toggle="tab">Epost</a></li>
-              <li><a href="#passord" data-toggle="tab"> Passord</a></li>
+              <li><a href="#eposter" data-toggle="tab">Epost</a></li>
+              <li><a href="#passordene" data-toggle="tab"> Passord</a></li>
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane active in" id="navn">
                     <form id="tab1">
                         <br>
                         <div class="form-group" id="fornavnGroup">
-                            <label for="userFornavn">
+                            <label for="fornavn">
                                 Bytt fornavn</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
@@ -77,7 +76,7 @@
                         <hr class="separator">
 
                         <div class="form-group" id="etternavnGroup">
-                            <label for="userEtternavn">
+                            <label for="etternavn">
                                 Bytt etternavn</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
@@ -95,20 +94,35 @@
                     </form>
                 </div>
 
-                <div class="tab-pane fade" id="epost">
+                <div class="tab-pane fade" id="eposter">
                     <form id="tab2">
                         <br>
                         <div class="form-group" id="epostGroup">
-                            <label for="userEpost1">
+                            <label for="epost">
                                 Bytt epost</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                 </span>
-                                <input type="email" id="epost" class="form-control" onchange="validerEpost() "placeholder="Skriv inn ny epost"/>
+                                <input type="email" id="epost" class="form-control" onchange="validerEpost()" placeholder="Skriv inn ny epost"/>
                                 <span id="successIconEpost" class="glyphicon glyphicon-ok-circle form-control-feedback" style="display: none"></span>
                                 <span id="errorIconEpost" class="glyphicon glyphicon-remove-circle form-control-feedback" style="display: none"></span>
                             </div>
-                            <div id="hjelpedivFornavn" class="help-block with-errors" style="display: none">Vennligst skriv inn fornavn. Æ, ø og å er desverre ikke tillatt.</div>
+                            <div id="hjelpedivEpost" class="help-block with-errors" style="display: none">Vennligst skriv inn gyldig epost.</div>
+                        </div>
+                        
+                         <hr class="separator">
+                        
+                        <div class="form-group" id="epostBekreftGroup">
+                            <label for="epostBekreft">
+                                Bekreft ny epost</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                                </span>
+                                <input type="email" id="epostBekreft" class="form-control" onchange="validerEpost()" placeholder="Bekreft ny epost"/>
+                                <span id="successIconEpostBekreft" class="glyphicon glyphicon-ok-circle form-control-feedback" style="display: none"></span>
+                                <span id="errorIconEpostBekreft" class="glyphicon glyphicon-remove-circle form-control-feedback" style="display: none"></span>
+                            </div>
+                            <div id="hjelpedivEpostBekreft" class="help-block with-errors" style="display: none">Vennligst skriv inn gyldig epost som matcher feltet over.</div>
                         </div>
 
                         <input type="submit" class="btn btn-primary pull-left" value="Endre epost" onclick="editEpost()">
@@ -117,11 +131,11 @@
                     </form>
                 </div>
 
-              <div class="tab-pane fade" id="passord">
+              <div class="tab-pane fade" id="passordene">
                     <form id="tab3">
                         <br>
                         <div class="form-group" id="passordGroup">
-                            <label for="userPassord">
+                            <label for="passord">
                                 Bytt passord</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-option-vertical"></span>
@@ -130,12 +144,13 @@
                                 <span id="successIconPassord" class="glyphicon glyphicon-ok-circle form-control-feedback" style="display: none"></span>
                                 <span id="errorIconPassord" class="glyphicon glyphicon-remove-circle form-control-feedback" style="display: none"></span>
                             </div>
+                            <div id="hjelpedivPassord" class="help-block with-errors" style="display: none">Passordet må være minst 8 tegn langt, og det må en kombinasjon av tall og bokstaver.</div>
                         </div>
 
                         <hr class="separator">
 
                         <div class="form-group" id="passordBekreftGroup">
-                            <label for="userPassord">
+                            <label for="passordBekreft">
                                 Bekreft nytt passord</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-option-vertical"></span>
@@ -144,8 +159,9 @@
                                 <span id="successIconPassordBekreft" class="glyphicon glyphicon-ok-circle form-control-feedback" style="display: none"></span>
                                 <span id="errorIconPassordBekreft" class="glyphicon glyphicon-remove-circle form-control-feedback" style="display: none"></span>
                             </div>
+                            <div id="hjelpedivPassordBekreft" class="help-block with-errors" style="display: none">Vennligst skriv inn gyldig passord som matcher feltet over.</div>
                         </div>
-
+                        
                         <input type="submit" class="btn btn-primary pull-left" value="Endre passord" onclick="editPW()">
                         <div class="clearfix"></div>
                     </form>

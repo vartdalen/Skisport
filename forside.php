@@ -101,33 +101,85 @@
                 </div>
             </div>
         </div>
+        <?php
+        
+            if (!isset($_SESSION['user'])) {
 
-        <div class="col-md-4 col-sm-6 hero-feature">
-            <div class="thumbnail">
-                <img src="img/slalomsmall.jpg" alt="Ski bilde" class="bilde">
-                <div class="caption">
-                    <h3>Logg inn</h3>
-                    <p>Har du allerede en bruker? Klikk nedenfor for å gå til påloggingen.</p>
-                    <p>
-                        <a href="loginPage.php" class="btn btn-primary">Logg inn</a>
-                    </p>
+                echo "
+                
+                <div class='col-md-4 col-sm-6 hero-feature'>
+                    <div class='thumbnail'>
+                        <img src='img/slalomsmall.jpg' alt='Ski bilde' class='bilde'>
+                        <div class='caption'>
+                            <h3>Logg inn</h3>
+                            <p>Har du allerede en bruker? Klikk nedenfor for å gå til påloggingen.</p>
+                            <p>
+                                <a href='loginPage.php' class='btn btn-primary'>Logg inn</a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 col-sm-6 hero-feature">
-            <div class="thumbnail">
-                <img src="img/skiskytingsmall.jpg" alt="Ski bilde" class="bilde">
-                <div class="caption">
-                    <h3>Registrer deg</h3>
-                    <p>Klikk nedenfor for å registrere en bruker, dersom du ikke har en fra før.</p>
-                    <p>
-                        <a href="registrerBruker.php" class="btn btn-primary">Registrer</a>
-                    </p>
+                ";
+            } else {
+                
+                echo "
+                
+                <div class='col-md-4 col-sm-6 hero-feature'>
+                    <div class='thumbnail'>
+                        <img src='img/slalomsmall.jpg' alt='Ski bilde' class='bilde'>
+                        <div class='caption'>
+                            <h3>Påmelding</h3>
+                            <p>Klikk nedenfor for å melde deg på et av våre arrangementer.</p>
+                            <p>
+                                <a href='form2.php' class='btn btn-primary'>Meld på</a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-
+                ";
+                
+            }
+        ?>
+        <?php
+        
+            if (!isset($_SESSION['user'])) {
+        
+                echo "
+                
+                <div class='col-md-4 col-sm-6 hero-feature'>
+                    <div class='thumbnail'>
+                        <img src='img/skiskytingsmall.jpg' alt='Ski bilde' class='bilde'>
+                        <div class='caption'>
+                            <h3>Registrer deg</h3>
+                            <p>Klikk nedenfor for å registrere en bruker, dersom du ikke har en fra før.</p>
+                            <p>
+                                <a href='registrerBruker.php' class='btn btn-primary'>Registrer</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                ";
+                
+            } else {
+                
+                echo "
+                
+                <div class='col-md-4 col-sm-6 hero-feature'>
+                    <div class='thumbnail'>
+                        <img src='img/skiskytingsmall.jpg' alt='Ski bilde' class='bilde'>
+                        <div class='caption'>
+                            <h3>Kalender</h3>
+                            <p>Få oversikt over hvilke arrangementer du har meldt deg på, og når de finner sted.</p>
+                            <p>
+                                <a href='paameldingsOversikt.php' class='btn btn-primary'>Kalender</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                ";
+                
+            }  
+        ?>
     </div>
     <!-- Valg slutt -->
 

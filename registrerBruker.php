@@ -72,7 +72,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="well well-sm">
-                            <form name="formRegistrering" id="formRegistrering" action="bekreftBruker.php" method="post" novalidate>
+                            <form name="formRegistrering" id="formRegistrering" action="bekreftBruker.php" method="post">
                                 <div class="row">
                                     <div class="col-md-12">
 
