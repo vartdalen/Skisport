@@ -2,15 +2,16 @@
       
         if (!isset($_SESSION['user'])) {
 
-        header('location: loginPage.php');
+        header('location: feilIkkeLogin.php');
 
         } else if (!isset($_POST['knappBekreft'])) {
 
-        header('location: feilInput.php');
+        header('location: feil.php');
 
         }
         
-    //      include_once('diverse/navbarTemplate.php');
+        //hindrer flere innsendinger
+        unset($_POST['knappBekreft2']);
 
         function validerAntall() {
 

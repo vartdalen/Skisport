@@ -11,6 +11,20 @@
         <script src="js/adminDbFunctions.js"></script>
         
         <title>Admin</title>
+        
+        <script>
+            $(document).ready(function () {
+                var gren = $(this).val();
+                    $.ajax({
+                        type: 'POST',
+                        url: '.\\Database\\adminDBAjaxURL\\selectGrener.php',
+                        data: {Gren : gren},
+                        success: function (html) {
+                            $('#idEx').html(html);
+                        }
+                    });
+            });
+        </script>
     </head>
     <body>
         

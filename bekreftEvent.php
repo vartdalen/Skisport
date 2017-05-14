@@ -214,7 +214,7 @@
             form.appendChild(buttonBack);
 
             var button = document.createElement("button");
-            button.setAttribute("name", "knappBekreft");
+            button.setAttribute("name", "knappBekreft2");
             button.setAttribute("type", "submit");
             button.setAttribute("class", "btn btn-primary pull-right");
             button.innerHTML = "Bekreft";

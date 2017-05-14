@@ -39,12 +39,20 @@
     <?php
       
         session_start();
-
-        include_once ('Database/paamelding.php'); 
-        include_once('diverse/navbarTemplate.php');
         
-        //hindrer flere innsendinger
-        unset($_POST['knappBekreft']);
+        //sjekker først om innlogget, for så å sjekke etter post variabel fra forrige side.
+        if (!isset($_SESSION['user'])) {
+
+            header('location: feilIkkeLogin.php');
+
+        } else if (!isset($_POST['knappBekreft2'])) {
+
+            header('location: feil.php');
+
+        }
+        
+        include_once('diverse/navbarTemplate.php');
+        include_once ('Database/paamelding.php');
     
       ?>
       
@@ -55,9 +63,8 @@
         <div class="row vertical-center-row">
         <!-- Header velkommen -->
         <header class="jumbotron hero-spacer">
-            <h1>Takk for din påmelding.</h1>
-            <p>Du er nå påmeldt vårt arrangement under Ski-VM 2017. <br>Klikk på nedenfor for å gå til kalender og se hva du er meldt på.</p>
-            <p><a href="paameldingsOversikt.php" class="btn btn-primary btn-large">Kalender</a>
+            <h1>Laster...</h1>
+            <p>Vent litt.</p>
             </p>
         </header>
         <!-- Header slutt -->

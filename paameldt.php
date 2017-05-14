@@ -39,12 +39,14 @@
     <?php
       
         session_start();
-
-        include_once ('Database/paamelding.php'); 
-        include_once('diverse/navbarTemplate.php');
         
-        //hindrer flere innsendinger
-        unset($_POST['knappBekreft']);
+        if (!isset($_SESSION['user'])) {
+
+        header('location: feilIkkeLogin.php');
+
+        }
+        
+        include_once('diverse/navbarTemplate.php');
     
       ?>
       
