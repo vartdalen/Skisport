@@ -14,7 +14,7 @@
     <script src="js/bootstrap.min.js"/></script>
     <script type="text/javascript" src="js/list.js" async/></script>
     <!--<script type="text/javascript" src="js/hentEventFunksjoner.js" async/></script>-->
-<script type="text/javascript" src="js/hentEventFunksjoner2.js" async/></script>
+    <script type="text/javascript" src="js/hentEventFunksjoner2.js" async/></script>
     
     <style type="text/css">
     #formRegistrering .has-error .control-label,
@@ -109,15 +109,13 @@
                                                     $resultat = mysqli_query($db, $sql);
                                                     
                                                     if(!$resultat) {
-
                                                         die(mysqli_error());
-
                                                     }
                                                     
-                                                    if(mysqli_num_rows($resultat)){
-                                                    $select= '<select id="velgGren" name="velgGren" class="form-control" required="required" onchange="valgtGren(); selectDato(this.value);"><option selected hidden>Velg gren</option>';
-                                                    while($rs=mysqli_fetch_array($resultat)){
-                                                        
+                                                    if(mysqli_num_rows($resultat) > 0){
+                                                        $select= '<select id="velgGren" name="velgGren" class="form-control" required="required" onchange="valgtGren(); selectDato(this.value);"><option selected hidden>Velg gren</option>';
+                                                    while($rs = mysqli_fetch_array($resultat)){
+
                                                         $select.='<option>';
                                                         $select.=$rs['Gren'];
                                                         $select.='</option>';
@@ -153,13 +151,13 @@
 
                                                     }
                                                     
-                                                    $rowcount = -1;
+                                                   // $rowcount = -1;
                                                     
                                                     if(mysqli_num_rows($resultat)){
                                                     $select= '<select id="velgDato" name="velgDato" class="form-control" required="required" onchange="valgtDato();" disabled><option selected hidden>Velg dato</option>';
                                                     while($rs=mysqli_fetch_array($resultat)){
-                                                        $rowcount++;
-                                                        $select.='<option id="'.$rowcount.'">';
+                                                        //$rowcount++;
+                                                        $select.='<option>';
                                                         $select.=$rs['Dato'];
                                                         $select.='</option>';
                                                           
