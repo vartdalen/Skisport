@@ -84,9 +84,9 @@
                                                 </span>
                                                 <input value="<?php if (isset($_SESSION['skjemaUtfylt'])) {if (isset($_SESSION['fornavn'])) {echo $_SESSION['fornavn'];}}?>" oninvalid="this.setCustomValidity('Vennligst skriv inn navn.')" id="fornavn" name="fornavn" class="form-control" type="text" required="required" placeholder="Skriv inn fornavn" onchange="testFornavn()">
                                                 <span id="successIconFornavn" class="glyphicon glyphicon-ok-circle form-control-feedback" style="display: none"></span>
-                                                <span id="errorIconFornavn" class="glyphicon glyphicon-remove-circle form-control-feedback" style="display: none"></span>
-                                                
+                                                <span id="errorIconFornavn" class="glyphicon glyphicon-remove-circle form-control-feedback" style="display: none"></span>  
                                             </div>
+                                            
                                             <div id="hjelpedivFornavn" class="help-block with-errors" style="display: none">Vennligst skriv inn fornavn. Æ, ø og å er desverre ikke tillatt.</div>
                                         </div>
                                         

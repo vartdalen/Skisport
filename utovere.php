@@ -51,10 +51,17 @@
 
     <div class="container container-table">
 
-        <div class="row vertical-center-row">
-            <header class='jumbotron'>
-                <h1>Utøvere</h1>
-            </header>
+        <div class="container container-table">
+        <div class="jumbotron jumbotron-sm">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-lg-12">
+
+                        <h1 class="h1">Utøvere</h1>
+
+                    </div>
+                </div>
+            </div>
             <div id="utdataAthletes">
             </div>
 
@@ -69,8 +76,9 @@
             </div>
         </footer>
 
-        </div>
+        
      </div>
+    </div>
     <!-- Footer slutt -->
 
     <!-- Bootstrap JavaScript -->

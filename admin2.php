@@ -30,10 +30,6 @@
         
     <?php
         session_start();
-        include_once('diverse/navbarTemplate.php');
-        include_once ('Database/adminDbFunctions.php');
-        include 'Database/dbtilknytning.php';
-        
         if(!isset($_SESSION['user'])) {
 
             header('location: loginPage.php');
@@ -43,6 +39,12 @@
             header('location: feil.php');
 
         }
+        
+        include_once('diverse/navbarTemplate.php');
+        include_once ('Database/adminDbFunctions.php');
+        include 'Database/dbtilknytning.php';
+        
+        
     ?>
         
         <script type="text/javascript">

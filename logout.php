@@ -1,7 +1,3 @@
-
-    
- 
-
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -51,20 +47,20 @@
     
     } else if (isset($_SESSION['user'])) {
         
-    unset($_SESSION['user']);
-        
+        unset($_SESSION['user']);
+        session_destroy();
+    
     }
     
     if (isset($_SESSION['user'])){
         
-    unset($_SESSION['user']);
-    echo "<br/><br/><br/><br/>"."Vennligst kontakt systemansvarlig!";
+        unset($_SESSION['user']);
+        echo "<br/><br/><br/><br/>"."Vennligst kontakt systemansvarlig!";
+        session_destroy();
     
     }
     
     include_once ('diverse/navbarTemplate.php');
-    
-    session_destroy();
     
     ?>
       

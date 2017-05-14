@@ -42,7 +42,7 @@
 
                                         if ($_SESSION['userlevel'] == 1) {
 
-                                        echo "<li id='admin'><a href='admin.php'>Admin</a></li>";
+                                        echo "<li id='admin'><a href='admin2.php'>Admin</a></li>";
 
                                         }
 

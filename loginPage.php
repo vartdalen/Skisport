@@ -53,18 +53,20 @@
     <div class="container" id="loginbox">
 
         <form class="form-signin" action="Database/login.php" method="post">
-            
-                    <label for="inputEmail" class="sr-only">Email adresse</label>
-                    <input type="email" id="email" name="email" class="form-control" placeholder="Email adresse" required autofocus>
-                    <br>
-                    <label for="inputPassword" class="sr-only">Passord</label>
-                    <input type="password" id="passord" name="passord" class="form-control" placeholder="Passord" required>
-                    
-                    <div class="checkbox">
-                        <label>
-                        <input type="checkbox" value="remember-me"> Husk meg
-                        </label>
+                    <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                            </span>
+                            <label for="inputEmail" class="sr-only">Email adresse</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Email adresse" required autofocus>
                     </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-option-horizontal"></span>
+                        </span>
+                        <label for="inputPassword" class="sr-only">Passord</label>
+                        <input type="password" id="passord" name="passord" class="form-control" placeholder="Passord" required>
+                    </div>
+                    <br>
                     
                     <div class="col-sm-12">   
                         <div class="col-sm-3"></div>    

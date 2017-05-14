@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="css/bootstrap.min.css"/>
         <link rel="stylesheet" href="css/cssform.css"/>
 
-        <title>Registrer deg</title>
+        <title>Påmelding</title>
         <!-- JQuery -->    <script src="js/jquery.min.js"></script>    <!-- Bootstrap JavaScript --> 
         <script src="js/bootstrap.min.js"/></script>
     <script type="text/javascript" src="js/list.js" async/></script>

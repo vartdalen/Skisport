@@ -7,8 +7,6 @@
     <!-- Bootstrap CSS -->
     <!-- NB! Må ligge under meta taggene i <head> -->
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link href="css/forside.css" rel="stylesheet">
-    <!--    <link rel="stylesheet" type="text/css" href="css/"/>-->
           
     <title>Ski-VM</title>
     
@@ -65,7 +63,7 @@
         <?php if (isset($_SESSION['user'])) { 
         
         echo "<h1>Velkommen, ".$_SESSION['fornavn']."</h1>
-        <p>Meld deg gjerne kostnadsfritt som publikum på en av våre arrangementer.</p>
+        <p>Meld deg gjerne kostnadsfritt som publikum på et av våre arrangementer.</p>
         <p>Hvis du er i tvil kan du browse våre utøvere og sjekke datoer og tider for arrangementene.</p>";
             
         } else {

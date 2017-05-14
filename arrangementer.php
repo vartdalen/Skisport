@@ -4,6 +4,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/bootstrap.min.css"/>
+        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="js/loadTableFunctions.js"></script>
         <script src="js/adminDbFunctions.js"></script>
@@ -35,7 +36,7 @@
                 setInterval(function(){
                     $('#utdataEvent').load('.\\Database\\Tabeller\\loadEvent.php')
                 }, 1000);
-            })
+            });
         </script>
     
   </head>
@@ -50,27 +51,33 @@
       <!-- Innhold på siden -->
 
     <div class="container container-table">
+        <div class="jumbotron jumbotron-sm">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-lg-12">
 
-        <div class="row vertical-center-row">
-            <header class='jumbotron'>
-                <h1>Arrangementer</h1>
-            </header>
+                        <h1 class="h1">Arrangementer</h1>
+
+                    </div>
+                </div>
+            </div>
             <div id="utdataEvent">
             </div>
 
-        <hr>
-       
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div id="footer" class="col-lg-12">
-                    <p>Copyright &copy; Webprogrammering Prosjektoppgave HiOA - 2017</p>
-                </div>
-            </div>
-        </footer>
+            <hr>
 
-        </div>
-     </div>
+            <!-- Footer -->
+            <footer>
+                <div class="row">
+                    <div id="footer" class="col-lg-12">
+                        <p>Copyright &copy; Webprogrammering Prosjektoppgave HiOA - 2017</p>
+                    </div>
+                </div>
+            </footer>
+
+            
+         </div>
+    </div>
     <!-- Footer slutt -->
 
     <!-- Bootstrap JavaScript -->
