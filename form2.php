@@ -197,7 +197,7 @@
                             </div>
 
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" id="knappBekreft" onclick="" disabled>
+                                <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" id="knappBekreft" onclick="sjekkListe()" disabled>
                                     Bekreft</button>
                             </div>
 
