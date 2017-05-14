@@ -10,14 +10,10 @@
     if($db->connect_error) {
         die("Database tilkobling mislykket!");
     }
-    $password = $_REQUEST["Passord"];
-    $epost = $_SESSION["user"];
+    $nyEpost = $_REQUEST["Epost"];
+    $epostSess = $_SESSION["user"];
     
-    $salt = 'ayylmao';
-    $newPassord = md5($_REQUEST["Passord"]+$salt);
-    $finalpassword = $newPassord;
-    
-    $sql = "UPDATE User SET Password = '$finalpassword' WHERE Epost = '$epost'";
+    $sql = "UPDATE User SET Epost = '$nyEpost' WHERE Epost = '$epostSess'";
     $resultat = mysqli_query($db, $sql);
     if(!$resultat) {
         $db->rollback();

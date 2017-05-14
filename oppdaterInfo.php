@@ -9,7 +9,8 @@
     <!-- NB! Må ligge under meta taggene i <head>. -->
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
 <!--    <link rel="stylesheet" type="text/css" href="css/"/>-->
-    <script src="profilValidering"></script>
+    <script src="js/profilValidering.js"></script>
+    <script src="js/profilFunksjoner.js"></script>
           
     <title>Profil</title>
     
@@ -146,7 +147,7 @@
                             </div>
                         </div>
 
-                        <input type="submit" class="btn btn-primary pull-left" value="Endre passord" onclick="editPW()">
+                        <span type="submit" class="btn btn-primary pull-left" value="Endre passord" onclick="editPW()">Endre passord</span>
                         <div class="clearfix"></div>
                     </form>
               </div>

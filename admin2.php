@@ -65,9 +65,19 @@
             </div>
         </div>
         
+      <div id="tabDIV" class="container">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tabBruker" data-toggle="tab">Bruker</a></li>
+            <li><a href="#tabUtøver" data-toggle="tab">Utøvere</a></li>
+            <li><a href="#tabEvent" data-toggle="tab">Arrangementer</a></li>
+         </ul>
+      </div>
         
-        <div class="container">
+    <div id="myTabContent" class="tab-content">
+        <div class="container tab-pane active in" id="tabBruker">
             <div class="row">
+                
+                
                 <div class="col-md-6">
                     <div class="well well-sm">
                         <div class="row">
@@ -109,30 +119,6 @@
                                 </div>                                    
                                 <div class="col-md-12">
                                     <input type="submit" class="btn btn-primary pull-right" value="Slett bruker" onclick="deleteUser()">
-                                </div>                                    
-                                <hr class="separator">
-                                
-                                <div class="form-group">
-                                    <label for="userEpost1">
-                                        Epost</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
-                                        </span>
-                                        <input type="text" id="userEpost1" class="form-control" placeholder="Skriv inn bruker sin epost"/>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="userPassord">
-                                        Passord</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-option-vertical"></span>
-                                        </span>
-                                        <input type="password" id="userPassord" class="form-control" placeholder="Skriv inn passord"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <input type="submit" class="btn btn-primary pull-right" value="Endre passord" onclick="editPW()">
                                 </div>                                    
                                 <hr class="separator">
                                 
@@ -180,7 +166,7 @@
         </div>
         
         <!-- Endring for utøvere -->
-        <div class="container">
+        <div class="container tab-pane fade" id="tabUtøver">
             <div class="row">
                 <div class="col-md-6">
                     <div class="well well-sm">
@@ -272,7 +258,7 @@
         </div>
         
         <!-- Endring for arrangementer -->
-        <div class="container">
+        <div class="container tab-pane fade" id="tabEvent">
             <div class="row">
                 <div class="col-md-6">
                     <div class="well well-sm">
@@ -345,6 +331,7 @@
                 
             </div>
         </div>
+    </div>
         
         <!-- Bootstrap JavaScript -->
         <script src="js/bootstrap.min.js"></script>
