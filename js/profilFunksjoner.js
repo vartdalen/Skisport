@@ -5,19 +5,36 @@
  */
 
 function editNavn(){
+    const getUrl = ".\\Database\\adminDBAjaxURL\\editName.php";
+    const BKname = $('#fornavn').val();
+    const BKsurName = $('#etternavn').val();
     
+        if(BKname == '' || BKsurName == ''){
+        alert('Ops. Begge felter må fylles ut!');
+        return false;
+    }
+        
+    $.ajax({
+        url: getUrl,
+        type: "POST",
+        data:{ Fornavn: BKname, Etternavn: BKsurName },
+        success:function(res){
+            alert(res + 'Navn ble oppdatert!');
+        },
+        error:function(err){
+            alert(err);
+        }
+    }); 
 }
 
 function editEpost(){
     const getUrl = ".\\Database\\adminDBAjaxURL\\editUserEpost.php";
-
-    //const epost = $('#epostBekreft').val();
-    const epost = $('#epost').val();
+    const BKepost = $('#epostBekreft').val();
     
     $.ajax({
         url: getUrl,
         type: "POST",
-        data:{ Epost: epost },
+        data:{ Epost: BKepost },
         success:function(res){
             alert(res + 'Din epost ble oppdatert!');
         },
@@ -34,7 +51,7 @@ function editPW(){
     $.ajax({
         url: getUrl,
         type: "POST",
-        data:{ Passord: passord },
+        data:{ Passord: BKpassord },
         success:function(res){
             alert(res + 'Ditt passord ble oppdatert!');
         },

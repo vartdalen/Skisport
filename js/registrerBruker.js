@@ -21,33 +21,6 @@ function testAlle() {
     } else {
         knappBekreft.setAttribute('disabled', 'disabled');
     }
-
-//    $(document).on('focusout', 'input.validate, textarea.validate', function() {
-//
-//        if ($(this).hasClass('is_required') || $(this).val().length)
-//        {
-//
-//            var result = window['validate_'+$(this).attr('data-validate')]($(this).val())
-//
-//            if (result)
-//            {
-//                $(this).parent().removeClass('form-error').addClass('form-ok');
-//
-//                // There's the chance of no errors, check it.
-//                var numItems = $('.form-error').length;// Check number of elements with class error.
-//
-//                if(numItems === 0) {// If all items are ok, remove disable.
-//                   $(".knappBekreft").removeAttr("disabled", "disabled");
-//                }
-//            }
-//            else// There's at least one error, no need to check, disable it.
-//            {
-//                $(this).parent().addClass('form-error').removeClass('form-ok');
-//                $(".knappBekreft").attr("disabled", "disabled");
-//            }
-//        }
-//    });
-    
 }
 
 function testFornavn() {
