@@ -28,9 +28,9 @@ window.onload = function () {
 function newElement() {
     var li = document.createElement("li");
     var inputAntall = document.getElementById("velgAntall").value;
-    var inputGren = document.getElementById("velgGren").value;
-    var inputDato = document.getElementById("velgDato").value;
-    var inputTid = document.getElementById("velgTid").value;
+    var inputGren = document.getElementById("gren").value;
+    var inputDato = document.getElementById("dato").value;
+    var inputTid = document.getElementById("tid").value;
     var output = inputAntall + " pers " + inputGren + " den " + inputDato + " klokken " + inputTid;
     var t = document.createTextNode(output);
 
@@ -47,19 +47,19 @@ function newElement() {
     //håndterer brukervennlighet for utfylling av form
     if (inputGren != 'Velg gren' && inputDato != 'Velg dato' && inputTid != 'Velg tid'){
         document.getElementById("knappBekreft").disabled = false;
-        document.getElementById("velgGren").value = "Velg gren";
-        document.getElementById("velgDato").value = "Velg dato";
-        document.getElementById("velgTid").value = "Velg tid";
-        document.getElementById("velgDato").disabled = true;
-        document.getElementById("velgTid").disabled = true;
-        document.getElementById("velgGrenGroup").setAttribute("class", "form-group");
-        document.getElementById("velgDatoGroup").setAttribute("class", "form-group");
-        document.getElementById("velgTidGroup").setAttribute("class", "form-group");
+        document.getElementById("gren").value = "Velg gren";
+        document.getElementById("dato").value = "Velg dato";
+        document.getElementById("tid").value = "Velg tid";
+        document.getElementById("dato").disabled = true;
+        document.getElementById("tid").disabled = true;
+        document.getElementById("grenGroup").setAttribute("class", "form-group");
+        document.getElementById("datoGroup").setAttribute("class", "form-group");
+        document.getElementById("tidGroup").setAttribute("class", "form-group");
         
     } else if (inputGren != 'Velg gren' || inputDato != 'Velg dato' || inputTid != 'Velg tid') {
-        document.getElementById("velgGren").value = inputGren;
-        document.getElementById("velgDato").value = inputDato;
-        document.getElementById("velgTid").value = inputTid;
+        document.getElementById("gren").value = inputGren;
+        document.getElementById("dato").value = inputDato;
+        document.getElementById("tid").value = inputTid;
     }
 
     //lager sletteknapp
@@ -146,9 +146,9 @@ function bekreft() {
 
 function sjekkTall() {
     
-    var inputGren = document.getElementById("velgGren").value;
-    var inputDato = document.getElementById("velgDato").value;
-    var inputTid = document.getElementById("velgTid").value;
+    var inputGren = document.getElementById("gren").value;
+    var inputDato = document.getElementById("dato").value;
+    var inputTid = document.getElementById("tid").value;
     var antall = document.getElementById("velgAntall").value;
     
     var regex = /^(?:[1-5]|0[1-5])$/;
@@ -163,7 +163,7 @@ function sjekkTall() {
         return false;
     } else {
         document.getElementById("velgAntallGroup").setAttribute("class", "form-group has-success");
-        document.getElementById("velgGren").disabled = false;
+        document.getElementById("gren").disabled = false;
         document.getElementById("errorIconAntall").style.display = 'none';
         document.getElementById("successIconAntall").style.display = 'initial';
         
@@ -190,13 +190,13 @@ function sjekkListe() {
 }
 
 function valgtGren() {
-    var inputGren = document.getElementById("velgGren").value;
-    var inputDato = document.getElementById("velgDato").value;
-    var inputTid = document.getElementById("velgTid").value;
+    var inputGren = document.getElementById("gren").value;
+    var inputDato = document.getElementById("dato").value;
+    var inputTid = document.getElementById("tid").value;
     var antall = document.getElementById("velgAntall").value;
     
-    document.getElementById("velgDato").disabled = false;
-    document.getElementById("velgGrenGroup").setAttribute("class", "form-group has-success");
+    document.getElementById("dato").disabled = false;
+    document.getElementById("grenGroup").setAttribute("class", "form-group has-success");
     
     if (inputGren != 'Velg gren' || inputDato != 'Velg dato' || inputTid != 'Velg tid') {
 
@@ -213,13 +213,13 @@ function valgtGren() {
 }
 
 function valgtDato() {
-    var inputGren = document.getElementById("velgGren").value;
-    var inputDato = document.getElementById("velgDato").value;
-    var inputTid = document.getElementById("velgTid").value;
+    var inputGren = document.getElementById("gren").value;
+    var inputDato = document.getElementById("dato").value;
+    var inputTid = document.getElementById("tid").value;
     var antall = document.getElementById("velgAntall").value;
     
-    document.getElementById("velgTid").disabled = false;
-    document.getElementById("velgDatoGroup").setAttribute("class", "form-group has-success");
+    document.getElementById("tid").disabled = false;
+    document.getElementById("datoGroup").setAttribute("class", "form-group has-success");
 
     if (inputGren != 'Velg gren' || inputDato != 'Velg dato' || inputTid != 'Velg tid') {
 
@@ -236,12 +236,12 @@ function valgtDato() {
 }
 
 function valgtTid() {
-    var inputGren = document.getElementById("velgGren").value;
-    var inputDato = document.getElementById("velgDato").value;
-    var inputTid = document.getElementById("velgTid").value;
+    var inputGren = document.getElementById("gren").value;
+    var inputDato = document.getElementById("dato").value;
+    var inputTid = document.getElementById("tid").value;
     var antall = document.getElementById("velgAntall").value;
     
-    document.getElementById("velgTidGroup").setAttribute("class", "form-group has-success");
+    document.getElementById("tidGroup").setAttribute("class", "form-group has-success");
     
     if ((inputGren != 'Velg gren' && inputDato != 'Velg dato' && inputTid != 'Velg tid') && (antall > 0 && antall < 6 && !isNaN(antall))) {
         

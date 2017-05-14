@@ -13,15 +13,14 @@
     $gren = $_REQUEST["Gren"];
 
     if(isset($gren) && !empty($gren)){
-        $sql = "SELECT Dato FROM Event Where Gren = '$gren'";
+        $sql = "SELECT DISTINCT Dato FROM Event Where Gren = '$gren'";
         $resultat = mysqli_query($db, $sql);
 
         if (!$resultat) {
             die(mysqli_error());
         }
-        $rowCount = $resultat->num_rows;
 
-        if ($rowCount > 0) {
+        if (mysqli_num_rows($resultat) > 0) {
             while ($row = mysqli_fetch_array($resultat)) {
                 echo "<option>" . $row['Dato'] . "</option>";
             }
@@ -31,22 +30,22 @@
     }
 
     $dato = $_REQUEST["Dato"];
+    $gren2 = $_REQUEST["Gren2"];
 
     if(isset($dato) && !empty($dato)){
-        $sql = "SELECT Tid FROM Event Where Dato = '$dato'";
+        $sql = "SELECT DISTINCT Tid FROM Event Where Dato = '$dato' AND Gren = '$gren2'";
         $resultat = mysqli_query($db, $sql);
 
         if (!$resultat) {
             die(mysqli_error());
         }
-        $rowCount = $resultat->num_rows;
 
-        if ($rowCount > 0) {
+        if (mysqli_num_rows($resultat) > 0) {
             while ($row = mysqli_fetch_array($resultat)) {
                 echo "<option>" . $row['Tid'] . "</option>";
             }
         } else {
-            echo '<option>FEIL: Tid ikke tilgjengelig</option>';
+            echo '<option>Tid ikke tilgjengelig</option>';
         }
     }
 ?>

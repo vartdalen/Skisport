@@ -58,11 +58,12 @@
 
         $('#dato').on('change', function () {
             var dato = $(this).val();
+            var gren2 = $('#gren').val();
             if (dato) {
                 $.ajax({
                     type: 'POST',
                     url: '.\\Database\\adminDBAjaxURL\\selectEvent.php',
-                    data: {Dato : dato},
+                    data: {Dato : dato, Gren2 : gren2},
                     success: function (html) {
                         $('#tid').html(html);
                     }
@@ -120,14 +121,14 @@
                                     </div>                                           
                                 </div>
 
-                                <div class="form-group" id="velgGrenGroup">
+                                <div class="form-group" id="grenGroup">
                                     <label class="control-label" for="gren">
                                         Gren</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-option-vertical"></span>
                                         </span>
-                                        <select class="form-control" required="required" name="gren" id="gren">
-                                            <option value="">Velg gren</option>
+                                        <select class="form-control" name="gren" id="gren" onchange="valgtGren()">
+                                            <option value="" selected hidden>Velg gren</option>
                                             <?php
                                             // Setter opp første dropdown
                                             $sql = "SELECT DISTINCT Gren FROM Event";
@@ -150,25 +151,25 @@
                                     </div>
 
                                 </div>
-                                <div class="form-group" id="velgDatoGroup">
+                                <div class="form-group" id="datoGroup">
                                     <label class="control-label" for="dato">
                                         Dato</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                                         </span>
-                                        <select class="form-control" required="required" name="dato" id="dato">
+                                        <select class="form-control" required="required" name="dato" id="dato" onchange="valgtDato()">
                                             <option value="">Velg gren først</option>
                                         </select>
                                     </div>
                                 </div>
 
-                                <div class="form-group" id="velgTidGroup">
+                                <div class="form-group" id="tidGroup">
                                     <label class="control-label" for="tid">
                                         Tid</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
                                         </span>
-                                        <select class="form-control" required="required" name="tid" id="tid">
+                                        <select class="form-control" required="required" name="tid" id="tid" onchange="valgtTid()">
                                             <option value="">Velg dato først</option>
                                         </select>
                                     </div>
@@ -196,7 +197,7 @@
                             </div>
 
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" id="knappBekreft" onclick="sjekkListe()" disabled>
+                                <button type="submit" class="btn btn-primary pull-right" name="knappBekreft" id="knappBekreft" onclick="" disabled>
                                     Bekreft</button>
                             </div>
 
